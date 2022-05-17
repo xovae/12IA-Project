@@ -1,0 +1,10 @@
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\bin\Debug\12IA Game v0.exe.config
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\bin\Debug\12IA Game v0.exe
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\bin\Debug\12IA Game v0.pdb
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\12IA Game v0.csprojAssemblyReference.cache
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\_12IA_Game_v0.frmGame.resources
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\_12IA_Game_v0.Properties.Resources.resources
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\12IA Game v0.csproj.GenerateResource.cache
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\12IA Game v0.csproj.CoreCompileInputs.cache
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\12IA Game v0.exe
+K:\2022 IA\Programming\12IA-Project\12IA Game v0\12IA Game v0\obj\Debug\12IA Game v0.pdb
