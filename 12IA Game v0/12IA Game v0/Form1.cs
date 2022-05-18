@@ -44,22 +44,26 @@ namespace _12IA_Game_v0
             if (up == true) { player.Top -= 5; }
             if (down == true) { player.Top += 5; }
 
+            //Image flipImage = player.Image;
+            //flipImage.RotateFlip(RotateFlipType.Rotate90FlipXY);
+            //player.Image = flipImage;
+
         }
         private void frmGame_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right) { right = true; }
-            if (e.KeyCode == Keys.Left) { left = true; }
-            if (e.KeyCode == Keys.Up) { up = true; }
-            if (e.KeyCode == Keys.Down) { down = true; }
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) { right = true; }
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A) { left = true; }
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W) { up = true; }
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) { down = true; }
             if (e.KeyCode == Keys.Escape) { this.Close(); }
         }
 
         private void frmGame_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right) { right = false; }
-            if (e.KeyCode == Keys.Left) { left = false; }
-            if (e.KeyCode == Keys.Up) { up = false; }
-            if (e.KeyCode == Keys.Down) { down = false; }
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D) { right = false; }
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A) { left = false; }
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W) { up = false; }
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) { down = false; }
         }
 
     }

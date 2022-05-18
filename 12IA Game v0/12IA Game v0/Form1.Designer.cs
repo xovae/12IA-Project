@@ -31,8 +31,8 @@ namespace _12IA_Game_v0
         {
             this.components = new System.ComponentModel.Container();
             this.pnlScreen = new System.Windows.Forms.Panel();
-            this.tmrMovement = new System.Windows.Forms.Timer(this.components);
             this.player = new System.Windows.Forms.PictureBox();
+            this.tmrMovement = new System.Windows.Forms.Timer(this.components);
             this.pnlScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             this.SuspendLayout();
@@ -47,20 +47,20 @@ namespace _12IA_Game_v0
             this.pnlScreen.TabIndex = 0;
             this.pnlScreen.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlScreen_Paint);
             // 
+            // player
+            // 
+            this.player.BackColor = System.Drawing.Color.Red;
+            this.player.Location = new System.Drawing.Point(263, 237);
+            this.player.Name = "player";
+            this.player.Size = new System.Drawing.Size(40, 40);
+            this.player.TabIndex = 0;
+            this.player.TabStop = false;
+            // 
             // tmrMovement
             // 
             this.tmrMovement.Enabled = true;
             this.tmrMovement.Interval = 1;
             this.tmrMovement.Tick += new System.EventHandler(this.tmrMovement_Tick);
-            // 
-            // player
-            // 
-            this.player.BackColor = System.Drawing.Color.Red;
-            this.player.Location = new System.Drawing.Point(300, 300);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(40, 40);
-            this.player.TabIndex = 0;
-            this.player.TabStop = false;
             // 
             // frmGame
             // 
