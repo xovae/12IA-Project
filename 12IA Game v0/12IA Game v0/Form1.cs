@@ -10,8 +10,12 @@ using System.Windows.Forms;
 
 namespace _12IA_Game_v0
 {
+
+  
     public partial class frmGame : Form
     {
+
+        bool isDragging;
 
         bool right; //boolean values used for movement (is user pressing direction keys yes/no)
         bool left;
@@ -66,5 +70,13 @@ namespace _12IA_Game_v0
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S) { down = false; }
         }
 
+        private void player_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDragging = true;
+
+            pbCurrentX = e.X;
+            pbCurrentY = e.Y;
+
+        }
     }
 }

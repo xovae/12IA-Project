@@ -55,6 +55,7 @@ namespace _12IA_Game_v0
             this.player.Size = new System.Drawing.Size(40, 40);
             this.player.TabIndex = 0;
             this.player.TabStop = false;
+            this.player.MouseDown += new System.Windows.Forms.MouseEventHandler(this.player_MouseDown);
             // 
             // tmrMovement
             // 
