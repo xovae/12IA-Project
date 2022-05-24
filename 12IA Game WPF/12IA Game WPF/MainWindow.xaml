@@ -1,0 +1,14 @@
+﻿<Window x:Class="_12IA_Game_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_12IA_Game_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Grid>
+        <Image x:Name="character" HorizontalAlignment="Left" Height="40" Margin="122,131,0,0" VerticalAlignment="Top" Width="40" Source="Screenshot_2019-02-21-12-42-15-631_com.facebook.katana.png" KeyDown="character_KeyDown" KeyUp="character_KeyUp"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" ClipToBounds="True"/>
+
+    </Grid>
+</Window>
