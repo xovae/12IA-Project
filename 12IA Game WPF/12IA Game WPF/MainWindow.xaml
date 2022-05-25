@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowState="Maximized" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
-    <Grid>
-        <Image x:Name="character" HorizontalAlignment="Left" Height="40" Margin="122,131,0,0" VerticalAlignment="Top" Width="40" Source="Screenshot_2019-02-21-12-42-15-631_com.facebook.katana.png" KeyDown="character_KeyDown" KeyUp="character_KeyUp"/>
-        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" ClipToBounds="True"/>
+        Title="Space Game" Height="615" Width="540" WindowState="Maximized" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Canvas Background="LightBlue" Name="Game_Canvas" KeyDown="Key_Down" KeyUp="Key_Up" Focusable="True">
 
-    </Grid>
+        <Rectangle Name="player" Height="50" Width="60" Fill="Yellow" Canvas.Left="220" Canvas.Top="274"/>
+
+        <Label Name="scoreText" Content="Score: 0" FontSize="18" FontWeight="Bold" Foreground="White"/>
+        <Label Name="damageText" Content="Damage: 0" FontSize="18" FontWeight="Bold" Canvas.Right="0" Foreground="White"/>
+
+    </Canvas>
 </Window>

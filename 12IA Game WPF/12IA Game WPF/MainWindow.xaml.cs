@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace _12IA_Game_WPF
 {
@@ -20,18 +21,39 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        //declaring booleans for moving left and right
+        bool moveLeft, moveRight;
+        //list for removing items (i.e killed enemies, bullets)
+        List<Rectangle> itemstoreremove = new List<Rectangle>();
+        //random number generation
+        Random rand = new Random();
 
-        bool left, right, up, down;
 
-       
+        int enemySpriteCounter; // int to help change enemy images
+        int enemyCounter = 100; // enemy spawn time
+        int playerSpeed = 10; // player movement speed
+        int limit = 50; // limit of enemy spawns                        //REPLACE WITH OWN cODe
+        int score = 0; // default score
+        int damage = 0; // default damage
+
+        Rect playerHitBox; //hitbox to check for collision
+
 
         public MainWindow()
         {
             InitializeComponent();
-            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             dispatcherTimer.Start();
+            Game_Canvas.Focus();
+
+            ImageBrush background = new ImageBrush();
+            background.ImageSource = new BitmapImage(new Uri("\\hbhs.local/users/Home/Students/9jboulto/downloads/le pac.gif"));
+            background.TileMode = TileMode.Tile;
+            background.Viewport = new Rect(0, 0, 0.15, 0.15);
+            background.ViewportUnits = BrushMappingMode.RelativeToBoundingBox;
+            Game_Canvas.Background = background;
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -39,22 +61,14 @@ namespace _12IA_Game_WPF
             //character/*.*/
         }
 
-        private void character_KeyUp(object sender, KeyEventArgs e)
+        private void Key_Down(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left) { left = false; }
-            if (e.Key == Key.Right) { right = false; }
-            if (e.Key == Key.Up) { up = false; }
-            if (e.Key == Key.Down) { down = false; }
+
         }
 
-        private void character_KeyDown(object sender, KeyEventArgs e)
+        private void Key_Up(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left) { left = true; }
-            if (e.Key == Key.Right) { right= true; }
-            if (e.Key == Key.Up) { up = true; }
-            if (e.Key == Key.Down) { down = true; }
-            if (e.Key == Key.Escape) { this.Close(); }
-   
+
         }
     }
 }
