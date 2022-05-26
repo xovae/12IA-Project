@@ -97,5 +97,11 @@
   <ItemGroup>
     <Resource Include="Screenshot_2019-02-21-12-42-15-631_com.facebook.katana.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\le pac.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\placeholder ship.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
