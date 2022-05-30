@@ -43,7 +43,7 @@ namespace _12IA_Game_WPF
         {
             InitializeComponent();
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Tick += gameEngine;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             dispatcherTimer.Start();
             Game_Canvas.Focus();
@@ -108,5 +108,31 @@ namespace _12IA_Game_WPF
                 Game_Canvas.Children.Add(newBullet);
             }
         }
+
+        private void gameEngine(object sender, EventArgs e)
+        {
+            playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+
+            if (moveLeft && Canvas.GetLeft(player) > 0)
+            {
+                Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
+            }
+            if (moveRight && Canvas.GetLeft(player) + 90 < Application.Current.MainWindow.Width)
+            {
+                Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
+            }
+
+
+        
+        }
+
+        private void makeEnemies()
+        {
+            GC.Collect();
+
+        }
+
+
+
     }
 }
