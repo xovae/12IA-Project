@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="Space Game" WindowState="Maximized" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="1080" Width="1920" ResizeMode="CanMinimize" WindowStyle="None">
+        Title="Space Game" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="1080" Width="1920" ResizeMode="CanMinimize" WindowStyle="None" WindowState="Maximized">
     <Canvas Background="LightBlue" Name="Game_Canvas" KeyDown="Key_Down" KeyUp="Key_Up" Focusable="True">
 
         <Rectangle Name="player" Height="50" Width="60" Fill="Yellow" Canvas.Left="220" Canvas.Top="274"/>
+        <Button x:Name="exit" Content="runurunrunrunr" Canvas.Left="810" Canvas.Top="465" Width="141" Height="56" Click="exit_Click"/>
 
         <!--<Label Name="scoreText" Content="Score: 0" FontSize="18" FontWeight="Bold" Foreground="White"/>-->
         <!--<Label Name="damageText" Content="Damage: 0" FontSize="18" FontWeight="Bold" Canvas.Right="0" Foreground="White"/>-->

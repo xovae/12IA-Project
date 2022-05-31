@@ -29,6 +29,7 @@ namespace _12IA_Game_WPF
         {
             MainWindow game = new MainWindow();
             game.Show();
+            this.Close();
         }
     }
 }

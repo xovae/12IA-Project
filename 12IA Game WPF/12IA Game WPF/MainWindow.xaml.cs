@@ -22,11 +22,15 @@ namespace _12IA_Game_WPF
     public partial class MainWindow : Window
     {
         //declaring booleans for moving left and right
-        bool moveLeft, moveRight;
+        bool moveLeft, moveRight, moveUp, moveDown;
         //list for removing items (i.e killed enemies, bullets)
         List<Rectangle> itemstoreremove = new List<Rectangle>();
         //random number generation
         Random rand = new Random();
+
+
+
+        double[] boundaries = new double[4] { 0, 0, 1920, 1080 };
 
 
         int enemySpriteCounter; // int to help change enemy images
@@ -41,7 +45,12 @@ namespace _12IA_Game_WPF
 
         public MainWindow()
         {
+
+
             InitializeComponent();
+            boundaries[3] = Game_Canvas.Height;
+            boundaries[2] = Game_Canvas.Width;
+
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += gameEngine;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
@@ -77,6 +86,19 @@ namespace _12IA_Game_WPF
             {
                 moveRight = true;
             }
+            if (e.Key == Key.Up)
+            {
+                moveUp = true;
+            }
+            if (e.Key == Key.Down)
+            {
+                moveDown = true;
+            }
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void Key_Up(object sender, KeyEventArgs e)
@@ -88,6 +110,14 @@ namespace _12IA_Game_WPF
             if (e.Key == Key.Right)     //if user has released the left key, set moveRight to false
             {
                 moveRight = false;
+            }
+            if (e.Key == Key.Up)
+            {
+                moveUp = false;
+            }
+            if (e.Key == Key.Down)
+            {
+                moveDown = false;
             }
             if (e.Key == Key.Space)
             {
@@ -117,13 +147,18 @@ namespace _12IA_Game_WPF
             {
                 Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
             }
-            if (moveRight && Canvas.GetLeft(player) + 90 < Application.Current.MainWindow.Width)
+            if (moveRight && Canvas.GetLeft(player) + player.Width < Application.Current.MainWindow.Width)
             {
                 Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
             }
-
-
-        
+            if (moveUp /*&& Canvas.GetTop(player)*/)
+            {
+                Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
+            }
+            if (moveDown == true)
+            {
+                Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
+            }
         }
 
         private void makeEnemies()
