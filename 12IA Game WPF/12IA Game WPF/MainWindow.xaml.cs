@@ -33,12 +33,14 @@ namespace _12IA_Game_WPF
         double[] boundaries = new double[4] { 0, 0, 1920, 1080 };
 
 
-        int enemySpriteCounter; // int to help change enemy images
-        int enemyCounter = 100; // enemy spawn time
+        //int enemySpriteCounter; // int to help change enemy images
+        //int enemyCounter = 100; // enemy spawn time
         int playerSpeed = 10; // player movement speed
-        int limit = 50; // limit of enemy spawns                        //REPLACE WITH OWN cODe
-        int score = 0; // default score
-        int damage = 0; // default damage
+        //int limit = 50; // limit of enemy spawns                        //REPLACE WITH OWN cODe
+        //int score = 0; // default score
+        //int damage = 0; // default damage
+
+        double wHeight, wWidth;
 
         Rect playerHitBox; //hitbox to check for collision
 
@@ -141,25 +143,75 @@ namespace _12IA_Game_WPF
 
         private void gameEngine(object sender, EventArgs e)
         {
-            playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+            this.Left = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Top = System.Windows.SystemParameters.PrimaryScreenHeight;
+            wHeight = frmGame.Height;
+            wWidth = frmGame.Width;
+            var pos = GetMousePos(frmGame, wWidth, wHeight);
+            var angle = GetAngle(pos);
+            RotateTransform rotateTransform = new RotateTransform(angle, 50, 50);
+            player.RenderTransform = rotateTransform;
 
-            if (moveLeft && Canvas.GetLeft(player) > 0)
-            {
-                Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
-            }
-            if (moveRight && Canvas.GetLeft(player) + player.Width < Application.Current.MainWindow.Width)
-            {
-                Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
-            }
-            if (moveUp /*&& Canvas.GetTop(player)*/)
-            {
-                Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
-            }
-            if (moveDown == true)
-            {
-                Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
-            }
+
+            //playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+
+            //if (moveLeft && Canvas.GetLeft(player) > 0)
+            //{
+            //    Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
+            //}
+            //if (moveRight && Canvas.GetLeft(player) + player.Width < Application.Current.MainWindow.Width)
+            //{
+            //    Canvas.SetLeft(player, Canvas.GetLeft(player) + playerSpeed);
+            //}
+            //if (moveUp /*&& Canvas.GetTop(player)*/)
+            //{
+            //    Canvas.SetTop(player, Canvas.GetTop(player) - playerSpeed);
+            //}
+            //if (moveDown == true)
+            //{
+            //    Canvas.SetTop(player, Canvas.GetTop(player) + playerSpeed);
+            //}
         }
+
+        static double GetAngle(Point mouse)
+        {
+            if (mouse.X > 0 && mouse.Y > 0) //bottom right
+            {
+                return (Math.Atan(mouse.Y / mouse.X)) * (180 / Math.PI);
+            }
+            else if (mouse.X < 0 && mouse.Y > 0) //bottom left
+            {
+                mouse.X *= -1;
+                var ang = Math.Atan(mouse.Y / mouse.X) * (180 / Math.PI);
+                return 90 + (90 - ang);
+            }
+            else if (mouse.X > 0 && mouse.Y < 0) //top right
+            {
+                mouse.Y *= -1;
+                var ang = Math.Atan(mouse.Y / mouse.X) * (180 / Math.PI);
+                return 360 - ang;
+            }
+            else if (mouse.X < 0 && mouse.Y < 0) //top left
+            {
+                mouse.X *= -1;
+                mouse.Y *= -1;
+                var ang = Math.Atan(mouse.Y / mouse.X) * (180 / Math.PI);
+                return 180 + ang;
+            }
+            return -1;
+        }
+
+        static Point GetMousePos(Window back, double w, double h)
+        {
+            Point mousePos = Mouse.GetPosition(back);
+            var ofbackX = w / 2 * -1;
+            var ofbackY = h / 2 * -1;
+
+            mousePos.Offset(ofbackX, ofbackY);
+            return mousePos;
+
+        }
+
 
         private void makeEnemies()
         {

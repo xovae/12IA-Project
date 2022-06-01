@@ -31,5 +31,17 @@ namespace _12IA_Game_WPF
             game.Show();
             this.Close();
         }
+
+        private void btnCredits_Click(object sender, RoutedEventArgs e)
+        {
+            Credits credits = new Credits();
+            credits.Show();
+            this.Close();
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

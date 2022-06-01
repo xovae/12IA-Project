@@ -8,8 +8,8 @@
         Title="Space Game" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="1080" Width="1920" ResizeMode="CanMinimize" WindowStyle="None" WindowState="Maximized">
     <Canvas Background="LightBlue" Name="Game_Canvas" KeyDown="Key_Down" KeyUp="Key_Up" Focusable="True">
 
-        <Rectangle Name="player" Height="50" Width="60" Fill="Yellow" Canvas.Left="220" Canvas.Top="274"/>
-        <Button x:Name="exit" Content="runurunrunrunr" Canvas.Left="810" Canvas.Top="465" Width="141" Height="56" Click="exit_Click"/>
+        <Rectangle Name="player" Height="50" Width="60" Fill="Yellow" Canvas.Left="884" Canvas.Top="570"/>
+        <Button x:Name="exit" Content="runurunrunrunr" Canvas.Left="846" Canvas.Top="735" Width="141" Height="56" Click="exit_Click"/>
 
         <!--<Label Name="scoreText" Content="Score: 0" FontSize="18" FontWeight="Bold" Foreground="White"/>-->
         <!--<Label Name="damageText" Content="Damage: 0" FontSize="18" FontWeight="Bold" Canvas.Right="0" Foreground="White"/>-->
