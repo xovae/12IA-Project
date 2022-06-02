@@ -17,3 +17,5 @@ K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.g
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.baml
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.g.cs
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.baml
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.g.cs
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.baml

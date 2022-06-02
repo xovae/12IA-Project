@@ -64,6 +64,14 @@ namespace _12IA_Game_WPF {
         #line default
         #line hidden
         
+        
+        #line 13 "..\..\Menu.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label lblTitle;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -120,6 +128,9 @@ namespace _12IA_Game_WPF {
             
             #line default
             #line hidden
+            return;
+            case 4:
+            this.lblTitle = ((System.Windows.Controls.Label)(target));
             return;
             }
             this._contentLoaded = true;

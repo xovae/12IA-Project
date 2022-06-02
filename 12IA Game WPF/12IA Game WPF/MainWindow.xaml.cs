@@ -41,7 +41,6 @@ namespace _12IA_Game_WPF
         //int damage = 0; // default damage
 
         double wHeight, wWidth;
-
         Rect playerHitBox; //hitbox to check for collision
 
 
@@ -52,15 +51,22 @@ namespace _12IA_Game_WPF
             InitializeComponent();
             boundaries[3] = Game_Canvas.Height;
             boundaries[2] = Game_Canvas.Width;
+            //Canvas.SetLeft(player, Canvas.GetLeft(player));
+
+
+            //if (moveLeft && Canvas.GetLeft(player) > 0)
+            //{
+            //    Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
+            //}
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += gameEngine;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            dispatcherTimer.Tick += GameEngine;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 5);
             dispatcherTimer.Start();
             Game_Canvas.Focus();
 
             ImageBrush background = new ImageBrush();   //make an image brush called background
-            background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/le pac.gif"));   //source of image background, get working with gif
+            //background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/le pac.gif"));   //source of image background, get working with gif
             background.TileMode = TileMode.Tile;        //set the background image to tile (REPLACE WHEN GIF IS MADE)
             background.Viewport = new Rect(0, 0, 0.15, 0.15);   //set height and width of background image brush 
             background.ViewportUnits = BrushMappingMode.RelativeToBoundingBox;      //set background to viewport unit 
@@ -68,14 +74,9 @@ namespace _12IA_Game_WPF
 
             ImageBrush playerImage = new ImageBrush();   // make a player image, image brush
             // load the player image into it
-            playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/placeholder ship.png"));
+            playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
             // assign the player to the player rectangle fill
             player.Fill = playerImage;
-        }
-
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            //character/*.*/
         }
 
         private void Key_Down(object sender, KeyEventArgs e)
@@ -96,11 +97,6 @@ namespace _12IA_Game_WPF
             {
                 moveDown = true;
             }
-        }
-
-        private void exit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void Key_Up(object sender, KeyEventArgs e)
@@ -141,8 +137,18 @@ namespace _12IA_Game_WPF
             }
         }
 
-        private void gameEngine(object sender, EventArgs e)
+        private void btn_exit_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void GameEngine(object sender, EventArgs e)
+        {
+            double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;
+            double top = (Game_Canvas.ActualHeight - player.ActualHeight) / 2;
+            Canvas.SetTop(player, top);
+            Canvas.SetLeft(player, left);
+
             this.Left = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Top = System.Windows.SystemParameters.PrimaryScreenHeight;
             wHeight = frmGame.Height;
@@ -213,7 +219,7 @@ namespace _12IA_Game_WPF
         }
 
 
-        private void makeEnemies()
+        private void MakeEnemies()
         {
             GC.Collect();
 
