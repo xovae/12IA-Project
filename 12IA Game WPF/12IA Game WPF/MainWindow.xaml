@@ -10,6 +10,7 @@
 
         <Rectangle Name="player" Height="50" Width="60" Fill="Yellow" Canvas.Left="884" Canvas.Top="570"/>
         <Button x:Name="btn_exit" Content="runurunrunrunr" Canvas.Left="846" Canvas.Top="735" Width="141" Height="56" Click="btn_exit_Click"/>
+        <Button x:Name="btnMusic" Content="play music" Canvas.Left="333" Canvas.Top="345" Click="btnMusic_Click"/>
 
         <!--<Label Name="scoreText" Content="Score: 0" FontSize="18" FontWeight="Bold" Foreground="White"/>-->
         <!--<Label Name="damageText" Content="Damage: 0" FontSize="18" FontWeight="Bold" Canvas.Right="0" Foreground="White"/>-->

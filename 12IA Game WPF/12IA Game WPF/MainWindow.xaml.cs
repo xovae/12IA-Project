@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Media;
 
 namespace _12IA_Game_WPF
 {
@@ -22,7 +23,7 @@ namespace _12IA_Game_WPF
     public partial class MainWindow : Window
     {
         //declaring booleans for moving left and right
-        bool moveLeft, moveRight, moveUp, moveDown;
+        //bool moveLeft, moveRight, moveUp, moveDown;
         //list for removing items (i.e killed enemies, bullets)
         List<Rectangle> itemstoreremove = new List<Rectangle>();
         //random number generation
@@ -79,44 +80,50 @@ namespace _12IA_Game_WPF
             player.Fill = playerImage;
         }
 
+        private void Soundtrack(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+
         private void Key_Down(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true
-            {
-                moveLeft = true;
-            }
-            if (e.Key == Key.Right)     //if user is pressing the right key, set moveLeft to true
-            {
-                moveRight = true;
-            }
-            if (e.Key == Key.Up)
-            {
-                moveUp = true;
-            }
-            if (e.Key == Key.Down)
-            {
-                moveDown = true;
-            }
+            //if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true
+            //{
+            //    moveLeft = true;
+            //}
+            //if (e.Key == Key.Right)     //if user is pressing the right key, set moveLeft to true
+            //{
+            //    moveRight = true;
+            //}
+            //if (e.Key == Key.Up)
+            //{
+            //    moveUp = true;
+            //}
+            //if (e.Key == Key.Down)
+            //{
+            //    moveDown = true;
+            //}
         }
 
         private void Key_Up(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)      //if user has released the left key, set moveLeft to false
-            {
-                moveLeft = false;
-            }
-            if (e.Key == Key.Right)     //if user has released the left key, set moveRight to false
-            {
-                moveRight = false;
-            }
-            if (e.Key == Key.Up)
-            {
-                moveUp = false;
-            }
-            if (e.Key == Key.Down)
-            {
-                moveDown = false;
-            }
+            //if (e.Key == Key.Left)      //if user has released the left key, set moveLeft to false
+            //{
+            //    moveLeft = false;
+            //}
+            //if (e.Key == Key.Right)     //if user has released the left key, set moveRight to false
+            //{
+            //    moveRight = false;
+            //}
+            //if (e.Key == Key.Up)
+            //{
+            //    moveUp = false;
+            //}
+            //if (e.Key == Key.Down)
+            //{
+            //    moveDown = false;
+            //}
             if (e.Key == Key.Space)
             {
                 Rectangle newBullet = new Rectangle
@@ -140,6 +147,17 @@ namespace _12IA_Game_WPF
         private void btn_exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnMusic_Click(object sender, RoutedEventArgs e)
+        {
+            //MediaPlayer playSoundtrack = new MediaPlayer();
+            //var uri = new Uri("pack://siteoforigin:,,,/sound/Cubic_Planets.wav");
+            //playSoundtrack.Open(uri);
+            //playSoundtrack.Play();
+            SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
+            playSoundtrack.Play();
+            playSoundtrack.PlayLooping();
         }
 
         private void GameEngine(object sender, EventArgs e)
@@ -219,11 +237,11 @@ namespace _12IA_Game_WPF
         }
 
 
-        private void MakeEnemies()
-        {
-            GC.Collect();
+        //private void MakeEnemies()
+        //{
+        //    GC.Collect();
 
-        }
+        //}
 
 
 

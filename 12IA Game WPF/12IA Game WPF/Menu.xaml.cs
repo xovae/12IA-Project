@@ -27,8 +27,8 @@ namespace _12IA_Game_WPF
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow game = new MainWindow();
-            game.Show();
+            loading_screen loading = new loading_screen();
+            loading.Show();
             this.Close();
         }
 

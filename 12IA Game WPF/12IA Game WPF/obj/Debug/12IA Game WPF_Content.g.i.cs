@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/black%20arrow.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/cubic_planets.mp3")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/cubic_planets.wav")]
 
 
