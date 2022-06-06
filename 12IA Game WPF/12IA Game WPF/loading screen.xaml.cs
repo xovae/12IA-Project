@@ -23,6 +23,8 @@ namespace _12IA_Game_WPF
 
     public partial class loading_screen : Window
     {
+        bool finished;
+
         public loading_screen()
         {
             InitializeComponent();
@@ -50,18 +52,18 @@ namespace _12IA_Game_WPF
 
         public void Loading(object sender, EventArgs e)
         {
-            ////while (rectLoading.Width > 1095)
-            ////{
-            //    rectLoading.Width += 5;
-            ////}
-            //if (rectLoading.Width > 1095)
+            
+            //while (rectLoading.Width > 1095)
             //{
-            //    MainWindow game = new MainWindow();
-            //    game.Show();
-            //    this.Close();
-                
+            rectLoading.Width += 5;
             //}
-           
+            if (rectLoading.Width > 1095)
+            {
+                //MainWindow game = new MainWindow();
+                //game.Show();
+                this.Close();
+                finished = true;
+            }
         }
 
         //private void Start()
