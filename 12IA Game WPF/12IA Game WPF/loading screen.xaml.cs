@@ -23,22 +23,29 @@ namespace _12IA_Game_WPF
 
     public partial class loading_screen : Window
     {
-        bool finished;
+        bool finished = false;
 
         public loading_screen()
         {
             InitializeComponent();
 
-            DispatcherTimer tmrLoading = new DispatcherTimer();
-            tmrLoading.Tick += Loading;
-            tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
-            tmrLoading.Start();
+            //DispatcherTimer tmrLoading = new DispatcherTimer();
+            //tmrLoading.Tick += Loading;
+            //tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            //tmrLoading.Start();
             DispatcherTimer tmrText = new DispatcherTimer();
             tmrText.Tick += Text;
             tmrText.Interval = new TimeSpan(0, 0, 0, 0, 500);
             tmrText.Start();
             rectLoading.Width = 0;
             lblLoading.Content = "Loading";
+            lblEnabled.Content = "timer enabled";
+            //while (finished == false)
+            //{
+            //    tmrLoading.Start();
+            //}
+            //tmrLoading.Stop();
+            //lblEnabled.Content = "timer disabled";
         }
 
         public void Text(object sender, EventArgs e)
@@ -52,11 +59,7 @@ namespace _12IA_Game_WPF
 
         public void Loading(object sender, EventArgs e)
         {
-            
-            //while (rectLoading.Width > 1095)
-            //{
             rectLoading.Width += 5;
-            //}
             if (rectLoading.Width > 1095)
             {
                 //MainWindow game = new MainWindow();
@@ -66,9 +69,29 @@ namespace _12IA_Game_WPF
             }
         }
 
-        //private void Start()
-        //{
+        public void Timer(object sender, EventArgs e)
+        {
 
-        //}
+            bool loop = true;
+
+            DispatcherTimer tmrLoading = new DispatcherTimer();
+            tmrLoading.Tick += Loading;
+            tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            tmrLoading.Start();
+
+            while (loop == true)
+            {
+                if (finished == true)
+                {
+                    tmrLoading.Stop();
+                    lblEnabled.Content = "timer disabled";
+                }
+            }
+        }
+
+        private void pbLoading_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }

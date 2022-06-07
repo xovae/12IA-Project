@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="loading_screen" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
     <Grid Background="Black">
-        <Rectangle x:Name="rectFrame" HorizontalAlignment="Center" Height="56" Margin="0,768,0,0" Stroke="White" Fill="White" VerticalAlignment="Top" Width="1100"/>
-        <Rectangle x:Name="rectLoading" HorizontalAlignment="Center" Height="52" Margin="0,770,0,0" Fill="#FF3BD63B" VerticalAlignment="Top" Width="1095"/>
-        <Label x:Name="lblLoading" Content="Loading..." HorizontalAlignment="Center" Margin="0,668,0,0" VerticalAlignment="Top" Foreground="White" Height="78" Width="218" FontSize="50"/>
+        <Rectangle x:Name="rectFrame" HorizontalAlignment="Center" Height="56" Margin="438,929,382,0" Stroke="White" Fill="White" VerticalAlignment="Top" Width="1100"/>
+        <Rectangle x:Name="rectLoading" HorizontalAlignment="Center" Height="52" Margin="440,931,384,0" Fill="#FF3BD63B" VerticalAlignment="Top" Width="1096"/>
+        <Label x:Name="lblLoading" Content="Loading..." HorizontalAlignment="Center" Margin="877,668,825,0" VerticalAlignment="Top" Foreground="White" Height="78" Width="218" FontSize="50"/>
+        <Label x:Name="lblEnabled" Content="timer enabled" HorizontalAlignment="Left" Margin="249,342,0,0" VerticalAlignment="Top" Height="83" Width="335" Foreground="White" FontSize="50"/>
+        <ProgressBar x:Name="pbLoading" HorizontalAlignment="Left" Height="56" Margin="438,746,0,0" VerticalAlignment="Top" Width="1100" ValueChanged="pbLoading_ValueChanged"/>
     </Grid>
 </Window>

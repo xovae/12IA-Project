@@ -44,3 +44,6 @@ C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WP
 C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_Content.g.cs
 C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\sound\Cubic_Planets.mp3
 C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\sound\Cubic_Planets.wav
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\sound\Cubic_Planets.mp3
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\sound\Cubic_Planets.wav
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_Content.g.cs

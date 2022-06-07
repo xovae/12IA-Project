@@ -78,7 +78,18 @@ namespace _12IA_Game_WPF
             playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
             // assign the player to the player rectangle fill
             player.Fill = playerImage;
+            //Canvas.SetLeft(player);
+            SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
+            Canvas.SetLeft(player/*.Width / 2*/, Convert.ToInt32(Game_Canvas.ActualWidth) / 2);
+            Canvas.SetTop(player, Convert.ToInt32(Game_Canvas.ActualHeight / 2));
+            //playSoundtrack.Play();
+            playSoundtrack.PlayLooping();
         }
+
+        //if (moveLeft && Canvas.GetLeft(player) > 0)
+        //{
+        //    Canvas.SetLeft(player, Canvas.GetLeft(player) - playerSpeed);
+        //}
 
         private void Soundtrack(object sender, RoutedEventArgs e)
         {
@@ -157,7 +168,9 @@ namespace _12IA_Game_WPF
             //playSoundtrack.Play();
             SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
             playSoundtrack.Play();
-            playSoundtrack.PlayLooping();
+
+            playSoundtrack.LoadAsync();
+            //playSoundtrack.PlayLooping();
         }
 
         private void GameEngine(object sender, EventArgs e)
@@ -173,7 +186,7 @@ namespace _12IA_Game_WPF
             wWidth = frmGame.Width;
             var pos = GetMousePos(frmGame, wWidth, wHeight);
             var angle = GetAngle(pos);
-            RotateTransform rotateTransform = new RotateTransform(angle, 50, 50);
+            RotateTransform rotateTransform = new RotateTransform(angle, player.Width/2, player.Height/2);
             player.RenderTransform = rotateTransform;
 
 
