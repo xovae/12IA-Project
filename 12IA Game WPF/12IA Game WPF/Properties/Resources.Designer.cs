@@ -68,5 +68,15 @@ namespace _12IA_Game_WPF.Properties {
                 return ResourceManager.GetStream("Cubic_Planets1", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Space_Background {
+            get {
+                object obj = ResourceManager.GetObject("Space_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

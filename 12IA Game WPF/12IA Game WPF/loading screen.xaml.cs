@@ -20,19 +20,20 @@ namespace _12IA_Game_WPF
     /// </summary>
     /// 
 
-
     public partial class loading_screen : Window
     {
-        bool finished = false;
+        //bool finished = false;
+
+        DispatcherTimer tmrLoading;
 
         public loading_screen()
         {
             InitializeComponent();
 
-            //DispatcherTimer tmrLoading = new DispatcherTimer();
-            //tmrLoading.Tick += Loading;
-            //tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
-            //tmrLoading.Start();
+            tmrLoading = new DispatcherTimer();
+            tmrLoading.Tick += Loading;
+            tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            tmrLoading.Start();
             DispatcherTimer tmrText = new DispatcherTimer();
             tmrText.Tick += Text;
             tmrText.Interval = new TimeSpan(0, 0, 0, 0, 500);
@@ -62,32 +63,38 @@ namespace _12IA_Game_WPF
             rectLoading.Width += 5;
             if (rectLoading.Width > 1095)
             {
-                //MainWindow game = new MainWindow();
-                //game.Show();
+                MainWindow game = new MainWindow();
+                game.Show();
                 this.Close();
-                finished = true;
+                tmrLoading.Stop();
             }
         }
 
-        public void Timer(object sender, EventArgs e)
-        {
+        public void Start(object sender, EventArgs e)
+        { 
 
-            bool loop = true;
-
-            DispatcherTimer tmrLoading = new DispatcherTimer();
-            tmrLoading.Tick += Loading;
-            tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
-            tmrLoading.Start();
-
-            while (loop == true)
-            {
-                if (finished == true)
-                {
-                    tmrLoading.Stop();
-                    lblEnabled.Content = "timer disabled";
-                }
-            }
         }
+
+        //public void Timer(object sender, EventArgs e)
+        //{
+
+        //    bool loop = true;
+
+        //    DispatcherTimer tmrLoading = new DispatcherTimer();
+        //    tmrLoading.Tick += Loading;
+        //    tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
+        //    tmrLoading.Start();
+
+        //    while (loop == true)
+        //    {
+        //        if (finished == true)
+        //        {
+        //            tmrLoading.Stop();
+        //            lblEnabled.Content = "timer disabled";
+        //            Dispatcher.InvokeShutdown();
+        //        }
+        //    }
+        //}
 
         private void pbLoading_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
