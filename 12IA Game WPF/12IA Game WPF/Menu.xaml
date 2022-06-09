@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
         Title="Menu" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
-    <Grid>
+    <Canvas x:Name="cnvMenu">
         <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="901,571,0,0" VerticalAlignment="Top" Width="264" Click="btnPlay_Click" Height="70" FontSize="36"/>
         <Button x:Name="btnCredits" Content="Credits" HorizontalAlignment="Left" Margin="932,727,0,0" VerticalAlignment="Top" Width="207" Height="56" FontSize="36" Click="btnCredits_Click"/>
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="10,1007,0,0" VerticalAlignment="Top" Width="225" Click="btnExit_Click" Height="63" FontSize="36"/>
         <Label x:Name="lblTitle" Content="Title" HorizontalAlignment="Center" Margin="932,133,788,0" VerticalAlignment="Top" Height="150" Width="200" FontSize="100"/>
 
-    </Grid>
+    </Canvas>
 </Window>

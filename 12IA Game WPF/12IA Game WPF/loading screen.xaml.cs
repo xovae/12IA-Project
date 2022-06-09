@@ -22,13 +22,19 @@ namespace _12IA_Game_WPF
 
     public partial class loading_screen : Window
     {
-        //bool finished = false;
-
         DispatcherTimer tmrLoading;
+        Random rand = new Random();
+        int factNumber;
+        string[] facts = new string[] {"one", "two", "three" };
+        double[] boundaries = new double[2] { Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight) };
+
 
         public loading_screen()
         {
             InitializeComponent();
+
+            boundaries[0] = cnvLoading.Height;
+            boundaries[1] = cnvLoading.Width;
 
             tmrLoading = new DispatcherTimer();
             tmrLoading.Tick += Loading;
@@ -38,15 +44,14 @@ namespace _12IA_Game_WPF
             tmrText.Tick += Text;
             tmrText.Interval = new TimeSpan(0, 0, 0, 0, 500);
             tmrText.Start();
+            DispatcherTimer tmrFacts = new DispatcherTimer();
+            tmrFacts.Tick += FactGenerate;
+            tmrFacts.Interval = new TimeSpan(0, 0, 0, 1);
+            tmrFacts.Start();
+            txtFacts.Text  = "Space Game";
             rectLoading.Width = 0;
             lblLoading.Content = "Loading";
-            lblEnabled.Content = "timer enabled";
-            //while (finished == false)
-            //{
-            //    tmrLoading.Start();
-            //}
-            //tmrLoading.Stop();
-            //lblEnabled.Content = "timer disabled";
+
         }
 
         public void Text(object sender, EventArgs e)
@@ -60,7 +65,7 @@ namespace _12IA_Game_WPF
 
         public void Loading(object sender, EventArgs e)
         {
-            rectLoading.Width += 5;
+            rectLoading.Width += 3;
             if (rectLoading.Width > 1095)
             {
                 MainWindow game = new MainWindow();
@@ -70,34 +75,12 @@ namespace _12IA_Game_WPF
             }
         }
 
-        public void Start(object sender, EventArgs e)
-        { 
-
-        }
-
-        //public void Timer(object sender, EventArgs e)
-        //{
-
-        //    bool loop = true;
-
-        //    DispatcherTimer tmrLoading = new DispatcherTimer();
-        //    tmrLoading.Tick += Loading;
-        //    tmrLoading.Interval = new TimeSpan(0, 0, 0, 0, 5);
-        //    tmrLoading.Start();
-
-        //    while (loop == true)
-        //    {
-        //        if (finished == true)
-        //        {
-        //            tmrLoading.Stop();
-        //            lblEnabled.Content = "timer disabled";
-        //            Dispatcher.InvokeShutdown();
-        //        }
-        //    }
-        //}
-
-        private void pbLoading_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        public void FactGenerate(object sender, EventArgs e)
         {
+            factNumber = rand.Next(0, facts.Length);
+
+            txtFacts.Text = Convert.ToString(facts[factNumber]);
+
 
         }
     }

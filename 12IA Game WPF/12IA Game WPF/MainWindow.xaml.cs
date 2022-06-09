@@ -28,7 +28,7 @@ namespace _12IA_Game_WPF
         Random rand = new Random();
 
 
-        double[] boundaries = new double[4] { 0, 0, 1920, 1080 };
+        double[] boundaries = new double[2] {Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight)};
 
         //int enemySpriteCounter; // int to help change enemy images
         //int enemyCounter = 100; // enemy spawn time
@@ -44,12 +44,10 @@ namespace _12IA_Game_WPF
 
         public MainWindow()
         {
-            //double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;
-            //double top = (Game_Canvas.ActualHeight - player.ActualHeight) / 2;
 
             InitializeComponent();
-            boundaries[3] = Game_Canvas.Height;
-            boundaries[2] = Game_Canvas.Width;
+            boundaries[0] = Game_Canvas.Height;
+            boundaries[1] = Game_Canvas.Width;
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += GameEngine;
@@ -77,10 +75,6 @@ namespace _12IA_Game_WPF
             player.Fill = playerImage;
 
             SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
-            //Canvas.SetTop(player, top);
-            //Canvas.SetLeft(player, left);
-            //double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;
-            //double top = (Game_Canvas.ActualHeight - player.ActualHeight) / 2;
             //playSoundtrack.Play();
             playSoundtrack.PlayLooping();
         }
@@ -93,6 +87,21 @@ namespace _12IA_Game_WPF
 
         private void Key_Up(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Space)
+            {
+                var pos = GetMousePos(frmGame, wWidth, wHeight);
+                var angle = GetAngle(pos);
+                Rectangle newBullet = new Rectangle
+                {
+                    Tag = "bullet",
+                    Height = 20,
+                    Width = 5,
+                    Fill = Brushes.AliceBlue,
+                    Stroke = Brushes.Red
+                };
+
+            }
+
             //if (e.Key == Key.Space)
             //{
             //    Rectangle newBullet = new Rectangle
