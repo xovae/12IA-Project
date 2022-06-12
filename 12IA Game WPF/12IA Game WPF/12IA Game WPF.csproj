@@ -133,6 +133,8 @@
   <ItemGroup>
     <Resource Include="images\Space Background.gif" />
     <None Include="Resources\Space Background.gif" />
+    <Resource Include="images\space %28thank you gimp%29.png" />
+    <Resource Include="images\space background 2.png" />
     <Content Include="sound\Cubic_Planets.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

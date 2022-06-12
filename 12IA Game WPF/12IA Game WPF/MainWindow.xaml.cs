@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -46,6 +47,7 @@ namespace _12IA_Game_WPF
         {
 
             InitializeComponent();
+            InitializeAnimation();
             boundaries[0] = Game_Canvas.Height;
             boundaries[1] = Game_Canvas.Width;
 
@@ -55,10 +57,7 @@ namespace _12IA_Game_WPF
             dispatcherTimer.Start();
             Game_Canvas.Focus();
 
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri("pack://application:,,,/images/Space Background.gif");
-            image.EndInit();
+            
 
             //ImageBrush background = new ImageBrush();   //make an image brush called background
             ////background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/le pac.gif"));   //source of image background, get working with gif
@@ -79,6 +78,18 @@ namespace _12IA_Game_WPF
             playSoundtrack.PlayLooping();
         }
 
+        private void InitializeAnimation()
+        {
+            var menuScroll = new DoubleAnimation
+            {
+                From = -0,
+                To = -1080,
+                Duration = TimeSpan.FromSeconds(15),
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+            menuScroll.AutoReverse = true;
+            imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
+        }
 
         private void Key_Down(object sender, KeyEventArgs e)
         {

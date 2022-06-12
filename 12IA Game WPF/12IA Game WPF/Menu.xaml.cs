@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -23,6 +24,7 @@ namespace _12IA_Game_WPF
         public Menu()
         {
             InitializeComponent();
+            InitializeAnimation();
 
             boundaries[0] = cnvMenu.Height;
             boundaries[1] = cnvMenu.Width;
@@ -37,6 +39,19 @@ namespace _12IA_Game_WPF
             //Canvas.SetTop(player, top);
             //Canvas.SetLeft(player, left);
 
+        }
+
+        private void InitializeAnimation()
+        {
+            var menuScroll = new DoubleAnimation
+            {
+                From = -0,
+                To = -1080,
+                Duration = TimeSpan.FromSeconds(15),
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+            menuScroll.AutoReverse = true;
+            imgMenu.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

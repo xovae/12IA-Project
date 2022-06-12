@@ -3,21 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
         Title="Space Game" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="1080" Width="1920" ResizeMode="CanMinimize" WindowStyle="None" WindowState="Maximized">
 
     <Canvas Background="LightBlue" Name="Game_Canvas" KeyDown="Key_Down" KeyUp="Key_Up" Focusable="True">
 
-        <!--<Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/images/Space Background.gif" />-->
-
+        <Image x:Name="imgBackground" Height="1080" Width="3840" Source="/images/space background 2.png"/>
         <Rectangle Name="player" Height="50" Width="60" Fill="Yellow" Canvas.Left="930" Canvas.Top="515" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Button x:Name="btn_exit" Content="runurunrunrunr" Canvas.Left="890" Canvas.Top="755" Width="140" Height="56" Click="btn_exit_Click"/>
-        <Button x:Name="btnMusic" Content="play music" Canvas.Left="473" Canvas.Top="530" Click="btnMusic_Click"/>
-
-        <!--<Label Name="scoreText" Content="Score: 0" FontSize="18" FontWeight="Bold" Foreground="White"/>-->
-        <!--<Label Name="damageText" Content="Damage: 0" FontSize="18" FontWeight="Bold" Canvas.Right="0" Foreground="White"/>-->
 
     </Canvas>
 </Window>
