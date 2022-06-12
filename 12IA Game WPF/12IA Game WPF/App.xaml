@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:_12IA_Game_WPF"
              StartupUri="Menu.xaml">
     <Application.Resources>
-         
+        
     </Application.Resources>
+
 </Application>

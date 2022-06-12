@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Menu" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
     <Canvas x:Name="cnvMenu">
-        <Image x:Name="imgMenu" Height="1080" Width="3840" Source="/images/space background 2.png" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="901,571,0,0" VerticalAlignment="Top" Width="264" Click="btnPlay_Click" Height="70" FontSize="36"/>
-        <Button x:Name="btnCredits" Content="Credits" HorizontalAlignment="Left" Margin="932,727,0,0" VerticalAlignment="Top" Width="207" Height="56" FontSize="36" Click="btnCredits_Click"/>
-        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="10,1007,0,0" VerticalAlignment="Top" Width="225" Click="btnExit_Click" Height="63" FontSize="36"/>
-        <Label x:Name="lblTitle" Content="&#xD;&#xA;e" HorizontalAlignment="Left" VerticalAlignment="Top" Height="150" Width="200" FontSize="100" Canvas.Left="932" Canvas.Top="134" Foreground="White"/>
+        <Image x:Name="imgBackground" Height="1080" Width="3840" Source="/images/space background 2.png" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Center" VerticalAlignment="Top" Width="236" Click="btnPlay_Click" Height="108" FontSize="100" FontFamily="./Fonts/#Mario Kart DS" Canvas.Left="842" Canvas.Top="540" Background="Transparent" Foreground="#FFD62246" BorderThickness="0"/>
+        <Button x:Name="btnCredits" Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" Width="208" Height="56" FontSize="36" Click="btnCredits_Click" Canvas.Left="856" Canvas.Top="653" FontFamily="./Fonts/#Mario Kart DS" Background="Transparent" BorderThickness="0" Foreground="#FFD62246"/>
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" Click="btnExit_Click" Height="61" FontSize="50"  FontFamily="./Fonts/#Mario Kart DS"  Background="Transparent" Foreground="#FFD62246" BorderThickness="0" Canvas.Left="1793" Canvas.Top="10"/>
+        <TextBlock x:Name="txtTitle" Canvas.Left="314" TextWrapping="Wrap" Text="Space Game" Canvas.Top="217" Width="1292" TextAlignment="Center" FontFamily="./Fonts/#AvalanchenoBitma" Foreground="#FF00C49A" Background="{x:Null}" FontSize="250" Height="185" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
 
 
     </Canvas>

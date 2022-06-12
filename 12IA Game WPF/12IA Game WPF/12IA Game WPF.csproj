@@ -110,6 +110,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Resource Include="fonts\Avalancheno!.ttf" />
+    <Resource Include="fonts\Mario-Kart-DS.ttf" />
+    <Resource Include="fonts\papercut.ttf" />
+    <Resource Include="fonts\VCR_OSD_MONO_1.001.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,6 +135,18 @@
     <Resource Include="images\black arrow.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Illuminating_Bulbs.wav" />
+    <None Include="Resources\Red_Champagne.wav" />
+    <None Include="Resources\Relaxing_Faxes %281%29.wav" />
+    <None Include="Resources\Tremendous_Feline.wav" />
+    <Content Include="sound\Illuminating_Bulbs.mp3" />
+    <Content Include="sound\Illuminating_Bulbs.wav" />
+    <Content Include="sound\Red_Champagne.mp3" />
+    <Content Include="sound\Red_Champagne.wav" />
+    <Content Include="sound\Relaxing_Faxes %281%29.mp3" />
+    <Content Include="sound\Relaxing_Faxes %281%29.wav" />
+    <Content Include="sound\Tremendous_Feline.mp3" />
+    <Content Include="sound\Tremendous_Feline.wav" />
     <Resource Include="images\Space Background.gif" />
     <None Include="Resources\Space Background.gif" />
     <Resource Include="images\space %28thank you gimp%29.png" />

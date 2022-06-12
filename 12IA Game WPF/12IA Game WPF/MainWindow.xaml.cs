@@ -74,7 +74,7 @@ namespace _12IA_Game_WPF
             player.Fill = playerImage;
 
             SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
-            //playSoundtrack.Play();
+            //playSoundtrack.Play();        //it gets angry if it doesn't have this 
             playSoundtrack.PlayLooping();
         }
 

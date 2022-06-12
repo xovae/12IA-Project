@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Media;
 
 namespace _12IA_Game_WPF
 {
@@ -21,6 +22,7 @@ namespace _12IA_Game_WPF
     public partial class Menu : Window
     {
         double[] boundaries = new double[2] { Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight) };
+
         public Menu()
         {
             InitializeComponent();
@@ -29,20 +31,14 @@ namespace _12IA_Game_WPF
             boundaries[0] = cnvMenu.Height;
             boundaries[1] = cnvMenu.Width;
 
-            Canvas.SetLeft(lblTitle, cnvMenu.ActualWidth - lblTitle.ActualWidth / 2);
-            Canvas.SetLeft(btnPlay, cnvMenu.ActualWidth - btnPlay.ActualWidth / 2);
-            Canvas.SetLeft(btnCredits, cnvMenu.ActualWidth - btnCredits.ActualWidth / 2);
-
-
-            //double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;
-            //double top = (Game_Canvas.ActualHeight - player.ActualHeight) / 2;
-            //Canvas.SetTop(player, top);
-            //Canvas.SetLeft(player, left);
-
+            SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Illuminating_Bulbs);
+            //playSoundtrack.Play();           //it gets angry if it doesn't have this 
+            playSoundtrack.PlayLooping();
         }
 
         private void InitializeAnimation()
         {
+
             var menuScroll = new DoubleAnimation
             {
                 From = -0,
@@ -50,8 +46,9 @@ namespace _12IA_Game_WPF
                 Duration = TimeSpan.FromSeconds(15),
                 RepeatBehavior = RepeatBehavior.Forever
             };
+
             menuScroll.AutoReverse = true;
-            imgMenu.BeginAnimation(Canvas.LeftProperty, menuScroll);
+            imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

@@ -70,12 +70,48 @@ namespace _12IA_Game_WPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Illuminating_Bulbs {
+            get {
+                return ResourceManager.GetStream("Illuminating_Bulbs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Red_Champagne {
+            get {
+                return ResourceManager.GetStream("Red_Champagne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Relaxing_Faxes__1_ {
+            get {
+                return ResourceManager.GetStream("Relaxing_Faxes__1_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Space_Background {
             get {
                 object obj = ResourceManager.GetObject("Space_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Tremendous_Feline {
+            get {
+                return ResourceManager.GetStream("Tremendous_Feline", resourceCulture);
             }
         }
     }

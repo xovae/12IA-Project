@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -22,6 +23,20 @@ namespace _12IA_Game_WPF
         public Credits()
         {
             InitializeComponent();
+            InitializeAnimation();
+        }
+
+        private void InitializeAnimation()
+        {
+            var menuScroll = new DoubleAnimation
+            {
+                From = -0,
+                To = -1080,
+                Duration = TimeSpan.FromSeconds(15),
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+            menuScroll.AutoReverse = true;
+            imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

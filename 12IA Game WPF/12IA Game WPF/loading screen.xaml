@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
         Title="loading_screen" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
-    <Canvas x:Name="cnvLoading" Background="Black">
+    <Canvas x:Name="cnvLoading">
+        <Image x:Name="imgBackground" Source="/images/space background 2.png" Width="3840"/>
         <Rectangle x:Name="rectFrame" HorizontalAlignment="Center" Height="56" Margin="428,869,392,0" Stroke="White" Fill="White" VerticalAlignment="Top" Width="1100"/>
         <Rectangle x:Name="rectLoading" HorizontalAlignment="Center" Height="52" Margin="430,871,394,0" Fill="#FF3BD63B" VerticalAlignment="Top" Width="1096"/>
         <Label x:Name="lblLoading" Content="Loading..." HorizontalAlignment="Center" Margin="874,788,828,0" VerticalAlignment="Top" Foreground="White" Height="78" Width="218" FontSize="50"/>
         <TextBlock x:Name="txtFacts" HorizontalAlignment="Center" Margin="485,408,441,0" TextWrapping="Wrap" Text="facts" VerticalAlignment="Top" Height="154" Width="994" Foreground="White" TextAlignment="Center" FontSize="50"/>
+      
     </Canvas>
 </Window>
