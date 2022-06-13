@@ -138,19 +138,6 @@ namespace _12IA_Game_WPF
             this.Close();
         }
 
-        private void btnMusic_Click(object sender, RoutedEventArgs e)
-        {
-            //MediaPlayer playSoundtrack = new MediaPlayer();
-            //var uri = new Uri("pack://siteoforigin:,,,/sound/Cubic_Planets.wav");
-            //playSoundtrack.Open(uri);
-            //playSoundtrack.Play();
-            SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
-            playSoundtrack.Play();
-
-            playSoundtrack.LoadAsync();
-            //playSoundtrack.PlayLooping();
-        }
-
         private void GameEngine(object sender, EventArgs e)
         {
             double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;

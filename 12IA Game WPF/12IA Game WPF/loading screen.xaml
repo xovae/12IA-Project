@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
         Title="loading_screen" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
-    <Canvas x:Name="cnvLoading">
+    <Canvas x:Name="cnvLoading" Background="Black">
         <Image x:Name="imgBackground" Source="/images/space background 2.png" Width="3840"/>
         <Rectangle x:Name="rectFrame" HorizontalAlignment="Center" Height="56" Margin="428,869,392,0" Stroke="White" Fill="White" VerticalAlignment="Top" Width="1100"/>
         <Rectangle x:Name="rectLoading" HorizontalAlignment="Center" Height="52" Margin="430,871,394,0" Fill="#FF3BD63B" VerticalAlignment="Top" Width="1096"/>
