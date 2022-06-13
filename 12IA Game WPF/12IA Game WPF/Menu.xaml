@@ -12,7 +12,5 @@
         <Button x:Name="btnCredits" Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" Width="208" Height="56" FontSize="36" Click="btnCredits_Click" Canvas.Left="856" Canvas.Top="653" FontFamily="./Fonts/#Mario Kart DS" Background="Transparent" BorderThickness="0" Foreground="#FFD62246"/>
         <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" Click="btnExit_Click" Height="61" FontSize="50"  FontFamily="./Fonts/#Mario Kart DS"  Background="Transparent" Foreground="#FFD62246" BorderThickness="0" Canvas.Left="1793" Canvas.Top="10"/>
         <TextBlock x:Name="txtTitle" Canvas.Left="314" TextWrapping="Wrap" Text="Space Game" Canvas.Top="217" Width="1292" TextAlignment="Center" FontFamily="./Fonts/#AvalanchenoBitma" Foreground="#FF00C49A" Background="{x:Null}" FontSize="250" Height="185" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-
-
     </Canvas>
 </Window>

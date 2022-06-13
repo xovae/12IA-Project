@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -20,10 +21,15 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Credits : Window
     {
+
+        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Red_Champagne);
+
         public Credits()
         {
             InitializeComponent();
             InitializeAnimation();
+
+            playSoundtrack.PlayLooping();
         }
 
         private void InitializeAnimation()

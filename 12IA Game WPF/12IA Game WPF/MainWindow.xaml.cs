@@ -40,7 +40,7 @@ namespace _12IA_Game_WPF
         double wHeight, wWidth;
         Rect playerHitBox; //hitbox to check for collision
 
-       
+        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
 
 
         public MainWindow()
@@ -57,24 +57,12 @@ namespace _12IA_Game_WPF
             dispatcherTimer.Start();
             Game_Canvas.Focus();
 
-            
-
-            //ImageBrush background = new ImageBrush();   //make an image brush called background
-            ////background.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/le pac.gif"));   //source of image background, get working with gif
-            //background.TileMode = TileMode.Tile;        //set the background image to tile (REPLACE WHEN GIF IS MADE)
-            //background.Viewport = new Rect(0, 0, 0.15, 0.15);   //set height and width of background image brush 
-            //background.ViewportUnits = BrushMappingMode.RelativeToBoundingBox;      //set background to viewport unit 
-            //Game_Canvas.Background = background;    //setting the background of the game canvas to the imagebrush background that has been created
-
-
             ImageBrush playerImage = new ImageBrush();   // make a player image, image brush
             // load the player image into it
             playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
             // assign the player to the player rectangle fill
             player.Fill = playerImage;
 
-            SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
-            //playSoundtrack.Play();        //it gets angry if it doesn't have this 
             playSoundtrack.PlayLooping();
         }
 
@@ -196,15 +184,5 @@ namespace _12IA_Game_WPF
             return mousePos;
 
         }
-
-
-        //private void MakeEnemies()
-        //{
-        //    GC.Collect();
-
-        //}
-
-
-
     }
 }

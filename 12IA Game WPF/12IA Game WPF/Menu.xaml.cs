@@ -22,6 +22,7 @@ namespace _12IA_Game_WPF
     public partial class Menu : Window
     {
         double[] boundaries = new double[2] { Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight) };
+        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Illuminating_Bulbs);
 
         public Menu()
         {
@@ -30,9 +31,7 @@ namespace _12IA_Game_WPF
 
             boundaries[0] = cnvMenu.Height;
             boundaries[1] = cnvMenu.Width;
-
-            SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Illuminating_Bulbs);
-            //playSoundtrack.Play();           //it gets angry if it doesn't have this 
+            
             playSoundtrack.PlayLooping();
         }
 
@@ -44,10 +43,10 @@ namespace _12IA_Game_WPF
                 From = -0,
                 To = -1080,
                 Duration = TimeSpan.FromSeconds(15),
-                RepeatBehavior = RepeatBehavior.Forever
+                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true
             };
 
-            menuScroll.AutoReverse = true;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
