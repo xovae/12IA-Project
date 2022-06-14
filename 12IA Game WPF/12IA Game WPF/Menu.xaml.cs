@@ -21,7 +21,6 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Menu : Window
     {
-        double[] boundaries = new double[2] { Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight) };
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Illuminating_Bulbs);
 
         public Menu()
@@ -29,9 +28,9 @@ namespace _12IA_Game_WPF
             InitializeComponent();
             InitializeAnimation();
 
-            boundaries[0] = cnvMenu.Height;
-            boundaries[1] = cnvMenu.Width;
-            
+            cnvMenu.Height = SystemParameters.PrimaryScreenHeight;
+            cnvMenu.Width = SystemParameters.PrimaryScreenWidth;
+
             playSoundtrack.PlayLooping();
         }
 

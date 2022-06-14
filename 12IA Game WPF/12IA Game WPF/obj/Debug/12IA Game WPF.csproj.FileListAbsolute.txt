@@ -47,3 +47,26 @@ C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WP
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\sound\Cubic_Planets.mp3
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\sound\Cubic_Planets.wav
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_Content.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.AssemblyReference.cache
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.SuggestedBindingRedirects.cache
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\MainWindow.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\App.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_MarkupCompile.cache
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_MarkupCompile.lref
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.baml
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.baml
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\MainWindow.baml
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.baml
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.g.resources
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.GenerateResource.cache
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.pdb
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_Content.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.exe.config
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.exe
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.pdb
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\_12IA_Game_WPF.Properties.Resources.resources
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.CoreCompileInputs.cache
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.exe

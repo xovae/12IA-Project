@@ -27,7 +27,6 @@ namespace _12IA_Game_WPF
         Random rand = new Random();
         int factNumber;
         string[] facts = new string[] {"one", "two", "three" };
-        double[] boundaries = new double[2] { Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight) };
 
 
         public loading_screen()
@@ -35,8 +34,8 @@ namespace _12IA_Game_WPF
             InitializeComponent();
             InitializeAnimation();
 
-            boundaries[0] = cnvLoading.Height;
-            boundaries[1] = cnvLoading.Width;
+            cnvLoading.Height = SystemParameters.PrimaryScreenHeight;
+            cnvLoading.Width = SystemParameters.PrimaryScreenWidth;
 
             tmrLoading = new DispatcherTimer();
             tmrLoading.Tick += Loading;

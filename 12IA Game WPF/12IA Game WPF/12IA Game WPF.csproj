@@ -123,15 +123,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Screenshot_2019-02-21-12-42-15-631_com.facebook.katana.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\le pac.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\placeholder ship.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\black arrow.png" />
   </ItemGroup>
   <ItemGroup>
@@ -139,24 +130,10 @@
     <None Include="Resources\Red_Champagne.wav" />
     <None Include="Resources\Relaxing_Faxes %281%29.wav" />
     <None Include="Resources\Tremendous_Feline.wav" />
-    <Content Include="sound\Illuminating_Bulbs.mp3" />
-    <Content Include="sound\Illuminating_Bulbs.wav" />
-    <Content Include="sound\Red_Champagne.mp3" />
-    <Content Include="sound\Red_Champagne.wav" />
-    <Content Include="sound\Relaxing_Faxes %281%29.mp3" />
-    <Content Include="sound\Relaxing_Faxes %281%29.wav" />
-    <Content Include="sound\Tremendous_Feline.mp3" />
-    <Content Include="sound\Tremendous_Feline.wav" />
-    <Resource Include="images\Space Background.gif" />
-    <None Include="Resources\Space Background.gif" />
-    <Resource Include="images\space %28thank you gimp%29.png" />
     <Resource Include="images\space background 2.png" />
-    <Content Include="sound\Cubic_Planets.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="sound\Cubic_Planets.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Cubic Planets.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

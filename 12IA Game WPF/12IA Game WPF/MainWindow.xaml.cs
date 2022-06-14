@@ -24,12 +24,9 @@ namespace _12IA_Game_WPF
     public partial class MainWindow : Window
     {
         //list for removing items (i.e killed enemies, bullets)
-        List<Rectangle> itemstoreremove = new List<Rectangle>();
+        //List<Rectangle> itemstoreremove = new List<Rectangle>();
         //random number generation
-        Random rand = new Random();
-
-
-        double[] boundaries = new double[2] {Convert.ToDouble(SystemParameters.PrimaryScreenWidth), Convert.ToDouble(SystemParameters.PrimaryScreenHeight)};
+        //Random rand = new Random();
 
         //int enemySpriteCounter; // int to help change enemy images
         //int enemyCounter = 100; // enemy spawn time
@@ -40,7 +37,7 @@ namespace _12IA_Game_WPF
         double wHeight, wWidth;
         Rect playerHitBox; //hitbox to check for collision
 
-        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets1);
+        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
 
 
         public MainWindow()
@@ -48,8 +45,8 @@ namespace _12IA_Game_WPF
 
             InitializeComponent();
             InitializeAnimation();
-            boundaries[0] = Game_Canvas.Height;
-            boundaries[1] = Game_Canvas.Width;
+            Game_Canvas.Height = SystemParameters.PrimaryScreenHeight;
+            Game_Canvas.Width = SystemParameters.PrimaryScreenWidth;
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += GameEngine;

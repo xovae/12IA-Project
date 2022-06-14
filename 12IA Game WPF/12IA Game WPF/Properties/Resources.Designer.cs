@@ -63,9 +63,9 @@ namespace _12IA_Game_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Cubic_Planets1 {
+        internal static System.IO.UnmanagedMemoryStream Cubic_Planets {
             get {
-                return ResourceManager.GetStream("Cubic_Planets1", resourceCulture);
+                return ResourceManager.GetStream("Cubic_Planets", resourceCulture);
             }
         }
         
@@ -93,16 +93,6 @@ namespace _12IA_Game_WPF.Properties {
         internal static System.IO.UnmanagedMemoryStream Relaxing_Faxes__1_ {
             get {
                 return ResourceManager.GetStream("Relaxing_Faxes__1_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Space_Background {
-            get {
-                object obj = ResourceManager.GetObject("Space_Background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

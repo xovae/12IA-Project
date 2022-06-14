@@ -8,15 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/illuminating_bulbs.mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/illuminating_bulbs.wav")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/red_champagne.mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/red_champagne.wav")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/relaxing_faxes%20(1).mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/relaxing_faxes%20(1).wav")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/tremendous_feline.mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/tremendous_feline.wav")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/cubic_planets.mp3")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sound/cubic_planets.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/cubic%20planets.wav")]
 
 
