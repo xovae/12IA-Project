@@ -129,11 +129,11 @@
     <None Include="Resources\Illuminating_Bulbs.wav" />
     <None Include="Resources\Red_Champagne.wav" />
     <None Include="Resources\Relaxing_Faxes %281%29.wav" />
-    <None Include="Resources\Tremendous_Feline.wav" />
     <Resource Include="images\space background 2.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Cubic Planets.wav" />
+    <None Include="Resources\Tremendous_Feline %281%29.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

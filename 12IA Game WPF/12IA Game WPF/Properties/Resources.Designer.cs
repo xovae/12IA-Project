@@ -99,9 +99,9 @@ namespace _12IA_Game_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Tremendous_Feline {
+        internal static System.IO.UnmanagedMemoryStream Tremendous_Feline__1_ {
             get {
-                return ResourceManager.GetStream("Tremendous_Feline", resourceCulture);
+                return ResourceManager.GetStream("Tremendous_Feline__1_", resourceCulture);
             }
         }
     }
