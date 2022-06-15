@@ -10,8 +10,9 @@
         <Image x:Name="imgBackground" Source="/images/space background 2.png" Width="3840"/>
         <Rectangle x:Name="rectFrame" HorizontalAlignment="Center" Height="56" Margin="428,869,392,0" Stroke="White" Fill="White" VerticalAlignment="Top" Width="1100"/>
         <Rectangle x:Name="rectLoading" HorizontalAlignment="Center" Height="52" Margin="430,871,394,0" Fill="#FF3BD63B" VerticalAlignment="Top" Width="1096"/>
-        <Label x:Name="lblLoading" Content="Loading..." HorizontalAlignment="Center" Margin="874,788,828,0" VerticalAlignment="Top" Foreground="White" Height="78" Width="218" FontSize="50"/>
-        <TextBlock x:Name="txtFacts" HorizontalAlignment="Center" Margin="485,408,441,0" TextWrapping="Wrap" Text="facts" VerticalAlignment="Top" Height="154" Width="994" Foreground="White" TextAlignment="Center" FontSize="50"/>
-      
+        <TextBlock x:Name="txtLoading" FontFamily="./Fonts/#VCR OSD Mono" Text="Loading..." HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Height="78" Width="306" FontSize="50" Canvas.Left="830" Canvas.Top="793"/>
+        <TextBlock x:Name="txtFacts" FontFamily="./Fonts/#VCR OSD Mono" HorizontalAlignment="Center" TextWrapping="Wrap" Text="facts" VerticalAlignment="Top" Height="165" Width="1306" Foreground="White" TextAlignment="Center" FontSize="40" Canvas.Left="330" Canvas.Top="572"/>
+        <TextBlock x:Name="txtTitle" Canvas.Left="316" TextWrapping="Wrap" Text="Space Game" Canvas.Top="170" Width="1288" TextAlignment="Center" FontFamily="./Fonts/#Paper Cut" Foreground="#FF00C49A" Background="{x:Null}" FontSize="250" Height="285" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
     </Canvas>
 </Window>

@@ -46,6 +46,26 @@ namespace _12IA_Game_WPF
                 AutoReverse = true
             };
 
+            var playScroll = new DoubleAnimation()
+            {
+                From = 540,
+                To = 560,
+                Duration = TimeSpan.FromSeconds(3),
+                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true
+            };
+
+            var creditsScroll = new DoubleAnimation()
+            {
+                From = 650,
+                To = 670,
+                Duration = TimeSpan.FromSeconds(2),
+                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true
+            };
+
+            btnPlay.BeginAnimation(Canvas.TopProperty, playScroll);
+            btnCredits.BeginAnimation(Canvas.TopProperty, creditsScroll);
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
