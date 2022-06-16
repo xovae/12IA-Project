@@ -63,7 +63,7 @@ namespace _12IA_Game_WPF
             SolidColorBrush color = new SolidColorBrush(Colors.Pink);
             this.visual.Fill = color;
             this.visual.Stroke = color;
-            this.visual.Width = 10;
+            this.visual.Width = 50;
             this.visual.Height = 1920;
             Canvas.SetLeft(this.visual, x);
             Canvas.SetTop(this.visual, y);
@@ -97,8 +97,10 @@ namespace _12IA_Game_WPF
             //this.visual.Width = 1138;
             //this.visual.Height = 494;
 
-
-            this.visual.Fill = new SolidColorBrush(Colors.Red);
+            ImageBrush playerImage = new ImageBrush();
+            playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
+            this.visual.Fill = playerImage;
+            //this.visual.Fill = new SolidColorBrush(Colors.Red);
             this.visual.Width = 50;
             this.visual.Height = 50;
             this.visual.Stretch = Stretch.Fill;
@@ -182,7 +184,7 @@ namespace _12IA_Game_WPF
         public static Bullets pew = new Bullets();
         public static List<Walls> borders = new List<Walls>();
         public static Player player = new Player();
-        bool moveLeft, moveRight, moveUp, moveDown;
+        //bool moveLeft, moveRight, moveUp, moveDown;
 
         public double wHeight, wWidth; //doubles storing window width and height
        
@@ -243,31 +245,31 @@ namespace _12IA_Game_WPF
 
         private void Game_Canvas_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)
-            {
-                moveLeft = true;
-            }
-            if (e.Key == Key.Right)
-            {
-                moveRight = true;
-            }
+            //if (e.Key == Key.Left)
+            //{
+            //    moveLeft = true;
+            //}
+            //if (e.Key == Key.Right)
+            //{
+            //    moveRight = true;
+            //}
         }
 
         private void Game_Canvas_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)
-            {
-                moveLeft = false;
-            }
-            if (e.Key == Key.Right)
-            {
-                moveRight = false;
-            }
+            //if (e.Key == Key.Left)
+            //{
+            //    moveLeft = false;
+            //}
+            //if (e.Key == Key.Right)
+            //{
+            //    moveRight = false;
+            //}
         }
 
         public void MakeWalls()
         {
-            borders.Add(new Walls(-10, Convert.ToInt32(Game_Canvas.ActualHeight))); 
+            borders.Add(new Walls(-50, Convert.ToInt32(Game_Canvas.ActualHeight))); 
             borders.Add(new Walls(1920, Convert.ToInt32(Game_Canvas.ActualHeight))); 
 
             foreach (Walls item in borders)
@@ -309,8 +311,11 @@ namespace _12IA_Game_WPF
                 }
             }
 
-            RotateTransform rotateTransform = new RotateTransform(angle, 0, player.gun.Height / 2);
-            player.gun.RenderTransform = rotateTransform;
+            RotateTransform gunrotateTransform = new RotateTransform(angle, 0, player.gun.Height / 2);
+            player.gun.RenderTransform = gunrotateTransform;
+            RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
+            player.visual.RenderTransform = playerrotateTransform;
+
             //double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;
             //double top = (Game_Canvas.ActualHeight - player.ActualHeight) / 2;
             //Canvas.SetTop(player, top);
@@ -322,8 +327,6 @@ namespace _12IA_Game_WPF
             //wWidth = frmGame.Width;
             //var pos = GetMousePos(frmGame, wWidth, wHeight);
             //var angle = GetAngle(pos);
-            //RotateTransform rotateTransform = new RotateTransform(angle, player.Width / 2, player.Height / 2);
-            //player.RenderTransform = rotateTransform;
 
             //if (moveLeft && Canvas.GetLeft(player.visual) > 0)
             //{
