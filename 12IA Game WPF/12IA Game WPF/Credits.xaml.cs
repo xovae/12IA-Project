@@ -39,13 +39,33 @@ namespace _12IA_Game_WPF
                 From = -0,
                 To = -1080,
                 Duration = TimeSpan.FromSeconds(15),
-                RepeatBehavior = RepeatBehavior.Forever
+                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true
             };
-            menuScroll.AutoReverse = true;
+         
+            var HeadingScroll = new DoubleAnimation()
+            {
+                From = 226,
+                To = 230,
+                Duration = TimeSpan.FromSeconds(3),
+                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true
+            };
+
+            var CreditsScroll = new DoubleAnimation
+            {
+                From = 448,
+                To = 452,
+                Duration = TimeSpan.FromSeconds(3),
+                RepeatBehavior = RepeatBehavior.Forever,
+                AutoReverse = true
+            };
+            txtCredits.BeginAnimation(Canvas.TopProperty, CreditsScroll);
+            txtHeading.BeginAnimation(Canvas.TopProperty, HeadingScroll);
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void Back(object sender, RoutedEventArgs e)
         {
             Menu MainMenu = new Menu();
             MainMenu.Show();

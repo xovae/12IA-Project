@@ -54,17 +54,41 @@ namespace _12IA_Game_WPF
         }
     }
 
-    public class Walls
+    public class HorzWalls
     {
         public Rectangle visual = new Rectangle();
         public Rect hitbox = new Rect();
-        public Walls( int x, int y)
+
+        public HorzWalls(int x, int y)
         {
-            SolidColorBrush color = new SolidColorBrush(Colors.Pink);
-            this.visual.Fill = color;
-            this.visual.Stroke = color;
+            SolidColorBrush colour = new SolidColorBrush(Colors.Pink);
+            this.visual.Fill = colour;
+            this.visual.Stroke = colour;
+            this.visual.Width = 1920;
+            this.visual.Height = 50;
+            Canvas.SetLeft(this.visual, x);
+            Canvas.SetTop(this.visual, y);
+        }
+        public void SetHitBox()
+        {
+            this.hitbox.X = Canvas.GetLeft(this.visual);
+            this.hitbox.Y = Canvas.GetTop(this.visual);
+            this.hitbox.Width = this.visual.Width;
+            this.hitbox.Height = this.visual.Height;
+        }
+    }
+
+    public class VertWalls
+    {
+        public Rectangle visual = new Rectangle();
+        public Rect hitbox = new Rect();
+        public VertWalls(int x, int y)
+        {
+            SolidColorBrush colour = new SolidColorBrush(Colors.Pink);
+            this.visual.Fill = colour;
+            this.visual.Stroke = colour;
             this.visual.Width = 50;
-            this.visual.Height = 1920;
+            this.visual.Height = 1080;
             Canvas.SetLeft(this.visual, x);
             Canvas.SetTop(this.visual, y);
         }
@@ -97,8 +121,10 @@ namespace _12IA_Game_WPF
             //this.visual.Width = 1138;
             //this.visual.Height = 494;
 
-            ImageBrush playerImage = new ImageBrush();
-            playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
+            ImageBrush playerImage = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"))
+            };
             this.visual.Fill = playerImage;
             //this.visual.Fill = new SolidColorBrush(Colors.Red);
             this.visual.Width = 50;
@@ -135,6 +161,10 @@ namespace _12IA_Game_WPF
             {
                 this.x *= -1;
             }
+            if (direction.X == 0)
+            {
+                this.x = 0;
+            }
 
             MainWindow.pew.shooting = true;
             Canvas.SetLeft(MainWindow.pew.visual, Canvas.GetLeft(this.middle) - 3);
@@ -147,7 +177,7 @@ namespace _12IA_Game_WPF
             shootTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             shootTimer.Start();
 
-            double Equation()
+            double Gradient()
             {
                 var equation = direction.Y / direction.X;
                 return equation * this.x + this.ypos;
@@ -163,9 +193,13 @@ namespace _12IA_Game_WPF
                 {
                     x += 5;
                 }
+                else if (x == 0)
+                {
+                    x = 0;
+                }
 
                 Canvas.SetLeft(MainWindow.pew.visual, (this.x + this.xpos));
-                Canvas.SetTop(MainWindow.pew.visual, Equation());
+                Canvas.SetTop(MainWindow.pew.visual, Gradient());
                 if (this.shooting == false)
                 {
                     shootTimer.Stop();
@@ -180,23 +214,17 @@ namespace _12IA_Game_WPF
     {
         public Point pos;
         public double angle;
-        //public static Label xx = new Label();
         public static Bullets pew = new Bullets();
-        public static List<Walls> borders = new List<Walls>();
+        public static List<VertWalls> vertBorders = new List<VertWalls>();
+        public static List<HorzWalls> horzBorders = new List<HorzWalls>();
         public static Player player = new Player();
-        //bool moveLeft, moveRight, moveUp, moveDown;
 
         public double wHeight, wWidth; //doubles storing window width and height
-       
 
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
 
-        
-
         public MainWindow()
         {
-
-
             InitializeComponent();
             InitializeAnimation();
             Game_Canvas.Height = SystemParameters.PrimaryScreenHeight;
@@ -210,7 +238,8 @@ namespace _12IA_Game_WPF
 
             playSoundtrack.PlayLooping();
 
-            MakeWalls();
+            MakeVertWalls();
+            MakeHorzWalls();
 
             Game_Canvas.Children.Add(player.visual);
             Game_Canvas.Children.Add(player.gun);
@@ -243,52 +272,36 @@ namespace _12IA_Game_WPF
             this.Close();
         }
 
-        private void Game_Canvas_KeyDown(object sender, KeyEventArgs e)
+        public void MakeVertWalls()
         {
-            //if (e.Key == Key.Left)
-            //{
-            //    moveLeft = true;
-            //}
-            //if (e.Key == Key.Right)
-            //{
-            //    moveRight = true;
-            //}
-        }
+            vertBorders.Add(new VertWalls(-50, 0)); 
+            vertBorders.Add(new VertWalls(1920, 0)); 
 
-        private void Game_Canvas_KeyUp(object sender, KeyEventArgs e)
-        {
-            //if (e.Key == Key.Left)
-            //{
-            //    moveLeft = false;
-            //}
-            //if (e.Key == Key.Right)
-            //{
-            //    moveRight = false;
-            //}
-        }
-
-        public void MakeWalls()
-        {
-            borders.Add(new Walls(-50, Convert.ToInt32(Game_Canvas.ActualHeight))); 
-            borders.Add(new Walls(1920, Convert.ToInt32(Game_Canvas.ActualHeight))); 
-
-            foreach (Walls item in borders)
+            foreach (VertWalls item in vertBorders)
             {
                 Game_Canvas.Children.Add(item.visual);
             }
         }
 
+        public void MakeHorzWalls()
+        {
+            horzBorders.Add(new HorzWalls(0, -50));
+            horzBorders.Add(new HorzWalls(0, 1080));
 
+            foreach (HorzWalls item in horzBorders)
+            {
+                Game_Canvas.Children.Add(item.visual);
+            }
+        }
 
         private void GameEngine(object sender, EventArgs e)
         {
-            foreach (Walls item in borders)
+            foreach (VertWalls item in vertBorders)
             {
                 item.SetHitBox();
             }
-            pew.SetHitBox();
-
-            foreach (Walls x in borders)
+           
+            foreach (VertWalls x in vertBorders)
             {
                 if (CollisionDect(pew.hitbox, x.hitbox))
                 {
@@ -297,6 +310,23 @@ namespace _12IA_Game_WPF
                     pew.ResetBullet();
                 }
             }
+
+            foreach (HorzWalls item in horzBorders)
+            {
+                item.SetHitBox();
+            }
+
+            foreach (HorzWalls x in horzBorders)
+            {
+                if (CollisionDect(pew.hitbox, x.hitbox))
+                {
+                    player.shooting = false;
+                    pew.shooting = false;
+                    pew.ResetBullet();
+                }
+            }
+
+            pew.SetHitBox();
 
             pos = Mouse.GetPosition(player.middle);
             angle = GetAngle(pos);
@@ -327,16 +357,6 @@ namespace _12IA_Game_WPF
             //wWidth = frmGame.Width;
             //var pos = GetMousePos(frmGame, wWidth, wHeight);
             //var angle = GetAngle(pos);
-
-            //if (moveLeft && Canvas.GetLeft(player.visual) > 0)
-            //{
-            //    Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - 10);
-            //    Canvas.SetLeft(player.hitbox, Canvas.GetLeft(player.hitbox) - 10);
-            //}
-            //if (moveRight && Canvas.GetLeft(player.visual) + player.visual.Width < Application.Current.MainWindow.Width)
-            //{
-            //    Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) + 10);
-            //}
         }
 
         static double GetAngle(Point mouse)
