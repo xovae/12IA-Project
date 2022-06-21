@@ -128,7 +128,6 @@
   <ItemGroup>
     <None Include="Resources\Illuminating_Bulbs.wav" />
     <None Include="Resources\Red_Champagne.wav" />
-    <None Include="Resources\Relaxing_Faxes %281%29.wav" />
     <Resource Include="images\space background 2.png" />
   </ItemGroup>
   <ItemGroup>

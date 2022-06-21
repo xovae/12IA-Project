@@ -10,7 +10,7 @@
     <Canvas Background="LightBlue" Name="Game_Canvas" Focusable="True">
 
         <Image x:Name="imgBackground" Height="1080" Width="3840" Source="/images/space background 2.png"/>
-        <Button x:Name="btn_exit" Content="runurunrunrunr" Canvas.Left="890" Canvas.Top="755" Width="140" Height="56" Click="btn_exit_Click"/>
+        <Button x:Name="btnExit" Content="runurunrunrunr" Canvas.Left="890" Canvas.Top="755" Width="140" Height="56" Click="Exit"/>
 
     </Canvas>
 </Window>

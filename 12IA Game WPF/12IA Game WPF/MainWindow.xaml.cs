@@ -65,7 +65,7 @@ namespace _12IA_Game_WPF
             this.visual.Fill = colour;
             this.visual.Stroke = colour;
             this.visual.Width = 1920;
-            this.visual.Height = 50;
+            this.visual.Height = 100;
             Canvas.SetLeft(this.visual, x);
             Canvas.SetTop(this.visual, y);
         }
@@ -115,18 +115,12 @@ namespace _12IA_Game_WPF
 
         public Player()
         {
-            //ImageBrush playerImage = new ImageBrush();
-            //playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
-            //this.visual.Fill = playerImage;
-            //this.visual.Width = 1138;
-            //this.visual.Height = 494;
 
             ImageBrush playerImage = new ImageBrush
             {
                 ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"))
             };
             this.visual.Fill = playerImage;
-            //this.visual.Fill = new SolidColorBrush(Colors.Red);
             this.visual.Width = 50;
             this.visual.Height = 50;
             this.visual.Stretch = Stretch.Fill;
@@ -179,8 +173,8 @@ namespace _12IA_Game_WPF
 
             double Gradient()
             {
-                var equation = direction.Y / direction.X;
-                return equation * this.x + this.ypos;
+                var gradient = direction.Y / direction.X;
+                return gradient * this.x + this.ypos;
             }
 
             void shootTimer_Tick(object sender, EventArgs e)
@@ -207,6 +201,29 @@ namespace _12IA_Game_WPF
                     MainWindow.pew.shooting = false;
                 }
             }
+        }
+    }
+
+    public class Enemy
+    {
+        public Ellipse visual = new Ellipse();
+        public Rect hitbox = new Rect();
+        
+        public Enemy()
+        {
+            SolidColorBrush colour = new SolidColorBrush(Colors.Red);
+            this.visual.Fill = colour;
+            this.visual.Stroke = colour;
+            this.visual.Width = 50;
+            this.visual.Height = 50;
+        }
+
+        public void SetHitBox()
+        {
+            this.hitbox.X = Canvas.GetLeft(this.visual);
+            this.hitbox.Y = Canvas.GetTop(this.visual);
+            this.hitbox.Width = this.visual.Width;
+            this.hitbox.Height = this.visual.Height;
         }
     }
 
@@ -241,17 +258,11 @@ namespace _12IA_Game_WPF
             MakeVertWalls();
             MakeHorzWalls();
 
+            Game_Canvas.Children.Add(pew.visual);
             Game_Canvas.Children.Add(player.visual);
             Game_Canvas.Children.Add(player.gun);
             Game_Canvas.Children.Add(player.middle);
-            Game_Canvas.Children.Add(pew.visual);
-
-            //ImageBrush playerImage = new ImageBrush();   // make a player image, image brush
-            //// load the player image into it
-            //playerImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"));
-            //// assign the player to the player rectangle fill
-            //player.Fill = playerImage;
-
+           
         }
 
         private void InitializeAnimation()
@@ -267,7 +278,7 @@ namespace _12IA_Game_WPF
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
-        private void btn_exit_Click(object sender, RoutedEventArgs e)
+        private void Exit(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -285,7 +296,7 @@ namespace _12IA_Game_WPF
 
         public void MakeHorzWalls()
         {
-            horzBorders.Add(new HorzWalls(0, -50));
+            horzBorders.Add(new HorzWalls(0, -100));
             horzBorders.Add(new HorzWalls(0, 1080));
 
             foreach (HorzWalls item in horzBorders)
