@@ -29,7 +29,7 @@ namespace _12IA_Game_WPF
         string[] facts = new string[] 
         {
             "Despite Space Game's cool soundtrack, space in reality is completely silent! As space is a vacuum, transversal sound waves have no medium to transfer!",
-            "Space Game's soundtrack composer, saopy, is pretty cool",
+            "Space Game's soundtrack composer, saopy, is pretty cool.",
             "The Sun's mass takes up 99.86% of the solar system's total mass!",
             "An asteroid the size of a small car enter's earth's atmosphere once a year, but burns up before it reaches us!",
             "Did you know the universe is expanding faster than the speed of light? That means that the edge of the universe we see is actually just old light, and you can never actually see the universe's edge!",
