@@ -131,6 +131,7 @@
     <Resource Include="images\space background 2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\white arrow.png" />
     <Content Include="Resources\Cubic Planets.wav" />
     <None Include="Resources\Tremendous_Feline %281%29.wav" />
   </ItemGroup>

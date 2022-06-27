@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Space Game" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="1080" Width="1920" ResizeMode="CanMinimize" WindowStyle="None" WindowState="Maximized">
 
-    <Canvas Background="LightBlue" Name="Game_Canvas" Focusable="True">
+    <Canvas Background="LightBlue" Name="Game_Canvas" Focusable="True" KeyDown="KeyDown" KeyUp="KeyUp">
 
         <Image x:Name="imgBackground" Height="1080" Width="3840" Source="/images/space background 2.png"/>
         <Button x:Name="btnExit" Content="runurunrunrunr" Canvas.Left="890" Canvas.Top="755" Width="140" Height="56" Click="Exit"/>

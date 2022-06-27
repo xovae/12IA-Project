@@ -118,7 +118,7 @@ namespace _12IA_Game_WPF
 
             ImageBrush playerImage = new ImageBrush
             {
-                ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/black arrow.png"))
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/white arrow.png"))
             };
             this.visual.Fill = playerImage;
             this.visual.Width = 50;
@@ -235,6 +235,7 @@ namespace _12IA_Game_WPF
         public static List<VertWalls> vertBorders = new List<VertWalls>();
         public static List<HorzWalls> horzBorders = new List<HorzWalls>();
         public static Player player = new Player();
+        public bool moveUp, moveDown, moveLeft, moveRight;
 
 
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
@@ -261,7 +262,6 @@ namespace _12IA_Game_WPF
             Game_Canvas.Children.Add(player.visual);
             Game_Canvas.Children.Add(player.gun);
             Game_Canvas.Children.Add(player.middle);
-           
         }
 
         private void InitializeAnimation()
@@ -337,6 +337,7 @@ namespace _12IA_Game_WPF
             }
 
             pew.SetHitBox();
+            //player.SetHitBox();
 
             pos = Mouse.GetPosition(player.middle);
             angle = GetAngle(pos);
@@ -356,14 +357,54 @@ namespace _12IA_Game_WPF
             RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
             player.visual.RenderTransform = playerrotateTransform;
 
+            //if (moveLeft && Canvas.GetLeft(player.visual) > 0)
+            //{
+            //    Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - 10);
+            //    Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
+            //    Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.visual.Height / 2));
+            //    player.SetHitBox();
+            //    pew.SetHitBox();
+            //}
+
+
+            if (EnemyWait == true)
+            {
+                SpawnEnemies();
+            }
+            
+            
+
+            //var pos = GetMousePos(frmGame, wWidth, wHeight);
+            //var angle = GetAngle(pos);
+        }
+
+        public bool EnemyWait()
+        {
+            Random rand = new Random();
+            int wait;
+
+            DispatcherTimer timer = new DispatcherTimer();
+            //wait.Tick = Wait;
+            timer.Interval = new TimeSpan(0, 0, 0, 1);
+            timer.Start();
+
+            wait = rand.Next(1, 4);
+
+            return true;
+        }
+
+        public void SpawnEnemies()
+        {
             Random spawn = new Random();
             int spawnLocation = spawn.Next(1, 4);
+            int placement;
+
             if (spawnLocation == 1)
             {
-                spawn.Next(0, 1080);
-
+                //spawn.Next(0, 1080);
+                //Game_Canvas.Children.Add()
             }
-            else if(spawnLocation == 2)
+            else if (spawnLocation == 2)
             {
 
             }
@@ -375,9 +416,6 @@ namespace _12IA_Game_WPF
             {
 
             }
-
-            //var pos = GetMousePos(frmGame, wWidth, wHeight);
-            //var angle = GetAngle(pos);
         }
 
         static double GetAngle(Point mouse)
@@ -428,6 +466,47 @@ namespace _12IA_Game_WPF
             else
             {
                 return false;
+            }
+        }
+
+      
+        private void KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true, etc.
+            {
+                moveLeft = true;
+            }
+            if (e.Key == Key.Right)   
+            {
+                moveRight = true;
+            }
+            if (e.Key == Key.Up)
+            {
+                moveUp = true;
+            }
+            if (e.Key == Key.Down)
+            {
+                moveDown = true;
+            }
+        }
+
+        private void KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)      //if user has released the left key, set moveLeft to false, etc.
+            {
+                moveLeft = false;
+            }
+            if (e.Key == Key.Right)    
+            {
+                moveRight = false;
+            }
+            if (e.Key == Key.Up)
+            {
+                moveUp = false;
+            }
+            if (e.Key == Key.Down)
+            {
+                moveDown = false;
             }
         }
     }
