@@ -236,7 +236,6 @@ namespace _12IA_Game_WPF
         public static List<HorzWalls> horzBorders = new List<HorzWalls>();
         public static Player player = new Player();
 
-        public double wHeight, wWidth; //doubles storing window width and height
 
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
 
@@ -357,15 +356,26 @@ namespace _12IA_Game_WPF
             RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
             player.visual.RenderTransform = playerrotateTransform;
 
-            //double left = (Game_Canvas.ActualWidth - player.ActualWidth) / 2;
-            //double top = (Game_Canvas.ActualHeight - player.ActualHeight) / 2;
-            //Canvas.SetTop(player, top);
-            //Canvas.SetLeft(player, left);
+            Random spawn = new Random();
+            int spawnLocation = spawn.Next(1, 4);
+            if (spawnLocation == 1)
+            {
+                spawn.Next(0, 1080);
 
-            //this.Left = System.Windows.SystemParameters.PrimaryScreenWidth;
-            //this.Top = System.Windows.SystemParameters.PrimaryScreenHeight;
-            //wHeight = frmGame.Height;
-            //wWidth = frmGame.Width;
+            }
+            else if(spawnLocation == 2)
+            {
+
+            }
+            else if (spawnLocation == 3)
+            {
+
+            }
+            else if (spawnLocation == 4)
+            {
+
+            }
+
             //var pos = GetMousePos(frmGame, wWidth, wHeight);
             //var angle = GetAngle(pos);
         }
