@@ -83,9 +83,9 @@ namespace _12IA_Game_WPF
                 From = -0,
                 To = -1080,
                 Duration = TimeSpan.FromSeconds(15),
-                RepeatBehavior = RepeatBehavior.Forever,
-                AutoReverse = true
+                RepeatBehavior = RepeatBehavior.Forever
             };
+            menuScroll.AutoReverse = true;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
