@@ -127,9 +127,6 @@
   <data name="Red_Champagne" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Red_Champagne.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Relaxing_Faxes__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Relaxing_Faxes (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Tremendous_Feline__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tremendous_Feline (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

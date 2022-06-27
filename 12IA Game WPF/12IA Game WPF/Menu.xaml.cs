@@ -21,7 +21,7 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Menu : Window
     {
-        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Illuminating_Bulbs);
+        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
 
         public Menu()
         {
@@ -36,7 +36,6 @@ namespace _12IA_Game_WPF
 
         private void InitializeAnimation()
         {
-
             var menuScroll = new DoubleAnimation
             {
                 From = -0,
@@ -64,26 +63,26 @@ namespace _12IA_Game_WPF
                 AutoReverse = true
             };
 
-            btnPlay.BeginAnimation(Canvas.TopProperty, playScroll);
-            btnCredits.BeginAnimation(Canvas.TopProperty, creditsScroll);
+            txtPlay.BeginAnimation(Canvas.TopProperty, playScroll);
+            txtCredits.BeginAnimation(Canvas.TopProperty, creditsScroll);
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
-        private void btnPlay_Click(object sender, RoutedEventArgs e)
+        private void Play(object sender, RoutedEventArgs e)
         {
             loading_screen loading = new loading_screen();
             loading.Show();
             this.Close();
         }
 
-        private void btnCredits_Click(object sender, RoutedEventArgs e)
+        private void Credits(object sender, RoutedEventArgs e)
         {
             Credits credits = new Credits();
             credits.Show();
             this.Close();
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void Exit(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
