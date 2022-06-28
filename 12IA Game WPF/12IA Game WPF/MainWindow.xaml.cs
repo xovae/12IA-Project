@@ -49,8 +49,8 @@ namespace _12IA_Game_WPF
         {
             Canvas.SetLeft(this.visual, Canvas.GetLeft(MainWindow.player.middle) - 3);
             Canvas.SetTop(this.visual, Canvas.GetTop(MainWindow.player.middle) - 3);
-            Canvas.SetRight(this.visual, 60);
-            Canvas.SetBottom(this.visual, 60);
+            Canvas.SetRight(this.visual, Canvas.GetRight(MainWindow.player.middle) + 3);
+            Canvas.SetBottom(this.visual, Canvas.GetBottom(MainWindow.player.middle) + 3);
         }
     }
 
@@ -132,6 +132,8 @@ namespace _12IA_Game_WPF
             this.gun.Height = 6;
             Canvas.SetLeft(this.gun, Canvas.GetLeft(this.visual) + this.visual.Width / 2);
             Canvas.SetTop(this.gun, Canvas.GetTop(this.visual) + this.visual.Height / 2 - (this.gun.Height / 2));
+
+           
 
             this.middle.Width = 1;
             this.middle.Height = 1;
@@ -336,8 +338,65 @@ namespace _12IA_Game_WPF
                 }
             }
 
+            if (moveLeft && Canvas.GetLeft(player.visual) > 0)
+            {
+                Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - 10);
+                Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
+                Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
+                Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
+                Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
+                player.SetHitBox();
+                pew.SetHitBox();
+                if (player.shooting == false && pew.shooting == false)
+                {
+                    pew.ResetBullet();
+                }
+            }
+            if (moveRight && (Canvas.GetLeft(player.visual) + player.visual.Width) < 1920)
+            {
+                Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) + 10);
+                Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
+                Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
+                Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
+                Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
+                player.SetHitBox();
+                pew.SetHitBox();
+                if (player.shooting == false && pew.shooting == false)
+                {
+                    pew.ResetBullet();
+                }
+            }
+            if (moveUp && Canvas.GetTop(player.visual) > 0)
+            {
+                Canvas.SetTop(player.visual, Canvas.GetLeft(player.visual) + 10);
+                Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
+                Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
+                Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
+                Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
+                player.SetHitBox();
+                pew.SetHitBox();
+                if (player.shooting == false && pew.shooting == false)
+                {
+                    pew.ResetBullet();
+                }
+            }
+            if (moveDown && (Canvas.GetTop(player.visual) + player.visual.Height) < 1080)
+            {
+                Canvas.SetTop(player.visual, Canvas.GetLeft(player.visual) - 10);
+                Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
+                Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
+                Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
+                Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
+                player.SetHitBox();
+                pew.SetHitBox();
+                if (player.shooting == false && pew.shooting == false)
+                {
+                    pew.ResetBullet();
+                }
+            }
+
             pew.SetHitBox();
-            //player.SetHitBox();
+            player.SetHitBox();
 
             pos = Mouse.GetPosition(player.middle);
             angle = GetAngle(pos);
@@ -357,20 +416,14 @@ namespace _12IA_Game_WPF
             RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
             player.visual.RenderTransform = playerrotateTransform;
 
-            //if (moveLeft && Canvas.GetLeft(player.visual) > 0)
+          
+
+
+
+            //if (EnemyWait == true)
             //{
-            //    Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - 10);
-            //    Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
-            //    Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.visual.Height / 2));
-            //    player.SetHitBox();
-            //    pew.SetHitBox();
+            //    SpawnEnemies();
             //}
-
-
-            if (EnemyWait == true)
-            {
-                SpawnEnemies();
-            }
             
             
 
@@ -446,6 +499,8 @@ namespace _12IA_Game_WPF
             return -1;
         }
 
+       
+
         //static Point GetMousePos(Window back, double w, double h)
         //{
         //    Point mousePos = Mouse.GetPosition(back);
@@ -469,7 +524,47 @@ namespace _12IA_Game_WPF
             }
         }
 
-      
+        private void Game_Canvas_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)      //if user has released the left key, set moveLeft to false, etc.
+            {
+                moveLeft = false;
+            }
+            if (e.Key == Key.Right)
+            {
+                moveRight = false;
+            }
+            if (e.Key == Key.Up)
+            {
+                moveUp = false;
+            }
+            if (e.Key == Key.Down)
+            {
+                moveDown = false;
+            }
+        }
+
+        private void Game_Canvas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true, etc.
+            {
+                moveLeft = true;
+            }
+            if (e.Key == Key.Right)
+            {
+                moveRight = true;
+            }
+            if (e.Key == Key.Up)
+            {
+                moveUp = true;
+            }
+            if (e.Key == Key.Down)
+            {
+                moveDown = true;
+            }
+        }
+
+
         private void KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true, etc.
