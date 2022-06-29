@@ -25,6 +25,7 @@ namespace _12IA_Game_WPF
 
         public Menu()
         {
+
             InitializeComponent();
             InitializeAnimation();
 

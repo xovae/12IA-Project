@@ -54,45 +54,21 @@ namespace _12IA_Game_WPF
         }
     }
 
-    public class HorzWalls
+    public class Walls
     {
         public Rectangle visual = new Rectangle();
         public Rect hitbox = new Rect();
 
-        public HorzWalls(int x, int y)
+        public Walls(double x, double y, double w, double h)
         {
             SolidColorBrush colour = new SolidColorBrush(Colors.Pink);
             this.visual.Fill = colour;
             this.visual.Stroke = colour;
-            this.visual.Width = 1920;
-            this.visual.Height = 100;
+            this.visual.Width = w;
+            this.visual.Height = h;
             Canvas.SetLeft(this.visual, x);
             Canvas.SetTop(this.visual, y);
         }
-        public void SetHitBox()
-        {
-            this.hitbox.X = Canvas.GetLeft(this.visual);
-            this.hitbox.Y = Canvas.GetTop(this.visual);
-            this.hitbox.Width = this.visual.Width;
-            this.hitbox.Height = this.visual.Height;
-        }
-    }
-
-    public class VertWalls
-    {
-        public Rectangle visual = new Rectangle();
-        public Rect hitbox = new Rect();
-        public VertWalls(int x, int y)
-        {
-            SolidColorBrush colour = new SolidColorBrush(Colors.Pink);
-            this.visual.Fill = colour;
-            this.visual.Stroke = colour;
-            this.visual.Width = 50;
-            this.visual.Height = 1080;
-            Canvas.SetLeft(this.visual, x);
-            Canvas.SetTop(this.visual, y);
-        }
-
         public void SetHitBox()
         {
             this.hitbox.X = Canvas.GetLeft(this.visual);
@@ -132,8 +108,6 @@ namespace _12IA_Game_WPF
             this.gun.Height = 6;
             Canvas.SetLeft(this.gun, Canvas.GetLeft(this.visual) + this.visual.Width / 2);
             Canvas.SetTop(this.gun, Canvas.GetTop(this.visual) + this.visual.Height / 2 - (this.gun.Height / 2));
-
-           
 
             this.middle.Width = 1;
             this.middle.Height = 1;
@@ -236,11 +210,9 @@ namespace _12IA_Game_WPF
         public Point pos;
         public double angle;
         public static Bullets pew = new Bullets();
-        public static List<VertWalls> vertBorders = new List<VertWalls>();
-        public static List<HorzWalls> horzBorders = new List<HorzWalls>();
-        //public static List<Enemy> enemies = new List<Enemy>();
+        public static List<Walls> walls = new List<Walls>();
+        public static List<Enemy> enemies = new List<Enemy>();
         public static Player player = new Player();
-        public static Enemy enemy = new Enemy(500, 500);          //remove when fixed enemies 
         public bool moveUp, moveDown, moveLeft, moveRight;
 
         readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
@@ -257,18 +229,16 @@ namespace _12IA_Game_WPF
             tmrEngine.Interval = new TimeSpan(0, 0, 0, 0, 5);
             tmrEngine.Start();
 
-            //DispatcherTimer tmrSpawn = new DispatcherTimer();
-            //tmrSpawn.Tick += Spawn;
-            //tmrSpawn.Interval = new TimeSpan(0, 0, 3);
-            //tmrSpawn.Start();
+            DispatcherTimer tmrSpawn = new DispatcherTimer();
+            tmrSpawn.Tick += Spawn;
+            tmrSpawn.Interval = new TimeSpan(0, 0, 3);
+            tmrSpawn.Start();
 
             Game_Canvas.Focus();
 
             playSoundtrack.PlayLooping();
 
-            MakeVertWalls();
-            MakeHorzWalls();
-            Spawn();
+            MakeWalls();
 
             Game_Canvas.Children.Add(pew.visual);
             Game_Canvas.Children.Add(player.visual);
@@ -294,23 +264,15 @@ namespace _12IA_Game_WPF
             this.Close();
         }
 
-        public void MakeVertWalls()
+        public void MakeWalls()
         {
-            vertBorders.Add(new VertWalls(-50, 0)); 
-            vertBorders.Add(new VertWalls(1920, 0)); 
+            walls.Add(new Walls(-100, 0, 100, SystemParameters.PrimaryScreenHeight));
+            walls.Add(new Walls(SystemParameters.PrimaryScreenWidth, 0, 100, SystemParameters.PrimaryScreenHeight)); //vertical walls
 
-            foreach (VertWalls item in vertBorders)
-            {
-                Game_Canvas.Children.Add(item.visual);
-            }
-        }
+            walls.Add(new Walls(0, -100, SystemParameters.PrimaryScreenWidth, 100));
+            walls.Add(new Walls(0, SystemParameters.PrimaryScreenHeight, SystemParameters.PrimaryScreenWidth, 100));    //horizontal walls
 
-        public void MakeHorzWalls()
-        {
-            horzBorders.Add(new HorzWalls(0, -100));
-            horzBorders.Add(new HorzWalls(0, 1080));
-
-            foreach (HorzWalls item in horzBorders)
+            foreach (Walls item in walls)
             {
                 Game_Canvas.Children.Add(item.visual);
             }
@@ -318,27 +280,12 @@ namespace _12IA_Game_WPF
 
         private void GameEngine(object sender, EventArgs e)
         {
-            foreach (VertWalls item in vertBorders)
-            {
-                item.SetHitBox();
-            }
-           
-            foreach (VertWalls x in vertBorders)
-            {
-                if (CollisionDect(pew.hitbox, x.hitbox))
-                {
-                    player.shooting = false;
-                    pew.shooting = false;
-                    pew.ResetBullet();
-                }
-            }
-
-            foreach (HorzWalls item in horzBorders)
+            foreach (Walls item in walls)
             {
                 item.SetHitBox();
             }
 
-            foreach (HorzWalls x in horzBorders)
+            foreach (Walls x in walls)
             {
                 if (CollisionDect(pew.hitbox, x.hitbox))
                 {
@@ -404,21 +351,25 @@ namespace _12IA_Game_WPF
                     pew.ResetBullet();
                 }
             }
-            if (Canvas.GetTop(enemy.visual) < Canvas.GetTop(player.visual))
+          
+            foreach (Enemy item in enemies)
             {
-                Canvas.SetTop(enemy.visual, Canvas.GetTop(enemy.visual) + 10);
-            }
-             if (Canvas.GetTop(enemy.visual) > Canvas.GetTop(player.visual))
-            {
-                Canvas.SetTop(enemy.visual, Canvas.GetTop(enemy.visual) - 10);
-            }
-             if (Canvas.GetLeft(enemy.visual) < Canvas.GetLeft(player.visual))
-            {
-                Canvas.SetLeft(enemy.visual, Canvas.GetLeft(enemy.visual) + 10);
-            }
-            if ((Canvas.GetLeft(enemy.visual) + enemy.visual.Width) > (Canvas.GetRight(player.visual) + player.visual.Width))
-            {
-                Canvas.SetRight(enemy.visual, Canvas.GetRight(enemy.visual) - 10);
+                if (Canvas.GetTop(item.visual) < Canvas.GetTop(player.visual))
+                {
+                    Canvas.SetTop(item.visual, Canvas.GetTop(item.visual) + 10);
+                }
+                if (Canvas.GetTop(item.visual) > Canvas.GetTop(player.visual))
+                {
+                    Canvas.SetTop(item.visual, Canvas.GetTop(item.visual) - 10);
+                }
+                if (Canvas.GetLeft(item.visual) < Canvas.GetLeft(player.visual))
+                {
+                    Canvas.SetLeft(item.visual, Canvas.GetLeft(item.visual) + 10);
+                }
+                if ((Canvas.GetLeft(item.visual) + item.visual.Width) > (Canvas.GetLeft(player.visual) + player.visual.Width))
+                {
+                    Canvas.SetLeft(item.visual, Canvas.GetLeft(item.visual) - 10);
+                }
             }
 
             pew.SetHitBox();
@@ -443,80 +394,89 @@ namespace _12IA_Game_WPF
             player.visual.RenderTransform = playerrotateTransform;
 
 
-            enemy.SetHitBox();
-            if (CollisionDect(enemy.hitbox, pew.hitbox))
+            //enemy.SetHitBox();
+            //if (CollisionDect(enemy.hitbox, pew.hitbox))
+            //{
+            //    player.shooting = false;
+            //    pew.shooting = false;
+            //    pew.ResetBullet();
+            //}
+            foreach (Enemy item in enemies)
             {
-                player.shooting = false;
-                pew.shooting = false;
-                pew.ResetBullet();
+                item.SetHitBox();
             }
-            //foreach (Enemy item in enemies)
-            //{
-            //    item.SetHitBox();
-            //}
 
-            //foreach (Enemy x in enemies)
-            //{
-            //    if (CollisionDect(x.hitbox, pew.hitbox))
-            //    {
-            //        player.shooting = false;
-            //        pew.shooting = false;
-            //        pew.ResetBullet();
-            //    }
-            //}
+            foreach (Enemy x in enemies)
+            {
+                if (CollisionDect(x.hitbox, pew.hitbox))
+                {
+                    player.shooting = false;
+                    pew.shooting = false;
+                    pew.ResetBullet();
+                }
+            }
+
             //var pos = GetMousePos(frmGame, wWidth, wHeight);
             //var angle = GetAngle(pos);
         }
 
-        public void Spawn(/*object sender, EventArgs e*/)
+        public void Spawn(object sender, EventArgs e)
         {
             //Canvas.SetLeft(enemy.visual, 500);
             //Canvas.SetTop(enemy.visual, 500);
-            //Random rand = new Random();
-            //int spawnLocation = rand.Next(1, 4);
-            //int locationX, locationY;
+            Random rand = new Random();
+            int spawnLocation = rand.Next(1, 4);
+            int locationX, locationY;
 
-            //if (spawnLocation == 1)                         //spawn top of screen
-            //{
-            //    locationX = rand.Next(0, 1920);
-                
-            //    //enemies.Add(new Enemy(locationX, 0));
+            if (spawnLocation == 1)                         //spawn top of screen
+            {
+                locationX = rand.Next(0, 1920);
 
-            //    //foreach (Enemy item in enemies)
-            //    //{
-            //    //    Game_Canvas.Children.Add(item.visual);
-            //    //}
-            //}
-            //else if (spawnLocation == 2)                   //spawn right of screen
-            //{
-            //    locationY = rand.Next(0, 1080);
-            //    //enemies.Add(new Enemy(1920, locationY));
+                enemies.Add(new Enemy(locationX, 0));
 
-            //    //foreach (Enemy item in enemies)
-            //    //{
-            //    //    Game_Canvas.Children.Add(item.visual);
-            //    //}
-            //}
-            //else if (spawnLocation == 3)                  //spawn bottom of screen
-            //{
-            //    locationX = rand.Next(0, 1080);
-            //    //enemies.Add(new Enemy(locationX, 1080));
+                Game_Canvas.Children.Add(enemies[enemies.Count - 1].visual);
 
-            //    //foreach (Enemy item in enemies)
-            //    //{
-            //    //    Game_Canvas.Children.Add(item.visual);
-            //    //}
-            //}
-            //else if (spawnLocation == 4)                 //spawn left of screen
-            //{
-            //    locationY = rand.Next(0, 1080);
-            //    //enemies.Add(new Enemy(0, locationY));
+                //foreach (Enemy item in enemies)
+                //{
+                //    //Game_Canvas.Children.Add(item.visual);
+                //}
+            }
+            else if (spawnLocation == 2)                   //spawn right of screen
+            {
+                locationY = rand.Next(0, 1080);
+                enemies.Add(new Enemy(1920, locationY));
 
-            //    //foreach (Enemy item in enemies)
-            //    //{
-            //    //    Game_Canvas.Children.Add(item.visual);
-            //    //}
-            //}
+                Game_Canvas.Children.Add(enemies[enemies.Count - 1].visual);
+
+                //foreach (Enemy item in enemies)
+                //{
+                //    Game_Canvas.Children.Add(item.visual);
+                //}
+            }
+            else if (spawnLocation == 3)                  //spawn bottom of screen
+            {
+                locationX = rand.Next(0, 1080);
+                enemies.Add(new Enemy(locationX, 1080));
+
+                Game_Canvas.Children.Add(enemies[enemies.Count - 1].visual);
+
+                //foreach (Enemy item in enemies)
+                //{
+                //    Game_Canvas.Children.Add(item.visual);
+                //}
+            }
+            else if (spawnLocation == 4)                 //spawn left of screen
+            {
+                locationY = rand.Next(0, 1080);
+                enemies.Add(new Enemy(0, locationY));
+
+                Game_Canvas.Children.Add(enemies[enemies.Count - 1].visual);
+
+                //foreach (Enemy item in enemies)
+                //{
+                //    Game_Canvas.Children.Add(item.visual);
+                //}
+            }
         }
 
         static double GetAngle(Point mouse)
