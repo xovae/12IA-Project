@@ -21,7 +21,7 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Menu : Window
     {
-        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
+        readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
 
         public Menu()
         {

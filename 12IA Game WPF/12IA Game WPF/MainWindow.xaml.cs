@@ -211,13 +211,15 @@ namespace _12IA_Game_WPF
         public Ellipse visual = new Ellipse();
         public Rect hitbox = new Rect();
         
-        public Enemy()
+        public Enemy(int x, int y)
         {
             SolidColorBrush colour = new SolidColorBrush(Colors.Red);
             this.visual.Fill = colour;
             this.visual.Stroke = colour;
             this.visual.Width = 50;
             this.visual.Height = 50;
+            Canvas.SetLeft(this.visual, x);
+            Canvas.SetTop(this.visual, y);
         }
 
         public void SetHitBox()
@@ -236,11 +238,12 @@ namespace _12IA_Game_WPF
         public static Bullets pew = new Bullets();
         public static List<VertWalls> vertBorders = new List<VertWalls>();
         public static List<HorzWalls> horzBorders = new List<HorzWalls>();
+        //public static List<Enemy> enemies = new List<Enemy>();
         public static Player player = new Player();
+        public static Enemy enemy = new Enemy(500, 500);          //remove when fixed enemies 
         public bool moveUp, moveDown, moveLeft, moveRight;
 
-
-        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
+        readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
 
         public MainWindow()
         {
@@ -249,16 +252,23 @@ namespace _12IA_Game_WPF
             Game_Canvas.Height = SystemParameters.PrimaryScreenHeight;
             Game_Canvas.Width = SystemParameters.PrimaryScreenWidth;
 
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += GameEngine;
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 5);
-            dispatcherTimer.Start();
+            DispatcherTimer tmrEngine = new DispatcherTimer();
+            tmrEngine.Tick += GameEngine;
+            tmrEngine.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            tmrEngine.Start();
+
+            //DispatcherTimer tmrSpawn = new DispatcherTimer();
+            //tmrSpawn.Tick += Spawn;
+            //tmrSpawn.Interval = new TimeSpan(0, 0, 3);
+            //tmrSpawn.Start();
+
             Game_Canvas.Focus();
 
             playSoundtrack.PlayLooping();
 
             MakeVertWalls();
             MakeHorzWalls();
+            Spawn();
 
             Game_Canvas.Children.Add(pew.visual);
             Game_Canvas.Children.Add(player.visual);
@@ -368,7 +378,7 @@ namespace _12IA_Game_WPF
             }
             if (moveUp && Canvas.GetTop(player.visual) > 0)
             {
-                Canvas.SetTop(player.visual, Canvas.GetLeft(player.visual) + 10);
+                Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) - 10);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
                 Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
@@ -382,7 +392,7 @@ namespace _12IA_Game_WPF
             }
             if (moveDown && (Canvas.GetTop(player.visual) + player.visual.Height) < 1080)
             {
-                Canvas.SetTop(player.visual, Canvas.GetLeft(player.visual) - 10);
+                Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) + 10);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
                 Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
@@ -393,6 +403,22 @@ namespace _12IA_Game_WPF
                 {
                     pew.ResetBullet();
                 }
+            }
+            if (Canvas.GetTop(enemy.visual) < Canvas.GetTop(player.visual))
+            {
+                Canvas.SetTop(enemy.visual, Canvas.GetTop(enemy.visual) + 10);
+            }
+             if (Canvas.GetTop(enemy.visual) > Canvas.GetTop(player.visual))
+            {
+                Canvas.SetTop(enemy.visual, Canvas.GetTop(enemy.visual) - 10);
+            }
+             if (Canvas.GetLeft(enemy.visual) < Canvas.GetLeft(player.visual))
+            {
+                Canvas.SetLeft(enemy.visual, Canvas.GetLeft(enemy.visual) + 10);
+            }
+            if ((Canvas.GetLeft(enemy.visual) + enemy.visual.Width) > (Canvas.GetRight(player.visual) + player.visual.Width))
+            {
+                Canvas.SetRight(enemy.visual, Canvas.GetRight(enemy.visual) - 10);
             }
 
             pew.SetHitBox();
@@ -416,59 +442,81 @@ namespace _12IA_Game_WPF
             RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
             player.visual.RenderTransform = playerrotateTransform;
 
-          
 
-
-
-            //if (EnemyWait == true)
+            enemy.SetHitBox();
+            if (CollisionDect(enemy.hitbox, pew.hitbox))
+            {
+                player.shooting = false;
+                pew.shooting = false;
+                pew.ResetBullet();
+            }
+            //foreach (Enemy item in enemies)
             //{
-            //    SpawnEnemies();
+            //    item.SetHitBox();
             //}
-            
-            
 
+            //foreach (Enemy x in enemies)
+            //{
+            //    if (CollisionDect(x.hitbox, pew.hitbox))
+            //    {
+            //        player.shooting = false;
+            //        pew.shooting = false;
+            //        pew.ResetBullet();
+            //    }
+            //}
             //var pos = GetMousePos(frmGame, wWidth, wHeight);
             //var angle = GetAngle(pos);
         }
 
-        public bool EnemyWait()
+        public void Spawn(/*object sender, EventArgs e*/)
         {
-            Random rand = new Random();
-            int wait;
+            //Canvas.SetLeft(enemy.visual, 500);
+            //Canvas.SetTop(enemy.visual, 500);
+            //Random rand = new Random();
+            //int spawnLocation = rand.Next(1, 4);
+            //int locationX, locationY;
 
-            DispatcherTimer timer = new DispatcherTimer();
-            //wait.Tick = Wait;
-            timer.Interval = new TimeSpan(0, 0, 0, 1);
-            timer.Start();
+            //if (spawnLocation == 1)                         //spawn top of screen
+            //{
+            //    locationX = rand.Next(0, 1920);
+                
+            //    //enemies.Add(new Enemy(locationX, 0));
 
-            wait = rand.Next(1, 4);
+            //    //foreach (Enemy item in enemies)
+            //    //{
+            //    //    Game_Canvas.Children.Add(item.visual);
+            //    //}
+            //}
+            //else if (spawnLocation == 2)                   //spawn right of screen
+            //{
+            //    locationY = rand.Next(0, 1080);
+            //    //enemies.Add(new Enemy(1920, locationY));
 
-            return true;
-        }
+            //    //foreach (Enemy item in enemies)
+            //    //{
+            //    //    Game_Canvas.Children.Add(item.visual);
+            //    //}
+            //}
+            //else if (spawnLocation == 3)                  //spawn bottom of screen
+            //{
+            //    locationX = rand.Next(0, 1080);
+            //    //enemies.Add(new Enemy(locationX, 1080));
 
-        public void SpawnEnemies()
-        {
-            Random spawn = new Random();
-            int spawnLocation = spawn.Next(1, 4);
-            int placement;
+            //    //foreach (Enemy item in enemies)
+            //    //{
+            //    //    Game_Canvas.Children.Add(item.visual);
+            //    //}
+            //}
+            //else if (spawnLocation == 4)                 //spawn left of screen
+            //{
+            //    locationY = rand.Next(0, 1080);
+            //    //enemies.Add(new Enemy(0, locationY));
 
-            if (spawnLocation == 1)
-            {
-                //spawn.Next(0, 1080);
-                //Game_Canvas.Children.Add()
-            }
-            else if (spawnLocation == 2)
-            {
-
-            }
-            else if (spawnLocation == 3)
-            {
-
-            }
-            else if (spawnLocation == 4)
-            {
-
-            }
+            //    //foreach (Enemy item in enemies)
+            //    //{
+            //    //    Game_Canvas.Children.Add(item.visual);
+            //    //}
+            //}
         }
 
         static double GetAngle(Point mouse)
@@ -526,19 +574,19 @@ namespace _12IA_Game_WPF
 
         private void Game_Canvas_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)      //if user has released the left key, set moveLeft to false, etc.
+            if (e.Key == Key.A)      //if user has released the left key, set moveLeft to false, etc.
             {
                 moveLeft = false;
             }
-            if (e.Key == Key.Right)
+            if (e.Key == Key.D)
             {
                 moveRight = false;
             }
-            if (e.Key == Key.Up)
+            if (e.Key == Key.W)
             {
                 moveUp = false;
             }
-            if (e.Key == Key.Down)
+            if (e.Key == Key.S)
             {
                 moveDown = false;
             }
@@ -546,62 +594,21 @@ namespace _12IA_Game_WPF
 
         private void Game_Canvas_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true, etc.
+            if (e.Key == Key.A)      //if user is pressing the left key, set moveLeft to true, etc.
             {
                 moveLeft = true;
             }
-            if (e.Key == Key.Right)
+            if (e.Key == Key.D)
             {
                 moveRight = true;
             }
-            if (e.Key == Key.Up)
+            if (e.Key == Key.W)
             {
                 moveUp = true;
             }
-            if (e.Key == Key.Down)
+            if (e.Key == Key.S)
             {
                 moveDown = true;
-            }
-        }
-
-
-        private void KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Left)      //if user is pressing the left key, set moveLeft to true, etc.
-            {
-                moveLeft = true;
-            }
-            if (e.Key == Key.Right)   
-            {
-                moveRight = true;
-            }
-            if (e.Key == Key.Up)
-            {
-                moveUp = true;
-            }
-            if (e.Key == Key.Down)
-            {
-                moveDown = true;
-            }
-        }
-
-        private void KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Left)      //if user has released the left key, set moveLeft to false, etc.
-            {
-                moveLeft = false;
-            }
-            if (e.Key == Key.Right)    
-            {
-                moveRight = false;
-            }
-            if (e.Key == Key.Up)
-            {
-                moveUp = false;
-            }
-            if (e.Key == Key.Down)
-            {
-                moveDown = false;
             }
         }
     }
