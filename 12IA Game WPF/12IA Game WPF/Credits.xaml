@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="Credits" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
+        Title="Credits" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
     <Canvas>
         <Image x:Name="imgBackground" Height="1080" Width="3840" Source="/images/space background 2.png"/>
         <TextBlock x:Name="txtBack" Text="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" MouseDown="Back" Height="60" Canvas.Left="1785" Canvas.Top="10" FontSize="50" FontFamily="./Fonts/#VCR OSD Mono" Background="Transparent" Foreground="#FFD62246"/>

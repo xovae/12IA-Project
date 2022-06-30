@@ -61,7 +61,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="loading screen.xaml">
+    <Page Include="loading_screen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,8 +76,8 @@
     <Compile Include="Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
     </Compile>
-    <Compile Include="loading screen.xaml.cs">
-      <DependentUpon>loading screen.xaml</DependentUpon>
+    <Compile Include="loading_screen.xaml.cs">
+      <DependentUpon>loading_screen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\white arrow.png" />
+    <Resource Include="images\red arrow.png" />
     <Content Include="Resources\Cubic Planets.wav" />
     <None Include="Resources\Tremendous_Feline %281%29.wav" />
   </ItemGroup>

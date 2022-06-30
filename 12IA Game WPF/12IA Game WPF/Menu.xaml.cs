@@ -40,8 +40,8 @@ namespace _12IA_Game_WPF
             var menuScroll = new DoubleAnimation
             {
                 From = -0,
-                To = -1080,
-                Duration = TimeSpan.FromSeconds(15),
+                To = -1920,
+                Duration = TimeSpan.FromSeconds(80 / 3),
                 RepeatBehavior = RepeatBehavior.Forever,
                 AutoReverse = true
             };

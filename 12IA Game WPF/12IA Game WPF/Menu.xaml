@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="Menu" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
+        Title="Menu" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
     <Canvas x:Name="cnvMenu">
         <Image x:Name="imgBackground" Height="1080" Width="3840" Source="/images/space background 2.png" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtPlay" Text="Play" HorizontalAlignment="Center" VerticalAlignment="Top" Width="236" MouseDown="Play" Height="108" FontSize="100" FontFamily="./Fonts/#VCR OSD Mono" Canvas.Left="842" Canvas.Top="540" Background="Transparent" Foreground="#FFD62246"/>
         <TextBlock x:Name="txtCredits" Text="Credits" HorizontalAlignment="Center" VerticalAlignment="Top" Width="152" Height="36" FontSize="36" MouseDown="Credits" Canvas.Left="884" Canvas.Top="676" FontFamily="./Fonts/#VCR OSD Mono" Background="Transparent" Foreground="#FFD62246"/>
         <TextBlock x:Name="txtExit" Text="Exit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="117" MouseDown="Exit" Height="61" FontSize="50"  FontFamily="./Fonts/#VCR OSD Mono"  Background="Transparent" Foreground="#FFD62246" Canvas.Left="1793" Canvas.Top="10"/>
-        <TextBlock x:Name="txtTitle" Canvas.Left="316" TextWrapping="Wrap" Text="Space Game" Canvas.Top="170" Width="1288" TextAlignment="Center" FontFamily="./Fonts/#Paper Cut" Foreground="#FF00C49A" Background="{x:Null}" FontSize="250" Height="285" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
+        <TextBlock x:Name="txtTitle" Canvas.Left="316" TextWrapping="Wrap" Text="Space Game" Canvas.Top="170" Width="1288" TextAlignment="Center" FontFamily="./Fonts/#Paper Cut" Foreground="#FF00C49A" Background="{x:Null}" FontSize="250" Height="285" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
     </Canvas>
 </Window>
