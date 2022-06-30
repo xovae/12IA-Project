@@ -424,16 +424,18 @@ namespace _12IA_Game_WPF
                     player.shooting = false;
                     pew.shooting = false;
                     pew.ResetBullet();
-                    //enemies.Remove(x);
+                    Game_Canvas.Children.Remove(x.visual);
                     //score += 1;
                 }
             }
 
             foreach (Enemy item in enemies)
             {
-                
+                enemyPos = new Point((Canvas.GetLeft(player.middle) - Canvas.GetLeft(item.middle)), (Canvas.GetTop(player.middle) - Canvas.GetTop(item.middle)));
+                enemyAngle = GetAngle(enemyPos);
+                RotateTransform enemyRotateTransform = new RotateTransform(enemyAngle, item.visual.Width / 2, item.visual.Height / 2);
+                item.visual.RenderTransform = enemyRotateTransform;
             }
-
         }
 
         public void Spawn(object sender, EventArgs e)

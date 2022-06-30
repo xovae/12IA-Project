@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Instructions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="loading_screen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +79,9 @@
     </Compile>
     <Compile Include="Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Instructions.xaml.cs">
+      <DependentUpon>Instructions.xaml</DependentUpon>
     </Compile>
     <Compile Include="loading_screen.xaml.cs">
       <DependentUpon>loading_screen.xaml</DependentUpon>

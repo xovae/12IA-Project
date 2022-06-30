@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\
 _12IA_Game_WPF
 none
 false
 DEBUG;TRACE
-J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\App.xaml
-4212252733
-1-933369590
-9-1189103629
-151937372271
-Credits.xaml;loading_screen.xaml;MainWindow.xaml;Menu.xaml;
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\App.xaml
+5-1910190597
+1159571048
+10-1186416854
+151397803362
+Credits.xaml;Instructions.xaml;loading_screen.xaml;MainWindow.xaml;Menu.xaml;
 
-False
+True
 
