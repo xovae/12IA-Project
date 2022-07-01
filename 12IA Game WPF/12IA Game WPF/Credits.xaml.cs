@@ -62,6 +62,7 @@ namespace _12IA_Game_WPF
             };
             txtCredits.BeginAnimation(Canvas.TopProperty, CreditsScroll);
             txtHeading.BeginAnimation(Canvas.TopProperty, HeadingScroll);
+            imgBackground.Width = SystemParameters.PrimaryScreenWidth * 2;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
