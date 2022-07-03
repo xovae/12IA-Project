@@ -72,15 +72,6 @@ namespace _12IA_Game_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Illuminating_Bulbs {
-            get {
-                return ResourceManager.GetStream("Illuminating_Bulbs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Red_Champagne {
             get {
                 return ResourceManager.GetStream("Red_Champagne", resourceCulture);

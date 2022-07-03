@@ -17,8 +17,6 @@ K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.g
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.baml
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.g.cs
 K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.baml
-K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.g.cs
-K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.baml
 C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.exe.config
 C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.exe
 C:\Users\spoop\OneDrive\Documents\GitHub\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.pdb
@@ -48,14 +46,12 @@ K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA G
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.AssemblyReference.cache
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.SuggestedBindingRedirects.cache
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.g.cs
-J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.g.cs
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\MainWindow.g.cs
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.g.cs
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\App.g.cs
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_MarkupCompile.cache
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF_MarkupCompile.lref
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Credits.baml
-J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading screen.baml
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\MainWindow.baml
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Menu.baml
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.g.resources
@@ -68,3 +64,13 @@ J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\bin\Debug\12IA Game WPF.pdb
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\_12IA_Game_WPF.Properties.Resources.resources
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.csproj.CoreCompileInputs.cache
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\12IA Game WPF.exe
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading_screen.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading_screen.baml
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading_screen.g.cs
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\loading_screen.baml
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Instructions.g.cs
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Instructions.baml
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Instructions.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Instructions.baml
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\GameOver.g.cs
+J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\GameOver.baml

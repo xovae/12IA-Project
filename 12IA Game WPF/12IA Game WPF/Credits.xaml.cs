@@ -21,7 +21,6 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Credits : Window
     {
-
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Red_Champagne);
 
         public Credits()
@@ -62,6 +61,7 @@ namespace _12IA_Game_WPF
             };
             txtCredits.BeginAnimation(Canvas.TopProperty, CreditsScroll);
             txtHeading.BeginAnimation(Canvas.TopProperty, HeadingScroll);
+            imgBackground.Width = SystemParameters.PrimaryScreenWidth * 2;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 

@@ -21,7 +21,7 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Menu : Window
     {
-        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
+        readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
 
         public Menu()
         {
@@ -32,6 +32,11 @@ namespace _12IA_Game_WPF
             cnvMenu.Width = SystemParameters.PrimaryScreenWidth;
 
             playSoundtrack.PlayLooping();
+
+            //txtTitle.Width = (SystemParameters.PrimaryScreenWidth * (161 / 240));
+            //txtTitle.Height = (SystemParameters.PrimaryScreenHeight * (19 / 72));
+            //Canvas.SetLeft(txtTitle, (SystemParameters.PrimaryScreenWidth - txtTitle.Width) / 2);
+            //Canvas.SetTop(txtTitle, (SystemParameters.PrimaryScreenHeight - (txtTitle.Height + 102)) * (170 / 625));
         }
 
         private void InitializeAnimation()
@@ -39,8 +44,8 @@ namespace _12IA_Game_WPF
             var menuScroll = new DoubleAnimation
             {
                 From = -0,
-                To = -1080,
-                Duration = TimeSpan.FromSeconds(15),
+                To = -1920,
+                Duration = TimeSpan.FromSeconds(80 / 3),
                 RepeatBehavior = RepeatBehavior.Forever,
                 AutoReverse = true
             };
@@ -58,20 +63,21 @@ namespace _12IA_Game_WPF
             {
                 From = 650,
                 To = 670,
-                Duration = TimeSpan.FromSeconds(2),
+                Duration = TimeSpan.FromSeconds(3),
                 RepeatBehavior = RepeatBehavior.Forever,
                 AutoReverse = true
             };
 
             txtPlay.BeginAnimation(Canvas.TopProperty, playScroll);
             txtCredits.BeginAnimation(Canvas.TopProperty, creditsScroll);
+            imgBackground.Width = SystemParameters.PrimaryScreenWidth * 2;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
         private void Play(object sender, RoutedEventArgs e)
         {
-            loading_screen loading = new loading_screen();
-            loading.Show();
+            Instructions instructions = new Instructions();
+            instructions.Show();
             this.Close();
         }
 
@@ -85,6 +91,26 @@ namespace _12IA_Game_WPF
         private void Exit(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void TextHighlight(object sender, MouseEventArgs e)
+        {
+            Highlight(e.Source as TextBlock);
+        }
+
+        private void TextDehighlight(object sender, MouseEventArgs e)
+        {
+            Dehighlight(e.Source as TextBlock);
+        }
+
+        private void Highlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void Dehighlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.Transparent);
         }
     }
 }
