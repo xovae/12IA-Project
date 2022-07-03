@@ -46,10 +46,16 @@ namespace _12IA_Game_WPF
             "Europa, one of Jupiter's moons, has saltwater geysers that are 20x taller than Mt. Everest.",
             "Saturn's rings are made from trillions of chunks of orbiting ice."
         };
-        public loading_screen()
+
+        public Key UpControl, DownControl, LeftControl, RightControl;
+        public string ShootControl, RecallControl;
+
+        public loading_screen(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall)
         {
             InitializeComponent();
             InitializeAnimation();
+
+            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall;
 
             cnvLoading.Height = SystemParameters.PrimaryScreenHeight;
             cnvLoading.Width = SystemParameters.PrimaryScreenWidth;
@@ -103,7 +109,7 @@ namespace _12IA_Game_WPF
             rectLoading.Width += 3;
             if (rectLoading.Width > 1095)
             {
-                MainWindow game = new MainWindow();
+                MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl);
                 game.Show();
                 this.Close();
                 tmrLoading.Stop();

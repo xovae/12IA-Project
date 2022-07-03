@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GameOver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Instructions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,6 +83,9 @@
     </Compile>
     <Compile Include="Credits.xaml.cs">
       <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameOver.xaml.cs">
+      <DependentUpon>GameOver.xaml</DependentUpon>
     </Compile>
     <Compile Include="Instructions.xaml.cs">
       <DependentUpon>Instructions.xaml</DependentUpon>
@@ -130,16 +137,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\black arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Illuminating_Bulbs.wav" />
     <None Include="Resources\Red_Champagne.wav" />
     <Resource Include="images\space background 2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\white arrow.png" />
+    <Resource Include="images\ship aseprite.png" />
+    <Resource Include="images\bullet.png" />
+    <Resource Include="images\enemy.png" />
     <Resource Include="images\red arrow.png" />
+    <Resource Include="images\white arrow.png" />
+    <Resource Include="images\black arrow.png" />
     <Content Include="Resources\Cubic Planets.wav" />
     <None Include="Resources\Tremendous_Feline %281%29.wav" />
   </ItemGroup>

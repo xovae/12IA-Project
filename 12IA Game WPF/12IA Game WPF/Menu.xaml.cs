@@ -25,7 +25,6 @@ namespace _12IA_Game_WPF
 
         public Menu()
         {
-
             InitializeComponent();
             InitializeAnimation();
 
@@ -60,19 +59,10 @@ namespace _12IA_Game_WPF
                 AutoReverse = true
             };
 
-            var instructionsScroll = new DoubleAnimation()
+            var creditsScroll = new DoubleAnimation()
             {
                 From = 650,
                 To = 670,
-                Duration = TimeSpan.FromSeconds(2),
-                RepeatBehavior = RepeatBehavior.Forever,
-                AutoReverse = true
-            };
-
-            var creditsScroll = new DoubleAnimation()
-            {
-                From = 710,
-                To = 725,
                 Duration = TimeSpan.FromSeconds(3),
                 RepeatBehavior = RepeatBehavior.Forever,
                 AutoReverse = true
@@ -80,15 +70,14 @@ namespace _12IA_Game_WPF
 
             txtPlay.BeginAnimation(Canvas.TopProperty, playScroll);
             txtCredits.BeginAnimation(Canvas.TopProperty, creditsScroll);
-            txtInstructions.BeginAnimation(Canvas.TopProperty, instructionsScroll);
             imgBackground.Width = SystemParameters.PrimaryScreenWidth * 2;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
         private void Play(object sender, RoutedEventArgs e)
         {
-            loading_screen loading = new loading_screen();
-            loading.Show();
+            Instructions instructions = new Instructions();
+            instructions.Show();
             this.Close();
         }
 
@@ -104,11 +93,24 @@ namespace _12IA_Game_WPF
             this.Close();
         }
 
-        private void Instructions(object sender, MouseButtonEventArgs e)
+        private void TextHighlight(object sender, MouseEventArgs e)
         {
-            Instructions instructions = new Instructions();
-            instructions.Show();
-            this.Close();
+            Highlight(e.Source as TextBlock);
+        }
+
+        private void TextDehighlight(object sender, MouseEventArgs e)
+        {
+            Dehighlight(e.Source as TextBlock);
+        }
+
+        private void Highlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void Dehighlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.Transparent);
         }
     }
 }

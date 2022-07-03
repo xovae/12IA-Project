@@ -1,0 +1,17 @@
+﻿<Window x:Class="_12IA_Game_WPF.GameOver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_12IA_Game_WPF"
+        mc:Ignorable="d"
+        Title="GameOver"  Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None" >
+    <Canvas>
+        <Image x:Name="imgBackground" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="3840" Source="/images/space background 2.png"/>
+        <TextBlock x:Name="txtOver" HorizontalAlignment="Left" FontFamily="./Fonts/#VCR OSD Mono" Foreground="#FFD62246" Background="#00000000" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="75" Canvas.Left="740" Canvas.Top="206"><Run Language="en-nz" Text="Game Over!"/></TextBlock>
+        <TextBlock x:Name="txtSummary" FontFamily="./Fonts/#VCR OSD Mono" Foreground="#FFD62246" Background="#00000000" Canvas.Left="330" TextWrapping="Wrap" Canvas.Top="442" FontSize="50" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center"><Run Text="Good game!"/><Run Text=" In your efforts, you managed "/><Run Text="to "/><LineBreak/><Run Text="destroy {number} enemy ships!"/></TextBlock>
+        <TextBlock x:Name="txtReset" FontFamily="./Fonts/#VCR OSD Mono" Foreground="#FFD62246" Background="#00000000" Canvas.Left="813" TextWrapping="Wrap" Canvas.Top="714" FontSize="50" Text="Try Again?" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="TextHighlight" MouseLeave="TextDehighlight" MouseDown="Reset"/>
+        <TextBlock x:Name="txtExit" FontFamily="./Fonts/#VCR OSD Mono" Foreground="#FFD62246" Background="#00000000" Canvas.Left="901" TextWrapping="Wrap" Canvas.Top="792" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Exit" MouseEnter="TextHighlight" MouseLeave="TextDehighlight" MouseDown="Exit"/>
+
+    </Canvas>
+</Window>

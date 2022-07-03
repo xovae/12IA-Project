@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="Space Game" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenHeight}" ResizeMode="CanMinimize" WindowStyle="None" WindowState="Maximized">
+        Title="Space Game" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" ResizeMode="CanMinimize" WindowStyle="None" WindowState="Maximized">
     <Canvas Background="LightBlue" Name="Game_Canvas" Focusable="True" KeyDown="Game_Canvas_KeyDown" KeyUp="Game_Canvas_KeyUp">
         <Image x:Name="imgBackground" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="3840" Source="/images/space background 2.png"/>
-        <Button x:Name="btnExit" Content="runurunrunrunr" Canvas.Left="470" Canvas.Top="729" Width="140" Height="56" Click="Exit"/>
+        <TextBlock x:Name="txtExit" FontFamily="./Fonts/#VCR OSD Mono" Foreground="#FFD62246" Background="#00000000" Canvas.Left="1851" Canvas.Top="10" MouseDown="Exit" FontSize="25" Text="Exit" HorizontalAlignment="Left" VerticalAlignment="Center" MouseEnter="TextHighlight" MouseLeave="TextDehighlight"/>
+        <TextBlock x:Name="txtHealth" TextWrapping="Wrap" FontFamily="./Fonts/#VCR OSD Mono" Foreground="#FFD62246" Background="#00000000"  Canvas.Left="10" Canvas.Top="10" FontSize="25" Text="Health"/>
     </Canvas>
 </Window>

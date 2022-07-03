@@ -21,17 +21,24 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Instructions : Window
     {
-        public string UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl;
-        public bool UpBinding, DownBinding, LeftBinding, RightBinding, ShootBinding, RecallBinding;
+        public Key UpControl = Key.W, DownControl = Key.S, LeftControl = Key.A, RightControl = Key.D;
+        public string ShootControl, RecallControl;
+        public bool UpBinding, DownBinding, LeftBinding, RightBinding;
+
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Red_Champagne);
 
         public Instructions()
         {
-            
             InitializeComponent();
             InitializeAnimation();
 
             playSoundtrack.PlayLooping();
+
+            if (ShootControl == null)
+            {
+                ShootControl = "LeftMouse";
+                RecallControl = "RightMouse";
+            }
         }
 
         private void InitializeAnimation()
@@ -46,8 +53,8 @@ namespace _12IA_Game_WPF
             };
             var instructionsScroll = new DoubleAnimation
             {
-                From = 448,
-                To = 452,
+                From = 136,
+                To = 146,
                 Duration = TimeSpan.FromSeconds(3),
                 RepeatBehavior = RepeatBehavior.Forever,
                 AutoReverse = true
@@ -56,13 +63,6 @@ namespace _12IA_Game_WPF
             imgBackground.Width = SystemParameters.PrimaryScreenWidth * 2;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
             txtInstructions.BeginAnimation(Canvas.TopProperty, instructionsScroll);
-        }
-
-        private void Back(object sender, RoutedEventArgs e)
-        {
-            Menu MainMenu = new Menu();
-            MainMenu.Show();
-            this.Close();
         }
 
         private void TextHighlight(object sender, MouseEventArgs e)
@@ -75,12 +75,22 @@ namespace _12IA_Game_WPF
             Dehighlight(e.Source as TextBlock);
         }
 
+        private void Highlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void Dehighlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.Transparent);
+        }
+
         private void Reset(object sender, MouseButtonEventArgs e)
         {
-            UpControl = "W"; txtUp.Text = $"Up = {UpControl}";
-            DownControl = "S"; txtDown.Text = $"Down = {DownControl}";
-            LeftControl = "A"; txtLeft.Text = $"Left = {LeftControl}";
-            RightControl = "D"; txtRight.Text = $"Right = {RightControl}";
+            UpControl = Key.W; txtUp.Text = $"Up = {UpControl}";
+            DownControl = Key.S; txtDown.Text = $"Down = {DownControl}";
+            LeftControl = Key.A; txtLeft.Text = $"Left = {LeftControl}";
+            RightControl = Key.D; txtRight.Text = $"Right = {RightControl}";
             ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = {ShootControl}";
             RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = {RecallControl}";
         }
@@ -96,57 +106,41 @@ namespace _12IA_Game_WPF
             {
                 ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = {ShootControl}";
                 RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = {RecallControl}";
-
             }
         }
 
-        private void Highlight(TextBlock text)
+        private void Play(object sender, MouseButtonEventArgs e)
         {
-            text.Background = new SolidColorBrush(Colors.White);
-        }
-
-        private void Dehighlight(TextBlock text)
-        {
-            text.Background = new SolidColorBrush(Colors.Transparent);
+            loading_screen loading = new loading_screen(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl);
+            loading.Show();
+            this.Close();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (UpBinding == true)
             {
-                UpControl = Convert.ToString(e.Key);
+                UpControl = e.Key;
                 txtUp.Text = $"Up = {UpControl}";
                 UpBinding = false;
             }
             else if (DownBinding == true)
             {
-                DownControl = Convert.ToString(e.Key);
+                DownControl = e.Key;
                 txtDown.Text = $"Down = {DownControl}";
                 DownBinding = false;
             }
             else if (LeftBinding == true)
             {
-                LeftControl = Convert.ToString(e.Key);
+                LeftControl = e.Key;
                 txtLeft.Text = $"Left = {LeftControl}";
                 LeftBinding = false;
             }
             else if (RightBinding == true)
             {
-                RightControl = Convert.ToString(e.Key);
+                RightControl = e.Key;
                 txtRight.Text = $"Right = {RightControl}";
                 RightBinding = false;
-            }
-            else if (ShootBinding == true)
-            {
-                ShootControl = Convert.ToString(e.Key);
-                txtShoot.Text = $"Shoot = {ShootControl}";
-                ShootBinding = false;
-            }
-            else if (RecallBinding == true)
-            {
-                RecallControl = Convert.ToString(e.Key);
-                txtRecall.Text = $"Recall Bullet = {RecallControl}";
-                RecallBinding = false;
             }
         }
 
@@ -168,16 +162,6 @@ namespace _12IA_Game_WPF
         private void SetRight(object sender, MouseButtonEventArgs e)
         {
             RightBinding = true;
-        }
-
-        private void SetShoot(object sender, MouseButtonEventArgs e)
-        {
-            ShootBinding = true;
-        }
-
-        private void SetRecall(object sender, MouseButtonEventArgs e)
-        {
-            RecallBinding = true;
         }
     }
 }

@@ -21,7 +21,6 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Credits : Window
     {
-
         SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Red_Champagne);
 
         public Credits()
