@@ -74,3 +74,5 @@ J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Instructions.g.cs
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\Instructions.baml
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\GameOver.g.cs
 J:\Github\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\GameOver.baml
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\GameOver.g.cs
+K:\2022 IA\Programming\12IA-Project\12IA Game WPF\12IA Game WPF\obj\Debug\GameOver.baml
