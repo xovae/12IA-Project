@@ -65,11 +65,39 @@ namespace _12IA_Game_WPF
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
         }
 
+        private void TextHighlight(object sender, MouseEventArgs e)
+        {
+            Highlight(e.Source as TextBlock);
+        }
+
+        private void TextDehighlight(object sender, MouseEventArgs e)
+        {
+            Dehighlight(e.Source as TextBlock);
+        }
+
+        private void Highlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void Dehighlight(TextBlock text)
+        {
+            text.Background = new SolidColorBrush(Colors.Transparent);
+        }
+
         private void Back(object sender, RoutedEventArgs e)
         {
             Menu MainMenu = new Menu();
             MainMenu.Show();
             this.Close();
+        }
+
+        private void ExitCheck(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Back(sender, e);
+            }
         }
     }
 }

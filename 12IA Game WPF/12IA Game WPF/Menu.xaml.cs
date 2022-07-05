@@ -21,7 +21,7 @@ namespace _12IA_Game_WPF
     /// </summary>
     public partial class Menu : Window
     {
-        readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
+        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Tremendous_Feline__1_);
 
         public Menu()
         {
@@ -111,6 +111,14 @@ namespace _12IA_Game_WPF
         private void Dehighlight(TextBlock text)
         {
             text.Background = new SolidColorBrush(Colors.Transparent);
+        }
+
+        private void ExitCheck(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Exit(sender, e);
+            }
         }
     }
 }

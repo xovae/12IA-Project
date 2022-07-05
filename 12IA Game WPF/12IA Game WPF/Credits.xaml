@@ -1,15 +1,15 @@
-﻿<Window x:Class="_12IA_Game_WPF.Credits"
+﻿<Window x:Name="frmCredits" x:Class="_12IA_Game_WPF.Credits"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="Credits" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
+        Title="Credits" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None" KeyDown="ExitCheck">
     <Canvas>
         <Image x:Name="imgBackground" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="3840" Source="/images/space background 2.png"/>
-        <TextBlock x:Name="txtBack" Text="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125" MouseDown="Back" Height="60" Canvas.Left="1785" Canvas.Top="10" FontSize="50" FontFamily="./Fonts/#VCR OSD Mono" Background="Transparent" Foreground="#FFD62246"/>
+        <TextBlock x:Name="txtBack" Text="Back" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="Back" Canvas.Left="1785" Canvas.Top="10" FontSize="50" FontFamily="./Fonts/#VCR OSD Mono" Background="Transparent" Foreground="#FFD62246" MouseEnter="TextHighlight" MouseLeave="TextDehighlight" Height="49.1"/>
         <TextBlock x:Name="txtHeading" Height="96" FontFamily="./Fonts/#VCR OSD Mono" Canvas.Left="750" TextWrapping="Wrap" Text="Credits" Canvas.Top="226" Width="420" Background="{x:Null}" Foreground="#FFD62246" FontSize="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txtCredits" Canvas.Left="239" TextWrapping="Wrap" FontFamily="./Fonts/#VCR OSD Mono" Canvas.Top="437" Foreground="#FFD62246" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center"><Run Text="Title Font - paper cut - Created by Eoin [smulvi@iol.ie"/><Run Text="]"/><LineBreak/><Run/><LineBreak/><Run Text="Text Font - VCR OSD Mono"/><Run Text=" - Riciery Leal"/><LineBreak/><Run/><LineBreak/><Run Text="Soundtrack - Cubic_Planets, Red_Champagne, Tremendous_Feline - atlas"/><Run Text=" (saopy #2559)"/><LineBreak/><LineBreak/><Run Text="Player &amp; Enemy Sprites - Space Shooter Asset Pack"/><Run Language="en-nz" Text=" - Gustavo Vituri"/><Run Text=" "/></TextBlock>
+        <TextBlock x:Name="txtCredits" Canvas.Left="239" TextWrapping="Wrap" FontFamily="./Fonts/#VCR OSD Mono" Canvas.Top="437" Foreground="#FFD62246" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center"><Run Text="Title Font - paper cut - Created by Eoin [smulvi@iol.ie"/><Run Text="]"/><LineBreak/><Run/><LineBreak/><Run Text="Text Font - VCR OSD Mono"/><Run Text=" - Riciery Leal"/><LineBreak/><Run/><LineBreak/><Run Text="Soundtrack - Cubic_Planets, Red_Champagne, Tremendous_Feline - atlas"/><Run Text=" (saopy #2559)"/><LineBreak/><LineBreak/><Run Text="Player &amp; Enemy Sprites - Space Shooter Asset Pack"/><Run Text=" - Gustavo Vituri"/><LineBreak/><Run/><LineBreak/><Run Language="en-nz" Text="Code Contributions - The_Yello_Elefant"/><Run Text=" "/></TextBlock>
     </Canvas>
 </Window>

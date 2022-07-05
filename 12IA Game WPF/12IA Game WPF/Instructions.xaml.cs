@@ -13,6 +13,7 @@ using System.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace _12IA_Game_WPF
 {
@@ -22,10 +23,14 @@ namespace _12IA_Game_WPF
     public partial class Instructions : Window
     {
         public Key UpControl = Key.W, DownControl = Key.S, LeftControl = Key.A, RightControl = Key.D;
-        public string ShootControl, RecallControl;
+        public string ShootControl, RecallControl, difficulty;
         public bool UpBinding, DownBinding, LeftBinding, RightBinding;
+        public SolidColorBrush white = new SolidColorBrush(Colors.White);
+        public SolidColorBrush transparent = new SolidColorBrush(Colors.Transparent);
 
-        SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Red_Champagne);
+        readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Red_Champagne);
+        readonly DispatcherTimer tmrHighlight = new DispatcherTimer();
+
 
         public Instructions()
         {
@@ -39,6 +44,10 @@ namespace _12IA_Game_WPF
                 ShootControl = "LeftMouse";
                 RecallControl = "RightMouse";
             }
+
+            tmrHighlight.Tick += Enable;
+            tmrHighlight.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            tmrHighlight.Start();
         }
 
         private void InitializeAnimation()
@@ -51,18 +60,9 @@ namespace _12IA_Game_WPF
                 RepeatBehavior = RepeatBehavior.Forever,
                 AutoReverse = true
             };
-            var instructionsScroll = new DoubleAnimation
-            {
-                From = 136,
-                To = 146,
-                Duration = TimeSpan.FromSeconds(3),
-                RepeatBehavior = RepeatBehavior.Forever,
-                AutoReverse = true
-            };
             
             imgBackground.Width = SystemParameters.PrimaryScreenWidth * 2;
             imgBackground.BeginAnimation(Canvas.LeftProperty, menuScroll);
-            txtInstructions.BeginAnimation(Canvas.TopProperty, instructionsScroll);
         }
 
         private void TextHighlight(object sender, MouseEventArgs e)
@@ -77,12 +77,32 @@ namespace _12IA_Game_WPF
 
         private void Highlight(TextBlock text)
         {
-            text.Background = new SolidColorBrush(Colors.White);
+            text.Background = white;
         }
 
         private void Dehighlight(TextBlock text)
         {
-            text.Background = new SolidColorBrush(Colors.Transparent);
+            text.Background = transparent;
+        }
+
+        private void Enable(object sender, EventArgs e)
+        {
+            while (UpBinding == true)
+            {
+                txtUpSet.Background = white;
+            }
+            while (DownBinding == true)
+            {
+                txtDownSet.Background = white;
+            }
+            while (LeftBinding == true)
+            {
+                txtLeftSet.Background = white;
+            }
+            while (RightBinding == true)
+            {
+                txtRightSet.Background = white;
+            }
         }
 
         private void Reset(object sender, MouseButtonEventArgs e)
@@ -91,27 +111,42 @@ namespace _12IA_Game_WPF
             DownControl = Key.S; txtDown.Text = $"Down = {DownControl}";
             LeftControl = Key.A; txtLeft.Text = $"Left = {LeftControl}";
             RightControl = Key.D; txtRight.Text = $"Right = {RightControl}";
-            ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = {ShootControl}";
-            RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = {RecallControl}";
+            ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = Left Click";
+            RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = Right Click";
+        }
+
+        private void Easy(object sender, MouseButtonEventArgs e)
+        {
+            difficulty = "Easy";
+        }
+
+        private void Medium(object sender, MouseButtonEventArgs e)
+        {
+            difficulty = "Medium";
+        }
+
+        private void Hard(object sender, MouseButtonEventArgs e)
+        {
+            difficulty = "Hard";
         }
 
         private void Swap(object sender, MouseButtonEventArgs e)
         {
             if (ShootControl == "LeftMouse")
             {
-                ShootControl = "RightMouse"; txtShoot.Text = $"Shoot = {ShootControl}";
-                RecallControl = "LeftMouse"; txtRecall.Text = $"Recall Bullet = {RecallControl}";
+                ShootControl = "RightMouse"; txtShoot.Text = $"Shoot = Right Click";
+                RecallControl = "LeftMouse"; txtRecall.Text = $"Recall Bullet = Left Click";
             }
             else if (ShootControl == "RightMouse")
             {
-                ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = {ShootControl}";
-                RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = {RecallControl}";
+                ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = Right Click";
+                RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = Left Click";
             }
         }
 
         private void Play(object sender, MouseButtonEventArgs e)
         {
-            loading_screen loading = new loading_screen(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl);
+            loading_screen loading = new loading_screen(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, difficulty);
             loading.Show();
             this.Close();
         }

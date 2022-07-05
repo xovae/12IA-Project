@@ -35,25 +35,25 @@ namespace _12IA_Game_WPF
             {
                 ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bullet.png"))
             };
-            this.visual.Fill = bulletImage;
-            this.visual.Height = 6;
-            this.visual.Width = 6;
-            this.visual.Stretch = Stretch.Fill;
+            visual.Fill = bulletImage;
+            visual.Height = 6;
+            visual.Width = 6;
+            visual.Stretch = Stretch.Fill;
         }
         public void SetHitBox()
         {
-            this.hitbox.X = Canvas.GetLeft(this.visual);
-            this.hitbox.Y = Canvas.GetTop(this.visual);
-            this.hitbox.Width = this.visual.Width;
-            this.hitbox.Height = this.visual.Height;
+            hitbox.X = Canvas.GetLeft(visual);
+            hitbox.Y = Canvas.GetTop(visual);
+            hitbox.Width = visual.Width;
+            hitbox.Height = visual.Height;
         }
 
         public void ResetBullet()
         {
-            Canvas.SetLeft(this.visual, Canvas.GetLeft(MainWindow.player.middle) - 3);
-            Canvas.SetTop(this.visual, Canvas.GetTop(MainWindow.player.middle) - 3);
-            Canvas.SetRight(this.visual, Canvas.GetRight(MainWindow.player.middle) + 3);
-            Canvas.SetBottom(this.visual, Canvas.GetBottom(MainWindow.player.middle) + 3);
+            Canvas.SetLeft(visual, Canvas.GetLeft(MainWindow.player.middle) - 3);
+            Canvas.SetTop(visual, Canvas.GetTop(MainWindow.player.middle) - 3);
+            Canvas.SetRight(visual, Canvas.GetRight(MainWindow.player.middle) + 3);
+            Canvas.SetBottom(visual, Canvas.GetBottom(MainWindow.player.middle) + 3);
         }
     }
 
@@ -65,19 +65,19 @@ namespace _12IA_Game_WPF
         public Walls(double x, double y, double w, double h)
         {
             SolidColorBrush colour = new SolidColorBrush(Colors.Pink);
-            this.visual.Fill = colour;
-            this.visual.Stroke = colour;
-            this.visual.Width = w;
-            this.visual.Height = h;
-            Canvas.SetLeft(this.visual, x);
-            Canvas.SetTop(this.visual, y);
+            visual.Fill = colour;
+            visual.Stroke = colour;
+            visual.Width = w;
+            visual.Height = h;
+            Canvas.SetLeft(visual, x);
+            Canvas.SetTop(visual, y);
         }
         public void SetHitBox()
         {
-            this.hitbox.X = Canvas.GetLeft(this.visual);
-            this.hitbox.Y = Canvas.GetTop(this.visual);
-            this.hitbox.Width = this.visual.Width;
-            this.hitbox.Height = this.visual.Height;
+            hitbox.X = Canvas.GetLeft(visual);
+            hitbox.Y = Canvas.GetTop(visual);
+            hitbox.Width = visual.Width;
+            hitbox.Height = visual.Height;
         }
     }
 
@@ -88,9 +88,13 @@ namespace _12IA_Game_WPF
         public Rect hitbox = new Rect();
         public Rectangle middle = new Rectangle();
         public double x = 0;
+        public double y = 0;
         public double xpos = 0;
         public double ypos = 0;
         public bool shooting = false;
+        public double yinc; 
+        public double xinc;
+        public int bulletSpeed = 10;
 
         public Player()
         {
@@ -98,84 +102,81 @@ namespace _12IA_Game_WPF
             {
                 ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/ship aseprite.png"))
             };
-            this.visual.Fill = playerImage;
-            this.visual.Width = 50;
-            this.visual.Height = 50;
-            this.visual.Stretch = Stretch.Fill;
-            Canvas.SetLeft(this.visual, SystemParameters.PrimaryScreenWidth / 2);
-            Canvas.SetTop(this.visual, SystemParameters.PrimaryScreenHeight / 2);
+            visual.Fill = playerImage;
+            visual.Width = 50;
+            visual.Height = 50;
+            visual.Stretch = Stretch.Fill;
+            Canvas.SetLeft(visual, SystemParameters.PrimaryScreenWidth / 2);
+            Canvas.SetTop(visual, SystemParameters.PrimaryScreenHeight / 2);
 
-            this.gun.Fill = new SolidColorBrush(Colors.Transparent);
-            this.gun.Width = 25;
-            this.gun.Height = 6;
-            Canvas.SetLeft(this.gun, Canvas.GetLeft(this.visual) + this.visual.Width / 2);
-            Canvas.SetTop(this.gun, Canvas.GetTop(this.visual) + this.visual.Height / 2 - (this.gun.Height / 2));
+            gun.Fill = new SolidColorBrush(Colors.Transparent);
+            gun.Width = 25;
+            gun.Height = 6;
+            Canvas.SetLeft(gun, Canvas.GetLeft(visual) + visual.Width / 2);
+            Canvas.SetTop(gun, Canvas.GetTop(visual) + visual.Height / 2 - (gun.Height / 2));
 
-            this.middle.Width = 1;
-            this.middle.Height = 1;
-            Canvas.SetLeft(this.middle, Canvas.GetLeft(this.visual) + (this.visual.Width / 2));
-            Canvas.SetTop(this.middle, Canvas.GetTop(this.visual) + (this.visual.Width / 2));
+            middle.Width = 1;
+            middle.Height = 1;
+            Canvas.SetLeft(middle, Canvas.GetLeft(visual) + (visual.Width / 2));
+            Canvas.SetTop(middle, Canvas.GetTop(visual) + (visual.Width / 2));
         }
 
         public void SetHitBox()
         {
-            this.hitbox.X = Canvas.GetLeft(this.visual);
-            this.hitbox.Y = Canvas.GetTop(this.visual);
-            this.hitbox.Width = this.visual.Width;
-            this.hitbox.Height = this.visual.Height;
+            hitbox.X = Canvas.GetLeft(visual);
+            hitbox.Y = Canvas.GetTop(visual);
+            hitbox.Width = visual.Width;
+            hitbox.Height = visual.Height;
         }
 
         public void Shoot(Point direction)
         {
-            this.x = 1;
-            this.shooting = true;
+            var angle = Math.Atan(Math.Abs(direction.Y) / Math.Abs(direction.X));
+            yinc = Math.Sin(angle) * bulletSpeed;
+            xinc = Math.Cos(angle) * bulletSpeed;
+            x = 1; //x counter for movement
+            y = 1; //y counter for movement
+            shooting = true;
+          
             if (direction.X < 0)
             {
-                this.x *= -1;
+                xinc *= -1;
             }
-            if (direction.X == 0)
+            if (direction.Y < 0)
             {
-                this.x = 0;
+               yinc *= -1;
             }
 
             MainWindow.pew.shooting = true;
-            Canvas.SetLeft(MainWindow.pew.visual, Canvas.GetLeft(this.middle) - 3);
-            Canvas.SetTop(MainWindow.pew.visual, Canvas.GetTop(this.middle) - 3);
-            this.xpos = Canvas.GetLeft(MainWindow.pew.visual);
-            this.ypos = Canvas.GetTop(MainWindow.pew.visual);
+            Canvas.SetLeft(MainWindow.pew.visual, Canvas.GetLeft(middle) - 3);
+            Canvas.SetTop(MainWindow.pew.visual, Canvas.GetTop(middle) - 3);
+            xpos = Canvas.GetLeft(MainWindow.pew.visual);
+            ypos = Canvas.GetTop(MainWindow.pew.visual);
 
             DispatcherTimer shootTimer = new DispatcherTimer();
             shootTimer.Tick += shootTimer_Tick;
             shootTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
             shootTimer.Start();
 
-            double Gradient()
-            {
-                var gradient = direction.Y / direction.X;
-                return gradient * this.x + this.ypos;
-            }
-
             void shootTimer_Tick(object sender, EventArgs e)
             {
-                if (x < 0)
+                x += xinc;
+                y += yinc;
+                if (x > SystemParameters.PrimaryScreenHeight || x < -SystemParameters.PrimaryScreenHeight)
                 {
-                    x -= 5;
-                }
-                else if (x > 0)
-                {
-                    x += 5;
-                }
-                else if (x == 0)
-                {
-                    x = 0;
+                    shooting = false;
+                    MainWindow.pew.shooting = false;
+                    shootTimer.Stop();
+                    MainWindow.pew.ResetBullet();
                 }
 
-                Canvas.SetLeft(MainWindow.pew.visual, (this.x + this.xpos));
-                Canvas.SetTop(MainWindow.pew.visual, Gradient());
-                if (this.shooting == false)
+                Canvas.SetLeft(MainWindow.pew.visual, x + xpos);
+                Canvas.SetTop(MainWindow.pew.visual, y + ypos);
+
+                if (shooting == false)
                 {
                     shootTimer.Stop();
-                    this.shooting = false;
+                    shooting = false;
                     MainWindow.pew.shooting = false;
                 }
             }
@@ -195,25 +196,25 @@ namespace _12IA_Game_WPF
             {
                 ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/enemy.png"))
             };
-            this.visual.Fill = playerImage;
-            this.visual.Width = 60;
-            this.visual.Height = 50;
-            this.visual.Stretch = Stretch.Fill;
-            Canvas.SetLeft(this.visual, x);
-            Canvas.SetTop(this.visual, y);
+            visual.Fill = playerImage;
+            visual.Width = 60;
+            visual.Height = 50;
+            visual.Stretch = Stretch.Fill;
+            Canvas.SetLeft(visual, x);
+            Canvas.SetTop(visual, y);
 
-            this.middle.Width = 1;
-            this.middle.Height = 1;
-            Canvas.SetLeft(this.middle, Canvas.GetLeft(this.visual) + (this.visual.Width / 2));
-            Canvas.SetTop(this.middle, Canvas.GetTop(this.visual) + (this.visual.Width / 2));
+            middle.Width = 1;
+            middle.Height = 1;
+            Canvas.SetLeft(middle, Canvas.GetLeft(visual) + (visual.Width / 2));
+            Canvas.SetTop(middle, Canvas.GetTop(visual) + (visual.Width / 2));
         }
 
         public void SetHitBox()
         {
-            this.hitbox.X = Canvas.GetLeft(this.visual);
-            this.hitbox.Y = Canvas.GetTop(this.visual);
-            this.hitbox.Width = this.visual.Width;
-            this.hitbox.Height = this.visual.Height;
+            hitbox.X = Canvas.GetLeft(visual);
+            hitbox.Y = Canvas.GetTop(visual);
+            hitbox.Width = visual.Width;
+            hitbox.Height = visual.Height;
         }
     }
 
@@ -222,28 +223,28 @@ namespace _12IA_Game_WPF
         public Point pos, enemyPos;
         public double angle, enemyAngle;
         public static Bullets pew = new Bullets();
+        //public static List<Bullets> pews = new List<Bullets>();
         public static List<Walls> walls = new List<Walls>();
         public static List<Enemy> enemies = new List<Enemy>();
         public static Player player = new Player();
         public bool moveUp, moveDown, moveLeft, moveRight;
-        public int score, interval, period;
-        public int enemySpeed = 3;
-        public int health = 3;
+        public int score, interval, period, playerSpeed, enemySpeed, health;
         public Key UpControl, DownControl, LeftControl, RightControl;
-        public string ShootControl, RecallControl;
+        public string ShootControl, RecallControl, Difficulty;
 
-        DispatcherTimer tmrEngine = new DispatcherTimer();
-        DispatcherTimer tmrSpawn = new DispatcherTimer();
-        DispatcherTimer tmrIncrement = new DispatcherTimer();
+        readonly DispatcherTimer tmrEngine = new DispatcherTimer();
+        readonly DispatcherTimer tmrSpawn = new DispatcherTimer();
+        readonly DispatcherTimer tmrIncrement = new DispatcherTimer();
+        readonly DispatcherTimer tmrShoot = new DispatcherTimer();
         public TimeSpan decrease = new TimeSpan(0, 0, 0, 0, 100);
         public TimeSpan spawn = new TimeSpan(0, 0, 0, 3, 500);
         public TimeSpan minimum = new TimeSpan(0, 0, 0, 0, 200);
 
         readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
 
-        public MainWindow(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall)
+        public MainWindow(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string diff)
         {
-            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall;
+            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = diff;
 
             InitializeComponent();
             InitializeAnimation();
@@ -261,6 +262,10 @@ namespace _12IA_Game_WPF
             tmrIncrement.Tick += Increment;
             tmrIncrement.Interval = new TimeSpan(0, 0, 1);      //dispatcher timer for decreasing enemy spawn time
             tmrIncrement.Start();
+
+            tmrShoot.Tick += Buffer;
+            tmrShoot.Interval = new TimeSpan(0, 0, 3);
+            tmrShoot.Start();
 
             Game_Canvas.Focus();
 
@@ -282,6 +287,26 @@ namespace _12IA_Game_WPF
                 ShootControl = "LeftMouse";
                 RecallControl = "RightMouse"; 
             }
+
+            if (Difficulty == "Easy")
+            {
+                enemySpeed = 3;
+                health = 5;
+                playerSpeed = 10;
+                
+            }
+            else if (Difficulty == "Medium")
+            {
+                enemySpeed = 5;
+                health = 3;
+                playerSpeed = 10;
+            }
+            else if (Difficulty == "Hard")
+            {
+                enemySpeed = 7;
+                health = 2;
+                playerSpeed = 10;
+            }
         }
 
         private void InitializeAnimation()      //background scroll
@@ -300,7 +325,7 @@ namespace _12IA_Game_WPF
 
         private void Exit(object sender, RoutedEventArgs e)     //exit button
         {
-            this.Close();       
+            Close();       
         }
 
         private void TextHighlight(object sender, MouseEventArgs e)
@@ -344,19 +369,23 @@ namespace _12IA_Game_WPF
                 item.SetHitBox();
             }
 
-            foreach (Walls x in walls)      //wall collision detection 
-            {
-                if (CollisionDect(pew.hitbox, x.hitbox))
+            //foreach (Bullets bullets in pews)
+            //{
+                foreach (Walls x in walls)      //wall collision detection 
                 {
-                    player.shooting = false;
-                    pew.shooting = false;
-                    pew.ResetBullet();
+                    if (CollisionDect(pew.hitbox, x.hitbox))
+                    {
+                        player.shooting = false;
+                        pew.shooting = false;
+                        pew.ResetBullet();
+                    }
                 }
-            }
+            //}
+           
 
             if (moveLeft && Canvas.GetLeft(player.visual) > 0)      //player movement 
             {
-                Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - 10);
+                Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - playerSpeed);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
                 Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
@@ -370,7 +399,7 @@ namespace _12IA_Game_WPF
             }
             if (moveRight && (Canvas.GetLeft(player.visual) + player.visual.Width) < 1920)
             {
-                Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) + 10);
+                Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) + playerSpeed);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
                 Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
@@ -384,7 +413,7 @@ namespace _12IA_Game_WPF
             }
             if (moveUp && Canvas.GetTop(player.visual) > 0)
             {
-                Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) - 10);
+                Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) - playerSpeed);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
                 Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
@@ -398,7 +427,7 @@ namespace _12IA_Game_WPF
             }
             if (moveDown && (Canvas.GetTop(player.visual) + player.visual.Height) < 1080)
             {
-                Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) + 10);
+                Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) + playerSpeed);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
                 Canvas.SetTop(player.gun, Canvas.GetTop(player.visual) + player.visual.Height / 2 - (player.gun.Height / 2));
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
@@ -445,6 +474,9 @@ namespace _12IA_Game_WPF
             pew.SetHitBox();
             player.SetHitBox();
 
+            pos = Mouse.GetPosition(player.middle);
+            angle = GetAngle(pos);
+
             if (ShootControl == "LeftMouse")
             {
                 if (player.shooting == false)       //shoot bullet
@@ -454,18 +486,19 @@ namespace _12IA_Game_WPF
                         player.shooting = true;
                         player.Shoot(pos);
                         pew.shooting = true;
+                        tmrShoot.Start();
                     }
                 }
 
-                if (player.shooting == true)        //recall bullet
-                {
-                    if (Mouse.RightButton == MouseButtonState.Pressed)
-                    {
-                        pew.ResetBullet();
-                        pew.shooting = false;
-                        player.shooting = false;
-                    }
-                }
+                //if (player.shooting == true)        //recall bullet
+                //{
+                //    if (Mouse.RightButton == MouseButtonState.Pressed)
+                //    {
+                //        pew.ResetBullet();
+                //        pew.shooting = false;
+                //        player.shooting = false;
+                //    }
+                //}
             }
             if (ShootControl == "RightMouse")
             {
@@ -476,22 +509,20 @@ namespace _12IA_Game_WPF
                         player.shooting = true;
                         player.Shoot(pos);
                         pew.shooting = true;
+                        tmrShoot.Start();
                     }
                 }
 
-                if (player.shooting == true)        //recall bullet
-                {
-                    if (Mouse.LeftButton == MouseButtonState.Pressed)
-                    {
-                        pew.ResetBullet();
-                        pew.shooting = false;
-                        player.shooting = false;
-                    }
-                }
+                //if (player.shooting == true)        //recall bullet
+                //{
+                //    if (Mouse.LeftButton == MouseButtonState.Pressed)
+                //    {
+                //        pew.ResetBullet();
+                //        pew.shooting = false;
+                //        player.shooting = false;
+                //    }
+                //}
             }
-
-            pos = Mouse.GetPosition(player.middle);
-            angle = GetAngle(pos);
                                                                                                         //rotating player
             RotateTransform gunrotateTransform = new RotateTransform(angle, 0, player.gun.Height / 2);      
             player.gun.RenderTransform = gunrotateTransform;
@@ -533,6 +564,7 @@ namespace _12IA_Game_WPF
             }
 
             txtHealth.Text = $"Health = {health}";
+            txtScore.Text = $"Score = {score}";
 
             foreach (Enemy item in enemies)     //enemy rotation
             {
@@ -544,12 +576,12 @@ namespace _12IA_Game_WPF
 
             if (health < 1) //stop game on player death
             {
-                GameOver gameOver = new GameOver(score);
+                GameOver gameOver = new GameOver(score, UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
                 gameOver.Show();
                 Game_Canvas.Children.Clear();
                 walls.Clear();
                 enemies.Clear();
-                this.Close();
+                Close();
                 tmrEngine.Stop();
                 tmrSpawn.Stop();
             }
@@ -604,6 +636,13 @@ namespace _12IA_Game_WPF
             {
                 tmrIncrement.Stop();
             }
+        }
+
+        public void Buffer(object sender, EventArgs e)
+        {
+            //pew.shooting = false;
+            //player.shooting = false;
+            //tmrShoot.Stop();
         }
 
         static double GetAngle(Point mouse)

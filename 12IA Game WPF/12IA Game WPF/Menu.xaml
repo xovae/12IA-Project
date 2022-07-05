@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12IA_Game_WPF"
         mc:Ignorable="d"
-        Title="Menu" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None">
+        Title="Menu" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="{x:Static SystemParameters.PrimaryScreenWidth}" WindowState="Maximized" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" WindowStyle="None" KeyDown="ExitCheck">
     <Canvas x:Name="cnvMenu">
         <Image x:Name="imgBackground" Height="{x:Static SystemParameters.PrimaryScreenHeight}" Width="3840" Source="/images/space background 2.png" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtPlay" Text="Play" HorizontalAlignment="Left" VerticalAlignment="Center" MouseDown="Play" FontSize="100" FontFamily="./Fonts/#VCR OSD Mono" Canvas.Left="843" Canvas.Top="540" Background="Transparent" Foreground="#FFD62246" MouseEnter="TextHighlight" MouseLeave="TextDehighlight"/>

@@ -23,10 +23,10 @@ namespace _12IA_Game_WPF
 
     public partial class loading_screen : Window
     {
-        DispatcherTimer tmrLoading;
-        Random rand = new Random();
+        readonly DispatcherTimer tmrLoading;
+        readonly Random rand = new Random();
         int factNumber;
-        string[] facts = new string[] 
+        readonly string[] facts = new string[] 
         {
             "Despite Space Game's cool soundtrack, space in reality is completely silent! As space is a vacuum, transversal sound waves have no medium to transfer!",
             "Space Game's soundtrack composer, saopy, is pretty cool.",
@@ -48,14 +48,14 @@ namespace _12IA_Game_WPF
         };
 
         public Key UpControl, DownControl, LeftControl, RightControl;
-        public string ShootControl, RecallControl;
+        public string ShootControl, RecallControl, Difficulty;
 
-        public loading_screen(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall)
+        public loading_screen(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string difficulty)
         {
             InitializeComponent();
             InitializeAnimation();
 
-            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall;
+            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = difficulty;
 
             cnvLoading.Height = SystemParameters.PrimaryScreenHeight;
             cnvLoading.Width = SystemParameters.PrimaryScreenWidth;
@@ -109,7 +109,7 @@ namespace _12IA_Game_WPF
             rectLoading.Width += 3;
             if (rectLoading.Width > 1095)
             {
-                MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl);
+                MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
                 game.Show();
                 this.Close();
                 tmrLoading.Stop();
