@@ -24,7 +24,7 @@ namespace _12IA_Game_WPF
     {
         public Key UpControl = Key.W, DownControl = Key.S, LeftControl = Key.A, RightControl = Key.D;
         public string ShootControl, RecallControl, difficulty;
-        public bool UpBinding, DownBinding, LeftBinding, RightBinding;
+        public bool UpBinding, DownBinding, LeftBinding, RightBinding, noMove;
         public SolidColorBrush white = new SolidColorBrush(Colors.White);
         public SolidColorBrush transparent = new SolidColorBrush(Colors.Transparent);
 
@@ -145,6 +145,14 @@ namespace _12IA_Game_WPF
             {
                 txtHard.Background = transparent;
             }
+            if (difficulty == "Ultra")
+            {
+                txtUltra.Background = white;
+            }
+            else if (txtUltra.IsMouseOver == false)
+            {
+                txtUltra.Background = transparent;
+            }
         }
 
         private void Reset(object sender, MouseButtonEventArgs e)
@@ -170,6 +178,25 @@ namespace _12IA_Game_WPF
         private void Hard(object sender, MouseButtonEventArgs e)
         {
             difficulty = "Hard";
+        }
+
+        private void Ultra(object sender, MouseButtonEventArgs e)
+        {
+            difficulty = "Ultra";
+        }
+
+        private void Immobilised(object sender, MouseButtonEventArgs e)
+        {
+            if (noMove == false)
+            {
+                txtImmobilised.Background = white;
+                noMove = true;
+            }
+            if (noMove == true)
+            {
+                txtImmobilised.Background = transparent;
+                noMove = false;
+            }
         }
 
         private void Swap(object sender, MouseButtonEventArgs e)

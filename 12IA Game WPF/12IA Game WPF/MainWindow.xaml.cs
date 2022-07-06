@@ -302,6 +302,12 @@ namespace _12IA_Game_WPF
                 health = 2;
                 threshold = 5;
             }
+            else if (Difficulty == "Ultra")
+            {
+                enemySpeed = 10;
+                health = 2;
+                threshold = 2;
+            }
         }
 
         private void InitializeAnimation()      //background scroll
@@ -362,7 +368,7 @@ namespace _12IA_Game_WPF
             foreach (Walls item in walls)
             {
                 item.SetHitBox();
-            }
+            }    //wall hitboxes
 
             foreach (Walls x in walls)      
                 {
@@ -523,7 +529,7 @@ namespace _12IA_Game_WPF
             foreach (Enemy item in enemies)
             {
                 item.SetHitBox();
-            }
+            }  //enemy hitboxes
 
             foreach (Enemy x in enemies)
             {
