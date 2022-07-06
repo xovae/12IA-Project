@@ -223,19 +223,19 @@ namespace _12IA_Game_WPF
         public Point pos, enemyPos;
         public double angle, enemyAngle;
         public static Bullets pew = new Bullets();
-        //public static List<Bullets> pews = new List<Bullets>();
         public static List<Walls> walls = new List<Walls>();
         public static List<Enemy> enemies = new List<Enemy>();
         public static Player player = new Player();
         public bool moveUp, moveDown, moveLeft, moveRight;
-        public int score, interval, period, playerSpeed, enemySpeed, health;
+        public int score, interval, period, enemySpeed, health, threshold;
+        public int playerSpeed = 10;
         public Key UpControl, DownControl, LeftControl, RightControl;
         public string ShootControl, RecallControl, Difficulty;
 
         readonly DispatcherTimer tmrEngine = new DispatcherTimer();
         readonly DispatcherTimer tmrSpawn = new DispatcherTimer();
         readonly DispatcherTimer tmrIncrement = new DispatcherTimer();
-        readonly DispatcherTimer tmrShoot = new DispatcherTimer();
+
         public TimeSpan decrease = new TimeSpan(0, 0, 0, 0, 100);
         public TimeSpan spawn = new TimeSpan(0, 0, 0, 3, 500);
         public TimeSpan minimum = new TimeSpan(0, 0, 0, 0, 200);
@@ -263,10 +263,6 @@ namespace _12IA_Game_WPF
             tmrIncrement.Interval = new TimeSpan(0, 0, 1);      //dispatcher timer for decreasing enemy spawn time
             tmrIncrement.Start();
 
-            tmrShoot.Tick += Buffer;
-            tmrShoot.Interval = new TimeSpan(0, 0, 3);
-            tmrShoot.Start();
-
             Game_Canvas.Focus();
 
             playSoundtrack.PlayLooping();
@@ -292,20 +288,19 @@ namespace _12IA_Game_WPF
             {
                 enemySpeed = 3;
                 health = 5;
-                playerSpeed = 10;
-                
+                threshold = 15;
             }
             else if (Difficulty == "Medium")
             {
                 enemySpeed = 5;
                 health = 3;
-                playerSpeed = 10;
+                threshold = 10;
             }
             else if (Difficulty == "Hard")
             {
                 enemySpeed = 7;
                 health = 2;
-                playerSpeed = 10;
+                threshold = 5;
             }
         }
 
@@ -369,9 +364,7 @@ namespace _12IA_Game_WPF
                 item.SetHitBox();
             }
 
-            //foreach (Bullets bullets in pews)
-            //{
-                foreach (Walls x in walls)      //wall collision detection 
+            foreach (Walls x in walls)      
                 {
                     if (CollisionDect(pew.hitbox, x.hitbox))
                     {
@@ -379,11 +372,11 @@ namespace _12IA_Game_WPF
                         pew.shooting = false;
                         pew.ResetBullet();
                     }
-                }
-            //}
-           
+            }       //wall collision detection 
 
-            if (moveLeft && Canvas.GetLeft(player.visual) > 0)      //player movement 
+            //player movement 
+
+            if (moveLeft && Canvas.GetLeft(player.visual) > 0)     
             {
                 Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - playerSpeed);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
@@ -396,7 +389,7 @@ namespace _12IA_Game_WPF
                 {
                     pew.ResetBullet();
                 }
-            }
+            }                               //move left
             if (moveRight && (Canvas.GetLeft(player.visual) + player.visual.Width) < 1920)
             {
                 Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) + playerSpeed);
@@ -410,7 +403,7 @@ namespace _12IA_Game_WPF
                 {
                     pew.ResetBullet();
                 }
-            }
+            }   //move right
             if (moveUp && Canvas.GetTop(player.visual) > 0)
             {
                 Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) - playerSpeed);
@@ -424,7 +417,7 @@ namespace _12IA_Game_WPF
                 {
                     pew.ResetBullet();
                 }
-            }
+            }                                  //move up
             if (moveDown && (Canvas.GetTop(player.visual) + player.visual.Height) < 1080)
             {
                 Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) + playerSpeed);
@@ -438,9 +431,9 @@ namespace _12IA_Game_WPF
                 {
                     pew.ResetBullet();
                 }
-            }
+            }    //move down
           
-            foreach (Enemy item in enemies)     //enemy movement 
+            foreach (Enemy item in enemies)     
             {
                 if (item.alive == true)
                 {
@@ -469,7 +462,7 @@ namespace _12IA_Game_WPF
                         Canvas.SetTop(item.middle, Canvas.GetTop(item.visual) + (item.visual.Width / 2));
                     }
                 }
-            }
+            }                                                  //enemy movement 
 
             pew.SetHitBox();
             player.SetHitBox();
@@ -486,19 +479,18 @@ namespace _12IA_Game_WPF
                         player.shooting = true;
                         player.Shoot(pos);
                         pew.shooting = true;
-                        tmrShoot.Start();
                     }
                 }
 
-                //if (player.shooting == true)        //recall bullet
-                //{
-                //    if (Mouse.RightButton == MouseButtonState.Pressed)
-                //    {
-                //        pew.ResetBullet();
-                //        pew.shooting = false;
-                //        player.shooting = false;
-                //    }
-                //}
+                if (player.shooting == true)        //recall bullet
+                {
+                    if (Mouse.RightButton == MouseButtonState.Pressed)
+                    {
+                        pew.ResetBullet();
+                        pew.shooting = false;
+                        player.shooting = false;
+                    }
+                }
             }
             if (ShootControl == "RightMouse")
             {
@@ -509,22 +501,21 @@ namespace _12IA_Game_WPF
                         player.shooting = true;
                         player.Shoot(pos);
                         pew.shooting = true;
-                        tmrShoot.Start();
                     }
                 }
 
-                //if (player.shooting == true)        //recall bullet
-                //{
-                //    if (Mouse.LeftButton == MouseButtonState.Pressed)
-                //    {
-                //        pew.ResetBullet();
-                //        pew.shooting = false;
-                //        player.shooting = false;
-                //    }
-                //}
+                if (player.shooting == true)        //recall bullet
+                {
+                    if (Mouse.LeftButton == MouseButtonState.Pressed)
+                    {
+                        pew.ResetBullet();
+                        pew.shooting = false;
+                        player.shooting = false;
+                    }
+                }
             }
-                                                                                                        //rotating player
-            RotateTransform gunrotateTransform = new RotateTransform(angle, 0, player.gun.Height / 2);      
+                                                                                                       
+            RotateTransform gunrotateTransform = new RotateTransform(angle, 0, player.gun.Height / 2);                   //rotating player
             player.gun.RenderTransform = gunrotateTransform;
             RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
             player.visual.RenderTransform = playerrotateTransform;
@@ -541,40 +532,40 @@ namespace _12IA_Game_WPF
                     if (CollisionDect(x.hitbox, pew.hitbox))
                     {
                         player.shooting = false;
-                        pew.shooting = false;                           //enemy/bullet collision detection
+                        pew.shooting = false;                         
                         pew.ResetBullet();
                         Game_Canvas.Children.Remove(x.visual);
                         x.alive = false;
                         score += 1;
                     }
                 }
-            }
+            }     //enemy/bullet collision detection
 
             foreach (Enemy x in enemies)
             {
                 if (x.alive == true)
                 {
-                    if (CollisionDect(x.hitbox, player.hitbox))       //enemy/player collision detection
+                    if (CollisionDect(x.hitbox, player.hitbox))      
                     {
                         Game_Canvas.Children.Remove(x.visual);
                         x.alive = false;
                         health -= 1;
                     }
                 }
-            }
+            }     //enemy/player collision detection
 
             txtHealth.Text = $"Health = {health}";
             txtScore.Text = $"Score = {score}";
 
-            foreach (Enemy item in enemies)     //enemy rotation
+            foreach (Enemy item in enemies)
             {
                 enemyPos = new Point(Canvas.GetLeft(player.middle) - Canvas.GetLeft(item.middle), Canvas.GetTop(player.middle) - Canvas.GetTop(item.middle));
                 enemyAngle = GetAngle(enemyPos);
                 RotateTransform enemyRotateTransform = new RotateTransform(enemyAngle, item.visual.Width / 2, item.visual.Height / 2);
                 item.visual.RenderTransform = enemyRotateTransform;
-            }
+            }    //enemy rotation
 
-            if (health < 1) //stop game on player death
+            if (health < 1) 
             {
                 GameOver gameOver = new GameOver(score, UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
                 gameOver.Show();
@@ -584,7 +575,7 @@ namespace _12IA_Game_WPF
                 Close();
                 tmrEngine.Stop();
                 tmrSpawn.Stop();
-            }
+            }   //stop game on player death
         }
 
         public void Spawn(object sender, EventArgs e)
@@ -622,12 +613,12 @@ namespace _12IA_Game_WPF
 
                 Game_Canvas.Children.Add(enemies[enemies.Count - 1].visual);
             }
-        }
+        }         //spawning enemies
 
         public void Increment(object sender, EventArgs e)       //gradual difficult curve, lowers enemy spawn time
         {
             interval += 1;
-            if (interval == 10)
+            if (interval == threshold)
             {
                 interval = 0;
                 tmrSpawn.Interval -= decrease;
@@ -636,13 +627,6 @@ namespace _12IA_Game_WPF
             {
                 tmrIncrement.Stop();
             }
-        }
-
-        public void Buffer(object sender, EventArgs e)
-        {
-            //pew.shooting = false;
-            //player.shooting = false;
-            //tmrShoot.Stop();
         }
 
         static double GetAngle(Point mouse)

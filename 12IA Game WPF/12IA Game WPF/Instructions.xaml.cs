@@ -45,6 +45,8 @@ namespace _12IA_Game_WPF
                 RecallControl = "RightMouse";
             }
 
+            difficulty = "Medium";
+
             tmrHighlight.Tick += Enable;
             tmrHighlight.Interval = new TimeSpan(0, 0, 0, 0, 5);
             tmrHighlight.Start();
@@ -87,21 +89,61 @@ namespace _12IA_Game_WPF
 
         private void Enable(object sender, EventArgs e)
         {
-            while (UpBinding == true)
+            if (UpBinding == true)
             {
                 txtUpSet.Background = white;
             }
-            while (DownBinding == true)
+            else if (txtUpSet.IsMouseOver == false)
+            {
+                txtUpSet.Background = transparent;
+            }
+            if (DownBinding == true)
             {
                 txtDownSet.Background = white;
             }
-            while (LeftBinding == true)
+            else if (txtDownSet.IsMouseOver == false)
+            {
+                txtDownSet.Background = transparent;
+            }
+            if (LeftBinding == true)
             {
                 txtLeftSet.Background = white;
             }
-            while (RightBinding == true)
+            else if (txtLeftSet.IsMouseOver == false)
+            {
+                txtLeftSet.Background = transparent;
+            }
+            if (RightBinding == true)
             {
                 txtRightSet.Background = white;
+            }
+            else if (txtRightSet.IsMouseOver == false)
+            {
+                txtRightSet.Background = transparent;
+            }
+            if (difficulty == "Easy")
+            {
+                txtEasy.Background = white;
+            }
+            else if (txtEasy.IsMouseOver == false)
+            {
+                txtEasy.Background = transparent;
+            }
+            if (difficulty == "Medium")
+            {
+                txtMedium.Background = white;
+            }
+            else if (txtMedium.IsMouseOver == false)
+            {
+                txtMedium.Background = transparent;
+            }
+            if (difficulty == "Hard")
+            {
+                txtHard.Background = white;
+            }
+            else if (txtHard.IsMouseOver == false)
+            {
+                txtHard.Background = transparent;
             }
         }
 
@@ -139,8 +181,8 @@ namespace _12IA_Game_WPF
             }
             else if (ShootControl == "RightMouse")
             {
-                ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = Right Click";
-                RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = Left Click";
+                ShootControl = "LeftMouse"; txtShoot.Text = $"Shoot = Left Click";
+                RecallControl = "RightMouse"; txtRecall.Text = $"Recall Bullet = Right Click";
             }
         }
 
@@ -177,6 +219,17 @@ namespace _12IA_Game_WPF
                 txtRight.Text = $"Right = {RightControl}";
                 RightBinding = false;
             }
+            if (e.Key == Key.Escape)
+            {
+                Back(sender, e);
+            }
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            Menu MainMenu = new Menu();
+            MainMenu.Show();
+            this.Close();
         }
 
         private void SetUp(object sender, MouseButtonEventArgs e)
