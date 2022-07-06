@@ -140,7 +140,6 @@ namespace _12IA_Game_WPF
                 yinc *= -1;
             }
 
-            /*MainWindow.pew.*/shooting = true;
             Canvas.SetLeft(bullet, Canvas.GetLeft(middle) - 3);
             Canvas.SetTop(bullet, Canvas.GetTop(middle) - 3);
             xpos = Canvas.GetLeft(bullet);
@@ -158,9 +157,7 @@ namespace _12IA_Game_WPF
                 if (x > SystemParameters.PrimaryScreenHeight || x < -SystemParameters.PrimaryScreenHeight)
                 {
                     shooting = false;
-                    //MainWindow.pew.shooting = false;
                     shootTimer.Stop();
-                    //MainWindow.pew.ResetBullet();
                 }
 
                 Canvas.SetLeft(bullet, x + xpos);
@@ -170,7 +167,6 @@ namespace _12IA_Game_WPF
                 {
                     shootTimer.Stop();
                     shooting = false;
-                    //MainWindow.pew.shooting = false;
                 }
             }
         }
@@ -225,16 +221,11 @@ namespace _12IA_Game_WPF
         public Key UpControl, DownControl, LeftControl, RightControl;
         public string ShootControl, RecallControl, Difficulty;
 
-        //public int bulletSpeed = 10;
-        //public double x, y, xpos, ypos, xinc, yinc;
-        //public bool shooting = false;
-
         readonly DispatcherTimer tmrEngine = new DispatcherTimer();
         readonly DispatcherTimer tmrSpawn = new DispatcherTimer();
         readonly DispatcherTimer tmrIncrement = new DispatcherTimer();
         readonly DispatcherTimer tmrBuffer = new DispatcherTimer();
         readonly DispatcherTimer tmrShoot = new DispatcherTimer();
-
 
         public TimeSpan decrease = new TimeSpan(0, 0, 0, 0, 100);
         public TimeSpan spawn = new TimeSpan(0, 0, 0, 3, 500);
@@ -275,7 +266,6 @@ namespace _12IA_Game_WPF
 
             MakeWalls();    
 
-            //Game_Canvas.Children.Add(pew.visual);
             Game_Canvas.Children.Add(player.visual);        //adding player elements to the canvas 
             Game_Canvas.Children.Add(player.gun);
             Game_Canvas.Children.Add(player.middle);
@@ -368,11 +358,11 @@ namespace _12IA_Game_WPF
             foreach (Walls item in walls)
             {
                 item.SetHitBox();
-            }
+            }   //walls hitbox
 
-            foreach (Bullets bullets in pews)
+            foreach (Bullets bullets in pews)   //wall collision detection    
             {
-                foreach (Walls x in walls)      //wall collision detection 
+                foreach (Walls x in walls)      
                 {
                     if (CollisionDect(bullets.hitbox, x.hitbox))
                     {
@@ -382,7 +372,9 @@ namespace _12IA_Game_WPF
                 }
             }
 
-            if (moveLeft && Canvas.GetLeft(player.visual) > 0)      //player movement 
+            //player movement 
+
+            if (moveLeft && Canvas.GetLeft(player.visual) > 0)     
             {
                 Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) - playerSpeed);
                 Canvas.SetLeft(player.gun, Canvas.GetLeft(player.visual) + player.visual.Width / 2);
@@ -390,7 +382,7 @@ namespace _12IA_Game_WPF
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
                 Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
                 player.SetHitBox();
-            }
+            }                               //move left
             if (moveRight && (Canvas.GetLeft(player.visual) + player.visual.Width) < 1920)
             {
                 Canvas.SetLeft(player.visual, Canvas.GetLeft(player.visual) + playerSpeed);
@@ -399,7 +391,7 @@ namespace _12IA_Game_WPF
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
                 Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
                 player.SetHitBox();
-            }
+            }   //move right
             if (moveUp && Canvas.GetTop(player.visual) > 0)
             {
                 Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) - playerSpeed);
@@ -408,7 +400,7 @@ namespace _12IA_Game_WPF
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
                 Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
                 player.SetHitBox();
-            }
+            }                                  //move up
             if (moveDown && (Canvas.GetTop(player.visual) + player.visual.Height) < 1080)
             {
                 Canvas.SetTop(player.visual, Canvas.GetTop(player.visual) + playerSpeed);
@@ -417,7 +409,7 @@ namespace _12IA_Game_WPF
                 Canvas.SetLeft(player.middle, Canvas.GetLeft(player.visual) + (player.visual.Width / 2));
                 Canvas.SetTop(player.middle, Canvas.GetTop(player.visual) + (player.visual.Width / 2));
                 player.SetHitBox();
-            }
+            }    //moveDown
           
             foreach (Enemy item in enemies)     //enemy movement 
             {
@@ -448,7 +440,7 @@ namespace _12IA_Game_WPF
                         Canvas.SetTop(item.middle, Canvas.GetTop(item.visual) + (item.visual.Width / 2));
                     }
                 }
-            }
+            } //enemy movement
 
             player.SetHitBox();
 
@@ -457,79 +449,48 @@ namespace _12IA_Game_WPF
 
             if (ShootControl == "LeftMouse")
             {
-                //if (player.shooting == false)       //shoot bullet
-                //{
                     if (Mouse.LeftButton == MouseButtonState.Pressed)
                     {
                         tmrShoot.Start();
-                        //player.shooting = true;
-                        //pews.Add(new Bullets());
-                        //Game_Canvas.Children.Add(pews[pews.Count - 1].visual);
-                        //player.Shoot(pos, pews[pews.Count - 1].visual);
-                        //pews[pews.Count - 1].shooting = true;
-                        //tmrBuffer.Start();
                     }
                     else if (Mouse.LeftButton == MouseButtonState.Released)
                     {
                         tmrShoot.Stop();
+                        player.shooting = false;
                     }
-                //}
-
-                //if (player.shooting == true)        //recall bullet
-                //{
-                //    if (Mouse.RightButton == MouseButtonState.Pressed)
-                //    {
-                //        pew.ResetBullet();
-                //        pew.shooting = false;
-                //        player.shooting = false;
-                //    }
-                //}
-            }
+            }                         //player.shooting = true;
             if (ShootControl == "RightMouse")
             {
-                //if (player.shooting == false)       //shoot bullet
-                //{
-                    if (Mouse.RightButton == MouseButtonState.Pressed)
-                    {
-                        tmrShoot.Start();
-                        //player.shooting = true;
-                        //pews.Add(new Bullets());
-                        //Game_Canvas.Children.Add(pews[pews.Count - 1].visual);
-                        //player.Shoot(pos, pews[pews.Count - 1].visual);
-                        //pews[pews.Count - 1].shooting = true;
-                        //tmrBuffer.Start();
-                    }
-                    else if (true)
-                    {
-                        tmrShoot.Stop();
-                    }
-                //}
+                if (Mouse.RightButton == MouseButtonState.Pressed)
+                {
+                    tmrShoot.Start();
+                }
+                else if (Mouse.LeftButton == MouseButtonState.Released)
+                {
+                    tmrShoot.Stop();
+                    player.shooting = false;
+                }
+            }                        //pews.Add(new Bullets());
+                                                                        //Game_Canvas.Children.Add(pews[pews.Count - 1].visual);
+                                                                        //pews[pews.Count - 1].shooting = true;
+                                                                        //player.Shoot(pos, pews[pews.Count - 1].visual);
+                                                                        //tmrBuffer.Start();
 
-                //if (player.shooting == true)        //recall bullet
-                //{
-                //    if (Mouse.LeftButton == MouseButtonState.Pressed)
-                //    {
-                //        pew.ResetBullet();
-                //        pew.shooting = false;
-                //        player.shooting = false;
-                //    }
-                //}
-            }
-            
+
             RotateTransform gunrotateTransform = new RotateTransform(angle, 0, player.gun.Height / 2);              //rotating player
             player.gun.RenderTransform = gunrotateTransform;
             RotateTransform playerrotateTransform = new RotateTransform(angle, player.visual.Width / 2, player.visual.Height / 2);
             player.visual.RenderTransform = playerrotateTransform;
 
-            foreach (Enemy item in enemies)
+            foreach (Enemy item in enemies)         
             {
                 item.SetHitBox();
-            }
+            }      //enemies hittbox 
 
             foreach (Bullets bullets in pews)
             {
                 bullets.SetHitBox();
-            }
+            }   //bullets hitbox
 
             foreach (Bullets bullets in pews)
             {
@@ -539,7 +500,7 @@ namespace _12IA_Game_WPF
                     {
                         if (CollisionDect(x.hitbox, bullets.hitbox))
                         {
-                            player.shooting = false;                                                    //enemy/bullet collision detection
+                            /*player.shooting = false;*/                                                    //enemy/bullet collision detection
                             Game_Canvas.Children.Remove(x.visual);
                             Game_Canvas.Children.Remove(bullets.visual);
                             x.alive = false;
@@ -547,7 +508,7 @@ namespace _12IA_Game_WPF
                         }
                     }
                 }
-            }
+            }   //enemy/bullet collision
 
             foreach (Enemy x in enemies)
             {
@@ -560,20 +521,20 @@ namespace _12IA_Game_WPF
                         health -= 1;
                     }
                 }
-            }
+            }        //enemy/player collision
 
             txtHealth.Text = $"Health = {health}";
             txtScore.Text = $"Score = {score}";
 
-            foreach (Enemy item in enemies)     //enemy rotation
+            foreach (Enemy item in enemies)     
             {
                 enemyPos = new Point(Canvas.GetLeft(player.middle) - Canvas.GetLeft(item.middle), Canvas.GetTop(player.middle) - Canvas.GetTop(item.middle));
                 enemyAngle = GetAngle(enemyPos);
                 RotateTransform enemyRotateTransform = new RotateTransform(enemyAngle, item.visual.Width / 2, item.visual.Height / 2);
                 item.visual.RenderTransform = enemyRotateTransform;
-            }
+            }   //enemy rotation
 
-            if (health < 1) //stop game on player death
+            if (health < 1)
             {
                 GameOver gameOver = new GameOver(score, UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
                 gameOver.Show();
@@ -583,7 +544,7 @@ namespace _12IA_Game_WPF
                 Close();
                 tmrEngine.Stop();
                 tmrSpawn.Stop();
-            }
+            }    //stop game on player death
         }
 
         public void Spawn(object sender, EventArgs e)
@@ -621,64 +582,7 @@ namespace _12IA_Game_WPF
 
                 Game_Canvas.Children.Add(enemies[enemies.Count - 1].visual);
             }
-        }
-
-        //public void Shoot(Point direction)
-        //{
-        //    foreach (Bullets item in pews)
-        //    {
-        //        var angle = Math.Atan(Math.Abs(direction.Y) / Math.Abs(direction.X));
-        //        yinc = Math.Sin(angle) * bulletSpeed;
-        //        xinc = Math.Cos(angle) * bulletSpeed;
-        //        x = 1; //x counter for movement
-        //        y = 1; //y counter for movement
-        //        shooting = true;
-
-        //        if (direction.X < 0)
-        //        {
-        //            xinc *= -1;
-        //        }
-        //        if (direction.Y < 0)
-        //        {
-        //            yinc *= -1;
-        //        }
-
-        //        shooting = true;
-        //        Canvas.SetLeft(item.visual, Canvas.GetLeft(player.middle) - 3);
-        //        Canvas.SetTop(item.visual, Canvas.GetTop(player.middle) - 3);
-        //        xpos = Canvas.GetLeft(item.visual);
-        //        ypos = Canvas.GetTop(item.visual);
-
-        //        DispatcherTimer shootTimer = new DispatcherTimer();
-        //        shootTimer.Tick += shootTimer_Tick;
-        //        shootTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
-        //        shootTimer.Start();
-
-        //        void shootTimer_Tick(object sender, EventArgs e)
-        //        {
-        //            x += xinc;
-        //            y += yinc;
-        //            if (x > SystemParameters.PrimaryScreenHeight || x < -SystemParameters.PrimaryScreenHeight)
-        //            {
-        //                shooting = false;
-        //                item.shooting = false;
-        //                shootTimer.Stop();
-        //                Game_Canvas.Children.Remove(item.visual);
-        //            }
-
-        //            Canvas.SetLeft(item.visual, x + xpos);
-        //            Canvas.SetTop(item.visual, y + ypos);
-
-        //            if (shooting == false)
-        //            {
-        //                shootTimer.Stop();
-        //                shooting = false;
-        //                item.shooting = false;
-        //            }
-        //        }
-        //    }
-        //}
-
+        }        //spawning enemies
         public void Increment(object sender, EventArgs e)       //gradual difficult curve, lowers enemy spawn time
         {
             interval += 1;
@@ -705,7 +609,7 @@ namespace _12IA_Game_WPF
             pews.Add(new Bullets());
             Game_Canvas.Children.Add(pews[pews.Count - 1].visual);
             player.Shoot(pos, pews[pews.Count - 1].visual);
-            pews[pews.Count - 1].shooting = true;
+            //pews[pews.Count - 1].shooting = true;
             //tmrBuffer.Start();
         }
 
