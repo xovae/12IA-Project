@@ -153,6 +153,22 @@ namespace _12IA_Game_WPF
             {
                 txtUltra.Background = transparent;
             }
+            if (noMove == true)
+            {
+                txtEnable.Background = white;
+            }
+            else if (txtEnable.IsMouseOver == false)
+            {
+                txtEnable.Background = transparent;
+            }
+            if (noMove == false)
+            {
+                txtDisable.Background = white;
+            }
+            else if (txtDisable.IsMouseOver == false)
+            {
+                txtDisable.Background = transparent;
+            }
         }
 
         private void Reset(object sender, MouseButtonEventArgs e)
@@ -179,26 +195,22 @@ namespace _12IA_Game_WPF
         {
             difficulty = "Hard";
         }
-
         private void Ultra(object sender, MouseButtonEventArgs e)
         {
             difficulty = "Ultra";
         }
 
-        private void Immobilised(object sender, MouseButtonEventArgs e)
+        private void Enable(object sender, MouseButtonEventArgs e)
         {
-            if (noMove == false)
-            {
-                txtImmobilised.Background = white;
-                noMove = true;
-            }
-            if (noMove == true)
-            {
-                txtImmobilised.Background = transparent;
-                noMove = false;
-            }
+            noMove = true;
         }
 
+        private void Disable(object sender, MouseButtonEventArgs e)
+        {
+            noMove = false;
+        }
+
+      
         private void Swap(object sender, MouseButtonEventArgs e)
         {
             if (ShootControl == "LeftMouse")
@@ -215,7 +227,7 @@ namespace _12IA_Game_WPF
 
         private void Play(object sender, MouseButtonEventArgs e)
         {
-            loading_screen loading = new loading_screen(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, difficulty);
+            loading_screen loading = new loading_screen(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, difficulty, noMove);
             loading.Show();
             this.Close();
         }

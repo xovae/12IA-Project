@@ -49,13 +49,14 @@ namespace _12IA_Game_WPF
 
         public Key UpControl, DownControl, LeftControl, RightControl;
         public string ShootControl, RecallControl, Difficulty;
+        public bool noMove;
 
-        public loading_screen(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string difficulty)
+        public loading_screen(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string difficulty, bool immobilise)
         {
             InitializeComponent();
             InitializeAnimation();
 
-            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = difficulty;
+            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = difficulty; noMove = immobilise;
 
             cnvLoading.Height = SystemParameters.PrimaryScreenHeight;
             cnvLoading.Width = SystemParameters.PrimaryScreenWidth;
@@ -109,7 +110,7 @@ namespace _12IA_Game_WPF
             rectLoading.Width += 3;
             if (rectLoading.Width > 1095)
             {
-                MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
+                MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty, noMove);
                 game.Show();
                 this.Close();
                 tmrLoading.Stop();

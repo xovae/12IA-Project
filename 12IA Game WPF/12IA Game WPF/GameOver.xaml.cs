@@ -25,8 +25,9 @@ namespace _12IA_Game_WPF
 
         public Key UpControl, DownControl, LeftControl, RightControl;
         public string ShootControl, RecallControl, Difficulty;
+        public bool noMove;
 
-        public GameOver(int score, Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string diff)
+        public GameOver(int score, Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string diff, bool immobile)
         {
             InitializeComponent();
             InitializeAnimation();
@@ -35,7 +36,7 @@ namespace _12IA_Game_WPF
 
             txtSummary.Text = $"Good game! In your efforts, you managed to \n destroy {score} enemy ships!";
 
-            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = diff;
+            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = diff; noMove = immobile;
         }
 
         private void InitializeAnimation()
@@ -90,7 +91,7 @@ namespace _12IA_Game_WPF
 
         private void Reset(object sender, MouseButtonEventArgs e)
         {
-            MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
+            MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty, noMove);
             game.Show();
             this.Close();
         }

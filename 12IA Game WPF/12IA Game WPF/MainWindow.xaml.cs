@@ -226,7 +226,7 @@ namespace _12IA_Game_WPF
         public static List<Walls> walls = new List<Walls>();
         public static List<Enemy> enemies = new List<Enemy>();
         public static Player player = new Player();
-        public bool moveUp, moveDown, moveLeft, moveRight;
+        public bool moveUp, moveDown, moveLeft, moveRight, noMove;
         public int score, interval, period, enemySpeed, health, threshold;
         public int playerSpeed = 10;
         public Key UpControl, DownControl, LeftControl, RightControl;
@@ -242,9 +242,9 @@ namespace _12IA_Game_WPF
 
         readonly SoundPlayer playSoundtrack = new SoundPlayer(Properties.Resources.Cubic_Planets);
 
-        public MainWindow(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string diff)
+        public MainWindow(Key Up, Key Down, Key Left, Key Right, string Shoot, string Recall, string diff, bool immobile)
         {
-            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = diff;
+            UpControl = Up; DownControl = Down; LeftControl = Left; RightControl = Right; ShootControl = Shoot; RecallControl = Recall; Difficulty = diff; noMove = immobile;
 
             InitializeComponent();
             InitializeAnimation();
@@ -306,7 +306,7 @@ namespace _12IA_Game_WPF
             {
                 enemySpeed = 10;
                 health = 2;
-                threshold = 2;
+                threshold = 4;
             }
         }
 
@@ -573,7 +573,7 @@ namespace _12IA_Game_WPF
 
             if (health < 1) 
             {
-                GameOver gameOver = new GameOver(score, UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty);
+                GameOver gameOver = new GameOver(score, UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty, noMove);
                 gameOver.Show();
                 Game_Canvas.Children.Clear();
                 walls.Clear();
@@ -677,41 +677,47 @@ namespace _12IA_Game_WPF
 
         private void Game_Canvas_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == LeftControl)      //if user has released the left key, set moveLeft to false, etc.
+            if (noMove == false)
             {
-                moveLeft = false;
-            }
-            if (e.Key == RightControl)
-            {
-                moveRight = false;
-            }
-            if (e.Key == UpControl)
-            {
-                moveUp = false;
-            }
-            if (e.Key == DownControl)
-            {
-                moveDown = false;
+                if (e.Key == LeftControl)      //if user has released the left key, set moveLeft to false, etc.
+                {
+                    moveLeft = false;
+                }
+                if (e.Key == RightControl)
+                {
+                    moveRight = false;
+                }
+                if (e.Key == UpControl)
+                {
+                    moveUp = false;
+                }
+                if (e.Key == DownControl)
+                {
+                    moveDown = false;
+                }
             }
         }
 
         private void Game_Canvas_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == LeftControl)      //if user is pressing the left key, set moveLeft to true, etc.
+            if (noMove == false)
             {
-                moveLeft = true;
-            }
-            if (e.Key == RightControl)
-            {
-                moveRight = true;
-            }
-            if (e.Key == UpControl)
-            {
-                moveUp = true;
-            }
-            if (e.Key == DownControl)
-            {
-                moveDown = true;
+                if (e.Key == LeftControl)      //if user is pressing the left key, set moveLeft to true, etc.
+                {
+                    moveLeft = true;
+                }
+                if (e.Key == RightControl)
+                {
+                    moveRight = true;
+                }
+                if (e.Key == UpControl)
+                {
+                    moveUp = true;
+                }
+                if (e.Key == DownControl)
+                {
+                    moveDown = true;
+                }
             }
         }
     }
