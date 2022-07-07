@@ -84,7 +84,7 @@ namespace _12IA_Game_WPF
             txtExit.BeginAnimation(Canvas.TopProperty, ExitScroll);
 
         }
-        private void Exit(object sender, MouseButtonEventArgs e)     //exit button
+        private void Exit(object sender, RoutedEventArgs e)     //exit button
         {
             this.Close();
         }
@@ -94,6 +94,14 @@ namespace _12IA_Game_WPF
             MainWindow game = new MainWindow(UpControl, DownControl, LeftControl, RightControl, ShootControl, RecallControl, Difficulty, noMove);
             game.Show();
             this.Close();
+        }
+
+        private void ExitCheck(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Exit(sender, e);
+            }
         }
 
         private void Menu(object sender, MouseButtonEventArgs e)
